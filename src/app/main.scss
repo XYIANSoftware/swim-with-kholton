@@ -1,0 +1,6 @@
+// Load order: variables → base → utilities → themes (dark-synth first as default) → primereact-overrides
+@use "../styles/variables";
+@use "../styles/base";
+@use "../styles/utilities";
+@use "../styles/themes/dark-synth";
+@use "../styles/primereact-overrides";

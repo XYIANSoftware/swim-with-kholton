@@ -1,0 +1,137 @@
+// PrimeReact component overrides: use only CSS variables (no hex).
+// One Prime theme CSS + this file so all data-theme themes work.
+
+.p-card {
+  background: var(--surface-card);
+  color: var(--text-color);
+  border: 1px solid var(--surface-border);
+}
+
+.p-card .p-card-body,
+.p-card .p-card-content {
+  background: var(--surface-card);
+  color: var(--text-color);
+}
+
+.p-card .p-card-title {
+  color: var(--text-color);
+}
+
+.p-datatable {
+  background: var(--surface-card);
+  color: var(--text-color);
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background: var(--surface-ground);
+  color: var(--text-color);
+  border-color: var(--surface-border);
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  border-color: var(--surface-border);
+  color: var(--text-color);
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: var(--surface-hover);
+}
+
+.p-button {
+  background: var(--primary-color);
+  color: var(--primary-color-text);
+  border-color: var(--primary-color);
+}
+
+.p-button:hover {
+  background: var(--button-primary-background-hover, var(--primary-color));
+  border-color: var(--button-primary-background-hover, var(--primary-color));
+}
+
+.p-button:focus {
+  box-shadow: var(--focus-ring);
+}
+
+.p-button.p-button-secondary {
+  background: var(--surface-card);
+  color: var(--text-color);
+  border-color: var(--surface-border);
+}
+
+.p-button.p-button-secondary:hover {
+  background: var(--surface-hover);
+}
+
+.p-message {
+  background: var(--surface-overlay);
+  border-color: var(--surface-border);
+  color: var(--text-color);
+}
+
+.p-tag {
+  background: var(--surface-200);
+  color: var(--text-color);
+  border-color: var(--surface-border);
+}
+
+.p-panel {
+  background: var(--surface-card);
+  border-color: var(--surface-border);
+}
+
+.p-panel .p-panel-title {
+  color: var(--text-color);
+}
+
+.p-panel .p-panel-content {
+  background: var(--surface-card);
+  color: var(--text-color);
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  background: var(--surface-card);
+  color: var(--text-color);
+  border-color: var(--surface-border);
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link:hover {
+  background: var(--surface-hover);
+}
+
+.p-accordion .p-accordion-content {
+  background: var(--surface-card);
+  color: var(--text-color);
+  border-color: var(--surface-border);
+}
+
+.p-inputtext {
+  background: var(--input-bg);
+  color: var(--input-fg);
+  border: var(--input-border);
+}
+
+.p-inputtext:enabled:hover {
+  border-color: var(--surface-border);
+}
+
+.p-inputtext:enabled:focus {
+  box-shadow: var(--focus-ring);
+}
+
+.p-dropdown {
+  background: var(--input-bg);
+  border: var(--input-border);
+  color: var(--input-fg);
+}
+
+.p-dropdown:hover {
+  border-color: var(--surface-border);
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+  box-shadow: var(--focus-ring);
+}
+
+.p-progress-spinner-circle {
+  stroke: var(--primary-color);
+}

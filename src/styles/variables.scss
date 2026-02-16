@@ -1,0 +1,45 @@
+// App and PrimeReact semantic tokens. Theme files override these via data-theme.
+:root {
+  --surface-ground: #0c0020;
+  --surface-section: #0c0020;
+  --surface-card: #1a0a2e;
+  --surface-overlay: #1a0a2e;
+  --surface-border: #2a1f4e;
+  --surface-hover: rgba(184, 114, 249, 0.12);
+  --surface-0: #07071b;
+  --surface-50: #0c0020;
+  --surface-100: #1a0a2e;
+  --surface-200: #2a1f4e;
+  --surface-300: #3d2a5c;
+  --surface-400: #5c4d7a;
+  --surface-500: #7a6b98;
+  --surface-600: #9d8fbd;
+  --surface-700: #c89cff;
+  --surface-800: #dbd4fa;
+  --surface-900: #ede9fe;
+  --surface-a: #1a0a2e;
+  --surface-b: #0c0020;
+  --surface-c: rgba(184, 114, 249, 0.08);
+  --surface-d: #2a1f4e;
+  --surface-e: #1a0a2e;
+  --surface-f: #1a0a2e;
+  --text-color: #dbd4fa;
+  --text-color-secondary: #9d8fbd;
+  --primary-color: #24cdc5;
+  --primary-color-text: #07071b;
+  --focus-ring: 0 0 0 0.2rem rgba(36, 205, 197, 0.35);
+  --highlight-bg: rgba(36, 205, 197, 0.15);
+  --highlight-text-color: #dbd4fa;
+  --p-primary-color: var(--primary-color);
+  --p-text-color: var(--text-color);
+  --page-background: #0c0020;
+  --text-primary: #dbd4fa;
+  --card-border: rgba(184, 114, 249, 0.2);
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 12px rgba(184, 114, 249, 0.08);
+  --font-family: system-ui, -apple-system, sans-serif;
+  --scrollbar-track-bg: #1a0a2e;
+  --scrollbar-thumb-bg: #2a1f4e;
+  --scrollbar-thumb-hover-bg: #3d2a5c;
+  --progress-spinner-size-sm: 14px;
+  --progress-spinner-size-md: 18px;
+}
