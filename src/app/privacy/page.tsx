@@ -10,8 +10,11 @@ type PrivacyPageProps = Readonly<{
   searchParams?: SearchParamsPromise;
 }>;
 
-export default async function PrivacyPage({ params, searchParams }: PrivacyPageProps) {
-  await Promise.all([params ?? Promise.resolve({}), searchParams ?? Promise.resolve({})]);
+export default async function PrivacyPage(props: PrivacyPageProps) {
+  await Promise.all([
+    props.params ?? Promise.resolve({}),
+    props.searchParams ?? Promise.resolve({}),
+  ]);
   return (
     <section className="container container-narrow">
           <h1 className="m-0 mb-2 text-4xl font-bold" style={{ color: "var(--text-primary)" }}>

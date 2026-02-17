@@ -20,9 +20,9 @@ type AboutPageProps = Readonly<{
   searchParams?: SearchParamsPromise;
 }>;
 
-export default function AboutPage({ params, searchParams }: AboutPageProps) {
-  use(params ?? EMPTY_PARAMS_PROMISE);
-  use(searchParams ?? EMPTY_SEARCH_PARAMS_PROMISE);
+export default function AboutPage(props: AboutPageProps) {
+  use(props.params ?? EMPTY_PARAMS_PROMISE);
+  use(props.searchParams ?? EMPTY_SEARCH_PARAMS_PROMISE);
   const stepperRef = useRef<ComponentRef<typeof Stepper> | null>(null);
 
   return (

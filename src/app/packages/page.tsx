@@ -67,9 +67,9 @@ type PackagesPageProps = Readonly<{
   searchParams?: SearchParamsPromise;
 }>;
 
-export default function PackagesPage({ params, searchParams }: PackagesPageProps) {
-  use(params ?? EMPTY_PARAMS_PROMISE);
-  use(searchParams ?? EMPTY_SEARCH_PARAMS_PROMISE);
+export default function PackagesPage(props: PackagesPageProps) {
+  use(props.params ?? EMPTY_PARAMS_PROMISE);
+  use(props.searchParams ?? EMPTY_SEARCH_PARAMS_PROMISE);
   const [layout, setLayout] = useState<"grid" | "list">("grid");
 
   const header = () => (
