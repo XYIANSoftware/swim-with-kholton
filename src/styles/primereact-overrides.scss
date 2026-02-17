@@ -370,31 +370,32 @@ button.theme-toggle-btn {
   stroke: var(--primary-color);
 }
 
-/* Stepper (About page – What to expect): theme colors (primereact.org/stepper)
-   Styled class names: p-stepper, p-stepper-horizontal, p-stepper-vertical, p-stepper-nav,
-   p-stepper-panels, p-stepper-panel, p-stepper-header, p-stepper-action, p-stepper-number,
-   p-stepper-title, p-stepper-separator, p-stepper-toggleable-content, p-stepper-content,
-   p-stepper-start, p-stepper-end */
+/* Stepper (About page – What to expect): muted dark blue panel, white text (vars: --stepper-bg, --stepper-text, --stepper-wrapper-bg) */
+.stepper-wrapper {
+  background: var(--stepper-wrapper-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+}
 .p-stepper {
-  color: var(--text-color);
+  color: var(--stepper-text);
 }
 .p-stepper .p-stepper-header .p-stepper-action {
   background: transparent;
 }
 .p-stepper .p-stepper-header .p-stepper-action .p-stepper-number {
-  color: var(--text-color);
+  color: var(--stepper-text);
   background: transparent;
-  border-color: var(--surface-border);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 .p-stepper .p-stepper-header .p-stepper-action .p-stepper-title {
-  color: var(--text-color-secondary);
+  color: rgba(255, 255, 255, 0.85);
 }
 .p-stepper .p-stepper-header.p-highlight .p-stepper-action .p-stepper-number {
-  background: var(--highlight-bg);
-  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--stepper-text);
 }
 .p-stepper .p-stepper-header.p-highlight .p-stepper-title {
-  color: var(--text-color);
+  color: var(--stepper-text);
 }
 .p-stepper .p-stepper-header .p-stepper-action:not(.p-disabled):focus-visible,
 .p-stepper .p-stepper-header:not(.p-disabled):focus-visible {
@@ -404,22 +405,22 @@ button.theme-toggle-btn {
 }
 .p-stepper .p-stepper-panels,
 .p-stepper.p-stepper-vertical .p-stepper-toggleable-content {
-  background: var(--surface-card);
-  color: var(--text-color);
+  background: var(--stepper-bg);
+  color: var(--stepper-text);
 }
 .p-stepper .p-stepper-content {
-  color: var(--text-color);
+  color: var(--stepper-text);
 }
 .p-stepper .p-stepper-separator {
-  background-color: var(--surface-border);
+  background-color: rgba(255, 255, 255, 0.35);
 }
 .p-stepper .p-stepper-header:has(~ .p-highlight) .p-stepper-separator,
 .p-stepper.p-stepper-vertical .p-stepper-panel:has(~ .p-stepper-panel-active) .p-stepper-separator {
-  background-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .p-stepper .p-stepper-start,
 .p-stepper .p-stepper-end {
-  color: var(--text-color);
+  color: var(--stepper-text);
 }
 
 /* TabView (About page – About / Coaching philosophy): theme colors (primereact.org/tabview)

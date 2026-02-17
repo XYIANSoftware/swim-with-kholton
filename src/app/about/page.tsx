@@ -83,11 +83,11 @@ export default function AboutPage() {
           <h2 className="m-0 mb-3 text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
             What to expect
           </h2>
-          <div className="card flex justify-content-center">
+          <div className="card flex justify-content-center stepper-wrapper">
             <Stepper ref={stepperRef} style={{ flexBasis: "50rem" }}>
               <StepperPanel header="Check-in">
                 <div className="flex flex-column h-12rem">
-                  <p className="m-0 text-color-secondary flex-auto flex align-items-center">{WHAT_TO_EXPECT[0]}</p>
+                  <p className="m-0 flex-auto flex align-items-center" style={{ color: "var(--stepper-text)" }}>{WHAT_TO_EXPECT[0]}</p>
                 </div>
                 <div className="flex pt-4 justify-content-end">
                   <Button
@@ -100,7 +100,7 @@ export default function AboutPage() {
               </StepperPanel>
               <StepperPanel header="Session">
                 <div className="flex flex-column h-12rem">
-                  <p className="m-0 text-color-secondary flex-auto flex align-items-center">{WHAT_TO_EXPECT[1]}</p>
+                  <p className="m-0 flex-auto flex align-items-center" style={{ color: "var(--stepper-text)" }}>{WHAT_TO_EXPECT[1]}</p>
                 </div>
                 <div className="flex pt-4 justify-content-between">
                   <Button
@@ -119,7 +119,7 @@ export default function AboutPage() {
               </StepperPanel>
               <StepperPanel header="Takeaways">
                 <div className="flex flex-column h-12rem">
-                  <p className="m-0 text-color-secondary flex-auto flex align-items-center">{WHAT_TO_EXPECT[2]}</p>
+                  <p className="m-0 flex-auto flex align-items-center" style={{ color: "var(--stepper-text)" }}>{WHAT_TO_EXPECT[2]}</p>
                 </div>
                 <div className="flex pt-4 justify-content-start">
                   <Button
