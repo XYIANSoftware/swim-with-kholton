@@ -5,7 +5,7 @@
   --surface-card: #1a0a2e;
   --surface-overlay: #1a0a2e;
   --surface-border: #2a1f4e;
-  --surface-hover: rgba(184, 114, 249, 0.12);
+  --surface-hover: rgba(184, 114, 249, 0.28);
   --surface-0: #07071b;
   --surface-50: #0c0020;
   --surface-100: #1a0a2e;
@@ -63,7 +63,7 @@
   --input-invalid-border: 1px solid #f88c79;
   --error-text-color: #f88c79;
   /* Hero banner: semi-transparent strip behind hero content (themes may override) */
-  --hero-banner-bg: rgba(255, 255, 255, 0.1);
+  --hero-banner-bg: rgba(255, 255, 255, 0.2);
   /* Stepper (About – What to expect): muted dark blue panel, white text, wrapper background (themes may override) */
   --stepper-bg: rgba(30, 58, 95, 0.82);
   --stepper-text: #ffffff;

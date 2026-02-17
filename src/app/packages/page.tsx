@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Header, Footer } from "@/components/layout";
 import { TrustStrip } from "@/components/pages/home";
 import { DataView, DataViewLayoutOptions } from "primereact/dataview";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
+import { Tag } from "primereact/tag";
 import { PACKAGES } from "@/constants/packages";
 import type { PackageOption } from "@/constants/packages";
 import { BOOK_LESSON_HREF } from "@/constants/nav";
@@ -28,16 +28,18 @@ function PackageCard({ pkg }: { pkg: PackageOption }) {
       footer={footer}
       className="shadow-2 h-full flex flex-column"
     >
+      <div className="flex flex-wrap gap-2 mb-3">
+        {pkg.level && (
+          <Tag value={pkg.level} severity={pkg.levelSeverity} rounded />
+        )}
+        <Tag value={pkg.duration} severity="secondary" rounded />
+        <Tag value={pkg.price} severity="secondary" rounded />
+      </div>
       <ul className="m-0 mb-3 pl-3 text-sm list-disc">
         {pkg.benefits.map((b) => (
           <li key={b}>{b}</li>
         ))}
       </ul>
-      <p className="m-0 text-sm text-color-secondary">
-        <strong>Duration:</strong> {pkg.duration}
-        <br />
-        <strong>Price:</strong> {pkg.price}
-      </p>
     </Card>
   );
 }
@@ -53,10 +55,7 @@ export default function PackagesPage() {
   );
 
   return (
-    <div className="flex flex-column min-h-screen">
-      <Header />
-      <main className="section flex-grow-1">
-        <div className="container">
+    <div className="container">
           <h1 className="m-0 mb-2 text-4xl font-bold" style={{ color: "var(--text-primary)" }}>
             Packages
           </h1>
@@ -84,9 +83,6 @@ export default function PackagesPage() {
               Cancellations and weather: we’ll share full details when you book. Generally, we ask for 24 hours notice for changes and will reschedule when the pool or conditions aren’t safe.
             </p>
           </div>
-        </div>
-      </main>
-      <Footer />
     </div>
   );
 }

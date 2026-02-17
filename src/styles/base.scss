@@ -10,6 +10,7 @@ html {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -19,6 +20,7 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
   color: var(--text-color);
   background: var(--page-background);
   font-family: var(--font-family);
@@ -97,6 +99,19 @@ button.p-button.p-button-icon-only.p-button-sm {
   overflow: hidden;
 }
 
+/* SpeedDial trigger: use same global small size as header (Book / hamburger) */
+.p-speeddial-button.p-button.p-button-icon-only {
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  min-width: 2.25rem !important;
+  min-height: 2.25rem !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .p-button.p-button-lg,
 button.p-button.p-button-lg,
 a.p-button.p-button-lg {
@@ -146,6 +161,11 @@ a.p-button:not(.p-button-icon-only) {
 
 .p-card .p-card-title {
   color: var(--text-color);
+}
+
+.p-card .p-card-subtitle {
+  color: var(--text-color-secondary);
+  margin-bottom: 0.5rem;
 }
 
 .p-datatable {
@@ -288,6 +308,18 @@ button.theme-toggle-btn {
   background: var(--surface-200);
   color: var(--text-color);
   border-color: var(--surface-border);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--border-radius);
+}
+
+.p-tag.p-tag-rounded {
+  border-radius: 50px;
+}
+
+.p-carousel .p-carousel-items-container {
+  transition: transform 0.4s ease;
 }
 
 .p-panel {
@@ -325,7 +357,8 @@ button.theme-toggle-btn {
 
 .p-accordion .p-accordion-header:not(.p-disabled):not(.p-highlight):hover .p-accordion-header-link,
 .p-accordion .p-accordion-header .p-accordion-header-link:hover {
-  background: var(--surface-hover);
+  background: var(--surface-200);
+  color: var(--text-color);
 }
 
 .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
@@ -336,7 +369,8 @@ button.theme-toggle-btn {
 }
 
 .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
-  background: var(--surface-hover);
+  background: var(--surface-200);
+  color: var(--text-color);
 }
 
 .p-accordion .p-accordion-header .p-accordion-header-link:focus-visible {
@@ -610,4 +644,80 @@ button.theme-toggle-btn {
 
 .p-component-overlay.p-sidebar-mask {
   background-color: var(--maskbg);
+}
+
+// -----------------------------------------------------------------------------
+// Site footer — plain layout, no inline styles. SpeedDial must stay inside footer.
+// -----------------------------------------------------------------------------
+.site-footer {
+  margin-top: auto;
+  padding: 0.75rem 1rem;
+  background: var(--footer-bg, var(--surface-ground));
+  border-top: 1px solid var(--surface-border);
+  color: var(--text-color-secondary);
+}
+
+@media (min-width: 768px) {
+  .site-footer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.site-footer__top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.site-footer__contact {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.site-footer__title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-color);
+}
+
+.site-footer__contact-line {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.site-footer__bottom {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  font-size: 0.875rem;
+  border-top: 1px solid var(--surface-border);
+}
+
+.site-footer__copyright {
+  margin: 0;
+}
+
+.site-footer__link {
+  color: var(--text-color-secondary);
+  text-decoration: none;
+}
+
+.site-footer__link:hover {
+  color: var(--text-color);
+}
+
+/* Keep SpeedDial inside footer: small containing box, dial pinned to its bottom-right */
+.footer-speeddial {
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex-shrink: 0;
+}
+
+.footer-speeddial .p-speeddial {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }

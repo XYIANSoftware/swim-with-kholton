@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Header, Footer } from "@/components/layout";
 import { Providers } from "@/providers";
 import { APP_THEME_STORAGE_KEY, DEFAULT_THEME, THEMES } from "@/constants";
 // Load order per primereact.org/installation: theme → icons → PrimeFlex → app styles
@@ -28,7 +29,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

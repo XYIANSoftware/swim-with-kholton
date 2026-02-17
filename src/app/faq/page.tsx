@@ -1,4 +1,3 @@
-import { Header, Footer } from "@/components/layout";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { FAQ_PREVIEW_ITEMS } from "@/constants/copy";
 
@@ -17,10 +16,7 @@ export default function FAQPage() {
   const allFaq = [...FAQ_PREVIEW_ITEMS, ...EXTRA_FAQ];
 
   return (
-    <div className="flex flex-column min-h-screen">
-      <Header />
-      <main className="section flex-grow-1">
-        <div className="container container-narrow">
+    <section className="container container-narrow">
           <h1 className="m-0 mb-4 text-4xl font-bold" style={{ color: "var(--text-primary)" }}>
             FAQ
           </h1>
@@ -31,9 +27,6 @@ export default function FAQPage() {
               </AccordionTab>
             ))}
           </Accordion>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </section>
   );
 }

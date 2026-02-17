@@ -104,6 +104,63 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Styles architecture**: PrimeReact foundation (sizes, padding, shadows, structure) is now in `base.scss`; `primereact-overrides.scss` was removed. Base is the single place for how PrimeReact components look and behave; themes only override color variables so switching theme changes colors, not layout. Load order: variables → base → utilities → themes.
 - **TabView panel padding**: `.p-tabview .p-tabview-panel` now has `padding: var(--content-padding, 1.25rem)` so tab content (e.g. About / Coaching philosophy) is not flush to the edges.
 
+## [0.2.15] - 2025-02-16
+
+### Fixed
+
+- **Footer always at bottom**: Footer was appearing in the middle of the page on short content (e.g. FAQ) with the SpeedDial button detached at viewport bottom. Layout updated so the footer stays at the bottom of the viewport: `.layout-content` now has `min-height: 100vh` and its single child (the page wrapper) gets `flex: 1 1 0`, `min-height: 0`, and flex column so it fills the viewport; header and footer have `flex-shrink: 0` so main expands and the footer stays pinned to the bottom. The SpeedDial remains in the footer and now appears at the bottom with it.
+- **Never scroll past the footer (viewport lock)**: `overscroll-behavior-y: none` on `html` and `body` so you can’t overscroll (e.g. rubber-band) past the end of the page; the scroll stops at the footer.
+
+### Added
+
+- **Privacy and Terms pages**: Basic `/privacy` and `/terms` pages with standard sections. Privacy: information we collect, how we use it, cookies/tracking, contact. Terms: acceptance, services, user conduct, limitation of liability, changes, contact. Both use the same layout as FAQ/schedule (Header, narrow container, Footer) and metadata for title/description. Footer copyright row now includes “Privacy” and “Terms” links.
+
+### Changed
+
+- **Footer (mobile/small screens)**: Footer is now compact on all screens. Above the divider: single row with essential contact only (site name + email/phone on one line) and a PrimeReact [SpeedDial](https://primereact.org/speeddial/) for page navigation (Home, About, Packages, Schedule, FAQ, Book Lesson) with labels and icons; direction up, bars/close icons, outlined button. Removed the large Links and Contact columns from the footer (those are available in the hamburger menu). Bottom section (divider + copyright) unchanged; overall footer height kept minimal so it never dominates on small screens.
+- **FooterNavSpeedDial**: New client component that builds SpeedDial items from `NAV_LINKS` and `BOOK_LESSON_HREF`, using `useRouter` from `next/navigation` for in-app navigation.
+
+## [0.2.16] - 2025-02-16
+
+### Added
+
+- **Cursor rule**: `.cursor/rules/react-next-style.mdc` — React/Next style (KISS, small files, naming, TypeScript no-any, structure, performance). Always applied.
+
+### Changed
+
+- **README**: Rewritten to be accurate and dev-facing: tech stack, structure (`app/`, `components/`, `constants/`, `types/`, styles, providers), theming, path alias, versioning/docs.
+- **TrustStrip (trust ticker)**: Smaller height: component-specific `TrustStrip.scss` (imported in the component) now holds all trust-ticker styles; padding reduced (section 0.5rem vertical, items 0.375rem 1rem), margin-bottom 2.5rem → 1.5rem. Removed trust-ticker rules from `utilities.scss` so styles apply only via this component’s class names; no PrimeReact overrides added.
+- **Hover and focus contrast**: Accordion and other hover/focus effects use less transparency and keep contrast.
+
+### Fixed
+
+- **TypeScript**: About page Stepper ref no longer uses `any`; uses `ComponentRef<typeof Stepper>`. Package version set to 0.2.16 to match changelog.
+- **SpeedDial / global button size**: Footer SpeedDial trigger was 4rem (Lara theme) and ignored global button padding. Global button padding and sizes live in `base.scss` (`.p-button`, `.p-button-sm`, `.p-button-icon-only.p-button-sm`). Added override in base for `.p-speeddial-button.p-button.p-button-icon-only` to use the same 2.25rem size and padding as header small buttons (Book Lesson / hamburger), and set `buttonClassName="p-button-outlined p-button-sm"` on Footer SpeedDial so it uses the global small size.
+
+## [0.2.14] - 2025-02-16
+
+### Added
+
+- **PrimeReact theme reference**: Downloaded official [PrimeReact Arya Blue theme](https://github.com/primefaces/primereact/blob/master/public/themes/arya-blue/theme.css) to `public/themes/arya-blue/theme.css` for local reference. Use when comparing variable names, `@layer primereact` structure, or component class names. `public/themes/README.md` documents the source URL and a curl command to refresh the file.
+- **Packages section Carousel**: Home page packages section is now a client component using PrimeReact `Carousel`. Shows all package cards in a circular carousel with responsive breakpoints (3 → 2 → 1 visible), same Card content (title, forWho, benefits, duration/price, Choose Package), plus “View all packages” link below.
+- **Package level tags**: Package cards (home Carousel and packages page) show level with PrimeReact [Tag](https://primereact.org/tag/): Beginner (success), Intermediate (info), Advanced (warning), Competitive (danger), Group (secondary). `PackageOption` now has optional `level` and `levelSeverity`; package names no longer include level in parentheses.
+
+### Changed
+
+- **Package cards**: Duration and price shown as Tags (value only, no “Duration:”/“Price:” labels); level, duration, and price in one flex row with gap. Card subtitle uses `--text-color-secondary`; Tag padding/font in base so Tags have consistent PrimeReact-style padding.
+- **Packages Carousel**: Auto-advance every 4s (`autoplayInterval={4000}`); smooth slide transition (0.4s ease on `.p-carousel-items-container`).
+- **Package prices**: Placeholder prices set to "$25–$75" for all packages (dummy for now).
+- **Trust strip**: Rebuilt as a full-width horizontal ticker (stock/weather style). All items on one line, scrolling across the viewport with a seamless loop (duplicated content, 40s animation, translateX -50%). Hover pauses the ticker. Added `margin-bottom: 2.5rem` so the strip is visually separated from the Packages section.
+
+### Removed
+
+- **Schedule page content**: Replaced the full schedule/contact page (form, scheduling copy, inquiry form) with a minimal placeholder. `/schedule` now shows only a title and “Calendly goes here.” (Calendly will be added later.) Nav and Book Lesson still point to `/schedule`. FAQ answer for weather/cancellations no longer references “Schedule page.”
+
+### Fixed
+
+- **Card subtitle**: `.p-card .p-card-subtitle` now uses `var(--text-color-secondary)` so it’s readable in both themes (was inheriting light theme white). Subtitle margin set to 0.5rem.
+- **Tag styling**: `.p-tag` in base now has padding, font-size, font-weight, border-radius; `.p-tag-rounded` for pill shape so Tags are visibly styled.
+
 ## [0.2.9] - 2025-02-16
 
 ### Changed
@@ -186,6 +243,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Theming and clicks: aligned with [PrimeReact](https://github.com/primefaces/primereact) Lara theme; added missing design tokens to :root (--border-radius, --content-padding, --inline-spacing, --maskbg, --p-border-radius); cursor: pointer on .p-button and accordion header links, cursor: text on inputs, cursor: not-allowed on disabled buttons; border-radius and appearance on buttons; Sidebar and overlay use theme vars (--surface-overlay, --maskbg) and close button cursor; hover limited to :not(:disabled) so disabled state is clear.
 - Hero background visible: main and page wrapper set to `background: transparent`; `.parallax-section.section` forced `background: transparent !important`; parallax section uses `isolation: isolate`; hero overlay lightened (0.35→0.25); no backgrounds on wrappers over the hero.
 - Package cards uniform size: `.package-cards-grid` with `grid-auto-rows: minmax(20rem, 1fr)` so every row (including when the 3rd card wraps) has equal height; `.package-card` with `min-height: 20rem`, `height: 100%`, flex so cards match and CTA stays at bottom on home and packages page.
+- Footer sticky to bottom: page root `.flex.flex-column.min-h-screen` has `min-height: 100vh`; `& > main` gets `flex-grow: 1`, `flex-shrink: 0`, `min-height: 0` so main fills space and footer stays at bottom when content is short.
 - Centering: page root direct children (header, main, footer) forced to full width via `.flex.flex-column.min-h-screen > header/main/footer` so inner `.container` centers correctly; SCSS nesting in utilities for `.layout-content` and page root; `box-sizing: border-box` on container/content-wrap.
 - Header and footer ~15% more transparent: light theme header 0.94→0.79, footer 0.96→0.81; dark theme header/footer rgba with 0.85 alpha; new --footer-bg in themes, Footer uses var(--footer-bg).
 - Hero image layer stacking: parallax background layer and overlay use explicit z-index (1, 2, 3) so the image layer is never behind body/main; layer uses inset positioning; `.parallax-section .parallax-layer` has `pointer-events: none`.

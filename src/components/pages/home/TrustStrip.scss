@@ -1,0 +1,39 @@
+// TrustStrip only. Scoped by class names used solely in this component.
+// Reduced height/padding; no PrimeReact overrides (component uses theme vars and plain buttons).
+
+.trust-ticker {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background: var(--surface-section);
+  border-top: 1px solid var(--surface-border);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.trust-ticker-track {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  animation: trust-ticker-scroll 40s linear infinite;
+}
+
+.trust-ticker:hover .trust-ticker-track {
+  animation-play-state: paused;
+}
+
+.trust-ticker-item {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 0.375rem 1rem !important; // compact height; gap between items
+}
+
+@keyframes trust-ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

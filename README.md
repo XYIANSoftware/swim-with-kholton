@@ -1,42 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Swim with Kholton
 
-## PrimeReact usage
+Marketing site for Kholton Swim Coaching: Next.js (App Router), React, TypeScript, PrimeReact, theme toggle (SoCal Aqua Light / Dark Synth).
 
-- **Theming**: We use one built-in theme CSS (Lara) and a **foundation** in `src/styles/base.scss`: sizes, padding, shadows, and structure for PrimeReact components, all using **CSS variables** ([Colors](https://primereact.org/colors/), [Theming](https://primereact.org/theming/)). Themes only override color variables so users can switch looks without changing the base.
-- **DataView (packages)**: [DataView Layout](https://primereact.org/dataview/#layout) — grid layout uses **PrimeFlex Grid classes** in `itemTemplate` (`col-12 md:col-6 lg:col-4`). Pass-through (`pt`) is used to add a scoped class to the grid DOM element ([Pass Through](https://primereact.org/passthrough/)).
-- **Accordion, TabView, etc.**: Custom templates and headers follow the [Accordion](https://primereact.org/accordion/) / [TabView](https://primereact.org/tabview/) docs; styling uses theme variables and the same overrides file.
+## Tech stack
 
-## Getting Started
+- **React** (latest stable) + **Next.js** (App Router, latest stable)
+- **TypeScript** (strict)
+- **PrimeReact** + **PrimeFlex** + **PrimeIcons**
+- **date-fns**, **react-hook-form**, **Zustand** (as needed)
+- **Sass** for styles
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Build: `npm run build`. Lint: `npm run lint`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **`src/app/`** — Next.js App Router routes; each route has a `page.tsx` (thin parent, composes sections).
+- **`src/components/`** — Reusable UI: `common/`, `layout/`, `ui/`, `pages/` (home sections, etc.). Use `@/components` via index re-exports.
+- **`src/constants/`** — Copy, nav, theme, packages, etc. Re-export from `@/constants`.
+- **`src/types/`** — Shared types; re-export from `@/types`.
+- **`src/styles/`** — Global Sass: variables, base (resets + PrimeReact foundation), utilities, themes (socal-aqua-light, dark-synth).
+- **`src/providers/`** — ThemeProvider, PrimeReactProvider, root Providers wrapper.
+- **`src/hooks/`**, **`src/services/`**, **`src/stores/`** — Shared hooks, API/business logic, Zustand stores (index re-exports).
 
-## Learn More
+Path alias: `@/*` → `./src/*`.
 
-To learn more about Next.js, take a look at the following resources:
+## Theming
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Two themes: **SoCal Aqua Light** (default) and **Dark Synth**. Toggle in header (desktop) or mobile menu.
+- Theme is persisted in `localStorage` and applied via `data-theme` on `<html>`. Base layout and PrimeReact structure live in `src/styles/base.scss`; themes only override color variables in `src/styles/themes/`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Docs and versioning
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **CHANGELOG.md** — All notable changes; update on code changes.
+- **package.json** — Version kept in sync with changelog.
+- **public/themes/README.md** — PrimeReact theme reference (Arya Blue) for local comparison.

@@ -1,11 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type ComponentRef } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
 import { Button } from "primereact/button";
-import { Header, Footer } from "@/components/layout";
 import {
   ABOUT_HEADLINE,
   ABOUT_BIO,
@@ -15,13 +14,11 @@ import {
 } from "@/constants/about";
 
 export default function AboutPage() {
-  const stepperRef = useRef<any>(null);
+  const stepperRef = useRef<ComponentRef<typeof Stepper> | null>(null);
 
   return (
-    <div className="flex flex-column min-h-screen">
-      <Header />
-      <main className="section flex-grow-1">
-        <div className="container">
+    <>
+      <div className="container">
           <h1 className="m-0 mb-4 text-4xl font-bold" style={{ color: "var(--text-primary)" }}>
             {ABOUT_HEADLINE}
           </h1>
@@ -136,8 +133,6 @@ export default function AboutPage() {
             </Stepper>
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

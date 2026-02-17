@@ -1,0 +1,55 @@
+---
+description: React/Next.js coding style — KISS, small files, proper types, hierarchical imports
+alwaysApply: true
+---
+
+# React & Next.js coding style
+
+## Core principle: KISS (Keep It Stupid Simple)
+
+- Organize, name, and design for simplicity. Page routes are thin parent components: parent-level state only, parent-level hooks only, children are reusable functional components that only need the props they use.
+- No unnecessary prop drilling. Each component is self-contained and works the same regardless of parent as long as it gets the right props (or none).
+
+## File and function size
+
+- **Target**: Every function visible on a normal-sized screen without scrolling hundreds of lines.
+- **Rough limit**: Files/methods over ~300 lines are a bad smell (exceptions: CSS, generated config). TSX and route components should stay small.
+- Split large logic into hooks, components, or constants; keep route parents tiny and delegate to sections.
+
+## Naming
+
+- **Components**: PascalCase (`About.tsx`, `TeamTable`).
+- **Constants** (static lists, config): UPPER_SNAKE_CASE (`MY_LIST`, `CARD_LIST`).
+- **Hooks**: camelCase with `use` prefix (`useAuth`, `useApi`).
+- **Types/interfaces**: PascalCase. No `any` or `unknown` — use proper types, generics, and extend PrimeReact/React types where relevant.
+
+## TypeScript
+
+- **Use TypeScript fully**: generics, extending interfaces, strict types. Never use `any` or `unknown`; use proper types or type guards.
+- Extend library types when wrapping (e.g. PrimeReact `ButtonProps`) and keep types in `@/types` with index re-exports. Enforce with linter.
+
+## Structure (this codebase)
+
+- **Routes**: Next.js App Router — each route is `app/<route>/page.tsx` (the parent for that page). Keep it thin: state/hooks at parent, then section components.
+- **Components**: `@/components` — common, layout, ui, pages. Hierarchical `index.ts` so imports use `@/components` (not deep paths).
+- **Constants**: `@/constants` — static copy, nav, theme, etc. One concern per file; re-export from `constants/index.ts`.
+- **Types**: `@/types` — re-export from `types/index.ts`; keep types next to features when feature-specific.
+- **Hooks, services, stores**: `@/hooks`, `@/services`, `@/stores` with index re-exports. Use React state + context + Zustand as appropriate; avoid unnecessary rerenders and expensive work on render.
+
+## Components and data
+
+- Prefer list/data patterns like `<CardListView data={CARD_LIST} />` with `data.map(item => <Card key={item.id} ... />)` so content is data-driven and ready for API/JSON.
+- Constants for lists live in their own files under `constants/` (e.g. `CARD_LIST` in a dedicated or domain file). Keep TSX clean; no raw HTML blobs for copy — use imported constants.
+
+## Performance
+
+- Avoid unnecessary rerenders; keep state flow minimal and updates predictable.
+- Do not call APIs or heavy work on every render; use caching, effects with correct deps, or data layer (stores/services) as appropriate.
+
+## Refactoring
+
+- Prefer “rip it out”: remove what’s not needed, verify behavior, then reorganize and refactor in new locations. Keep PRs/commits focused on one feature or fix.
+
+## Version and docs
+
+- Update CHANGELOG for code changes; keep README accurate and dev-facing. Bump version in package.json per changelog (minor/patch as appropriate).

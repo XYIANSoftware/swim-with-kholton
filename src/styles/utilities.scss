@@ -1,29 +1,36 @@
-// Single max width for header, main, footer so everything aligns (centered, fits viewport)
+// -----------------------------------------------------------------------------
+// App layout and utilities (our classes, not PrimeReact). We don't override
+// PrimeReact/PrimeFlex defaults here — we use PrimeFlex class names on our
+// markup and add app-specific layout (e.g. .layout-content, .container).
+// -----------------------------------------------------------------------------
+
 :root {
   --content-max-width: 1200px;
 }
 
-// Layout content above global parallax background (used in root Providers).
+/* Single wrapper: Header, main, Footer as direct children. Footer is after all content, minimal nesting. */
 .layout-content {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 100%;
   min-width: 0;
+  min-height: 100vh;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  & > * {
-    width: 100%;
+  & > header {
+    flex-shrink: 0;
   }
-}
-
-// Page root: flex column wrapper used by every page (Header + main + Footer).
-// Ensure each direct child is full width so inner .container can center via margin auto.
-.flex.flex-column.min-h-screen {
-  width: 100%;
+  & > main {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  & > footer {
+    flex-shrink: 0;
+  }
   & > header,
   & > main,
   & > footer {
@@ -205,4 +212,3 @@ header nav a[href]:focus-visible {
   color: var(--primary-color-text) !important;
   box-shadow: var(--focus-ring), 0 0 0 3px var(--primary-color);
 }
-

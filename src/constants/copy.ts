@@ -55,7 +55,7 @@ export const FAQ_PREVIEW_ITEMS = [
   { question: "Do you teach adults?", answer: "Yes. Many of our clients are adults learning to swim or refining technique." },
   { question: "How long are lessons?", answer: "Typically 30–60 minutes depending on the package and focus. We’ll confirm when you book." },
   { question: "What should I bring?", answer: "Suit, goggles, towel. We’ll cover the rest." },
-  { question: "Weather and cancellations?", answer: "We follow a simple cancellation policy. Details are on the Schedule page." },
+  { question: "Weather and cancellations?", answer: "We follow a simple cancellation policy. We'll share full details when you book." },
 ] as const;
 
 export const CTA_BAND_HEADLINE = "Ready to level up your swimming?";
