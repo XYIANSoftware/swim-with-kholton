@@ -97,6 +97,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - **Stepper & TabView theming**: Lara theme ships with hardcoded colors for `.p-stepper` and `.p-tabview`, so they didn’t pick up app theme variables. Added overrides in `primereact-overrides.scss` so both components use theme variables: `--text-color`, `--text-color-secondary`, `--surface-card`, `--surface-border`, `--primary-color`, `--highlight-bg`, `--focus-ring`. Stepper and TabView on the About page now respect socal-aqua-light and dark-synth.
+- **Stepper "What to expect" styling**: Stepper panel uses muted dark blue at 60% opacity (`--stepper-bg`), white text (`--stepper-text`), and a wrapper with light grey/light blue (`--stepper-wrapper-bg`). Variables in variables.scss; themes override (socal-aqua-light: wrapper #e8eef5; dark-synth: wrapper #1a0a2e). About page uses `.stepper-wrapper` around the Stepper.
+
+### Changed
+
+- **Styles architecture**: PrimeReact foundation (sizes, padding, shadows, structure) is now in `base.scss`; `primereact-overrides.scss` was removed. Base is the single place for how PrimeReact components look and behave; themes only override color variables so switching theme changes colors, not layout. Load order: variables → base → utilities → themes.
+- **TabView panel padding**: `.p-tabview .p-tabview-panel` now has `padding: var(--content-padding, 1.25rem)` so tab content (e.g. About / Coaching philosophy) is not flush to the edges.
 
 ## [0.2.9] - 2025-02-16
 

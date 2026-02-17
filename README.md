@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## PrimeReact usage
 
-- **Theming**: We use one built-in theme CSS (Lara) and override with our own SCSS using **CSS variables** ([Colors](https://primereact.org/colors/), [Theming](https://primereact.org/theming/)). Scoped overrides live in `src/styles/primereact-overrides.scss` (named-class approach).
+- **Theming**: We use one built-in theme CSS (Lara) and a **foundation** in `src/styles/base.scss`: sizes, padding, shadows, and structure for PrimeReact components, all using **CSS variables** ([Colors](https://primereact.org/colors/), [Theming](https://primereact.org/theming/)). Themes only override color variables so users can switch looks without changing the base.
 - **DataView (packages)**: [DataView Layout](https://primereact.org/dataview/#layout) — grid layout uses **PrimeFlex Grid classes** in `itemTemplate` (`col-12 md:col-6 lg:col-4`). Pass-through (`pt`) is used to add a scoped class to the grid DOM element ([Pass Through](https://primereact.org/passthrough/)).
 - **Accordion, TabView, etc.**: Custom templates and headers follow the [Accordion](https://primereact.org/accordion/) / [TabView](https://primereact.org/tabview/) docs; styling uses theme variables and the same overrides file.
 

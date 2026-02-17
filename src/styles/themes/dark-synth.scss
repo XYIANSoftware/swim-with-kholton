@@ -92,6 +92,9 @@ html[data-theme="dark-synth"],
   --progress-spinner-size-md: 18px !important;
   --hero-gradient: linear-gradient(180deg, #0c0020 0%, #0f1729 100%) !important;
   --hero-overlay: rgba(0, 0, 0, 0.3) !important;
+  --stepper-bg: rgba(30, 58, 95, 0.82) !important;
+  --stepper-text: #ffffff !important;
+  --stepper-wrapper-bg: rgba(26, 10, 46, 0.7) !important;
 }
 
 // First paint: set html/body for default theme so no flash

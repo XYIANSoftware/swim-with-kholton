@@ -83,8 +83,11 @@ export default function AboutPage() {
           <h2 className="m-0 mb-3 text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
             What to expect
           </h2>
+        </div>
+
+        <div className="stepper-banner">
           <div className="card flex justify-content-center stepper-wrapper">
-            <Stepper ref={stepperRef} style={{ flexBasis: "50rem" }}>
+            <Stepper ref={stepperRef} style={{ flexBasis: "50rem" }} headerPosition="bottom">
               <StepperPanel header="Check-in">
                 <div className="flex flex-column h-12rem">
                   <p className="m-0 flex-auto flex align-items-center" style={{ color: "var(--stepper-text)" }}>{WHAT_TO_EXPECT[0]}</p>
