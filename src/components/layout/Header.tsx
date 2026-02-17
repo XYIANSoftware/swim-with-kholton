@@ -86,8 +86,9 @@ export function Header() {
         visible={mobileMenuOpen}
         onHide={closeMobileMenu}
         position="right"
+        modal
+        appendTo="self"
         className="w-full sm:w-20rem sidebar-menu"
-        style={{ background: "var(--surface-card)", color: "var(--text-color)" }}
       >
         <nav className="flex flex-column gap-1" aria-label="Main navigation">
           <h2 className="m-0 mb-2 text-xl font-semibold">{SITE_NAME}</h2>

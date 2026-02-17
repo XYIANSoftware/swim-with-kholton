@@ -9,8 +9,8 @@ export function HeroSection() {
   return (
     <section className="section" style={{ minHeight: "30rem" }}>
       <div className="hero-banner">
-        <div className="container flex flex-column md:flex-row align-items-center justify-content-center md:justify-content-start gap-4 md:gap-6">
-          <div className="flex-1 text-center md:text-left" style={{ minWidth: 0 }}>
+        <div className="container flex flex-column md:flex-row align-items-center justify-content-center gap-4 md:gap-6">
+          <div className="flex-1 text-center" style={{ minWidth: 0 }}>
             <h1
             className="m-0 text-4xl md:text-5xl font-bold line-height-3 mb-3"
             style={{ color: "var(--text-primary)" }}
@@ -23,7 +23,7 @@ export function HeroSection() {
             >
               {HERO_SUBHEAD}
             </p>
-            <div className="flex flex-wrap gap-2 justify-content-center md:justify-content-start">
+            <div className="flex flex-wrap gap-2 justify-content-center">
               <Link
                 href="/packages"
                 className="p-button p-button-lg no-underline"
@@ -48,7 +48,7 @@ export function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="flex-1 flex justify-content-center md:justify-content-end min-h-15rem md:min-h-20rem">
+          <div className="flex-1 flex justify-content-center min-h-15rem md:min-h-20rem">
             <Skeleton
               width="100%"
               height="100%"

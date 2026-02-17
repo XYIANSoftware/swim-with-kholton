@@ -869,29 +869,24 @@ button.theme-toggle-btn {
   box-shadow: var(--focus-ring);
 }
 
+/* Sidebar: use app theme variables so light/dark theme applies (layout from PrimeReact theme unchanged). */
 .p-sidebar {
-  background: var(--surface-overlay);
+  background: var(--surface-card);
   color: var(--text-color);
   border: 1px solid var(--surface-border);
 }
-
 .p-sidebar-content {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  color: var(--text-color);
 }
-
 .p-sidebar .p-sidebar-header .p-sidebar-close,
 .p-sidebar .p-sidebar-header .p-sidebar-icon {
-  cursor: pointer;
   color: var(--text-color-secondary);
 }
-
 .p-sidebar .p-sidebar-header .p-sidebar-close:enabled:hover,
 .p-sidebar .p-sidebar-header .p-sidebar-icon:enabled:hover {
   background: var(--surface-hover);
   color: var(--text-color);
 }
-
 .p-component-overlay.p-sidebar-mask {
   background-color: var(--maskbg);
 }

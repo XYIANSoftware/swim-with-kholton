@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useRef, type ComponentRef } from "react";
+import { use, useState } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
@@ -16,6 +16,8 @@ import {
 } from "@/constants/about";
 import { EMPTY_PARAMS_PROMISE, EMPTY_SEARCH_PARAMS_PROMISE, type SearchParamsPromise } from "@/types/next";
 
+const STEPPER_STEP_COUNT = 3;
+
 type AboutPageProps = Readonly<{
   params?: Promise<Record<string, string | string[]>>;
   searchParams?: SearchParamsPromise;
@@ -24,7 +26,7 @@ type AboutPageProps = Readonly<{
 export default function AboutPage(props: AboutPageProps) {
   use(props.params ?? EMPTY_PARAMS_PROMISE);
   use(props.searchParams ?? EMPTY_SEARCH_PARAMS_PROMISE);
-  const stepperRef = useRef<ComponentRef<typeof Stepper> | null>(null);
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
     <>
@@ -107,7 +109,12 @@ export default function AboutPage(props: AboutPageProps) {
 
         <div className="stepper-banner">
           <div className="card flex justify-content-center stepper-wrapper">
-            <Stepper ref={stepperRef} style={{ flexBasis: "50rem" }} headerPosition="bottom">
+            <Stepper
+              activeStep={activeStep}
+              onChangeStep={(e) => setActiveStep(e.index)}
+              style={{ flexBasis: "50rem" }}
+              headerPosition="bottom"
+            >
               <StepperPanel header="Check-in">
                 <div className="flex flex-column h-12rem">
                   <p className="m-0 flex-auto flex align-items-center" style={{ color: "var(--stepper-text)" }}>{WHAT_TO_EXPECT[0]}</p>
@@ -117,7 +124,7 @@ export default function AboutPage(props: AboutPageProps) {
                     label="Next"
                     icon="pi pi-arrow-right"
                     iconPos="right"
-                    onClick={() => stepperRef.current?.nextCallback()}
+                    onClick={() => setActiveStep((s) => Math.min(s + 1, STEPPER_STEP_COUNT - 1))}
                   />
                 </div>
               </StepperPanel>
@@ -130,13 +137,13 @@ export default function AboutPage(props: AboutPageProps) {
                     label="Back"
                     severity="secondary"
                     icon="pi pi-arrow-left"
-                    onClick={() => stepperRef.current?.prevCallback()}
+                    onClick={() => setActiveStep((s) => Math.max(0, s - 1))}
                   />
                   <Button
                     label="Next"
                     icon="pi pi-arrow-right"
                     iconPos="right"
-                    onClick={() => stepperRef.current?.nextCallback()}
+                    onClick={() => setActiveStep((s) => Math.min(s + 1, STEPPER_STEP_COUNT - 1))}
                   />
                 </div>
               </StepperPanel>
@@ -149,7 +156,7 @@ export default function AboutPage(props: AboutPageProps) {
                     label="Back"
                     severity="secondary"
                     icon="pi pi-arrow-left"
-                    onClick={() => stepperRef.current?.prevCallback()}
+                    onClick={() => setActiveStep((s) => Math.max(0, s - 1))}
                   />
                 </div>
               </StepperPanel>

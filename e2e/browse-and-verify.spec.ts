@@ -1,9 +1,35 @@
 import { test, expect } from "@playwright/test";
 
 /**
- * Visits each main route, exercises key buttons/links, and asserts no console errors.
- * Run with: npx playwright test e2e/browse-and-verify.spec.ts
+ * Mobile: open sidebar and screenshot to verify visibility.
+ * Run with: npx playwright test e2e/browse-and-verify.spec.ts -g "mobile sidebar"
+ * Screenshot saved under test-results/ (gitignored).
  */
+test.describe("Mobile sidebar", () => {
+  test.use({ viewport: { width: 390, height: 844 } }); // iPhone 14 Pro
+
+  test("open sidebar in mobile viewport and screenshot", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator("header")).toBeVisible({ timeout: 10000 });
+
+    const menuButton = page.getByRole("button", { name: "Open menu" });
+    await expect(menuButton).toBeVisible();
+    await menuButton.click();
+
+    const sidebar = page.locator(".sidebar-menu.p-sidebar, .p-sidebar.sidebar-menu");
+    await expect(sidebar).toBeVisible({ timeout: 5000 });
+    await expect(page.getByRole("link", { name: "Home" }).first()).toBeVisible({ timeout: 3000 });
+
+    await page.screenshot({
+      path: "test-results/mobile-sidebar-open.png",
+      fullPage: false,
+    });
+
+    const mask = page.locator(".p-component-overlay.p-sidebar-mask");
+    await expect(mask).toBeVisible();
+  });
+});
+
 test.describe("Site navigation and console", () => {
   test("visit all routes and check console", async ({ page }) => {
     test.setTimeout(90_000);

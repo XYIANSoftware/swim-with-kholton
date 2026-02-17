@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **Home hero section**: Hero content (title, description, View Packages / Book Lesson buttons, image area) is now center-aligned at all breakpoints to match the intended layout.
+- **Mobile sidebar theme**: Sidebar panel now uses app theme variables (`--surface-card`, `--text-color`, etc.) so light/dark theme applies when the menu is open; layout still comes from PrimeReact.
+- **About page Stepper**: "What to expect" Next/Back did nothing. Stepper is now controlled via `activeStep` and `onChangeStep` instead of ref `nextCallback`/`prevCallback`; buttons update step state so navigation works.
+- **Mobile sidebar**: Sidebar content was not visible when opened. Root cause: our `.p-sidebar-content` override in `base.scss` replaced PrimeReact’s rule and omitted `flex-grow: 1`, so the content area collapsed. Removed that override and the extra `.sidebar-menu.p-sidebar` bandaid rules; sidebar now relies on PrimeReact’s structure (see [Sidebar API](https://primereact.org/sidebar/)). Only theme-style overrides remain (`.p-sidebar` background/color/border, header close icon, mask).
+
 ### Added
 
 - **About page**: New TabView tab "Hours & pricing" with intro and three philosophy-style bullets (confirm rates when you book, flexible scheduling, packages for value). Copy in `HOURS_AND_PRICING` in `@/constants/about`.
