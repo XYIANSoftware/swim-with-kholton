@@ -120,6 +120,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Footer (mobile/small screens)**: Footer is now compact on all screens. Above the divider: single row with essential contact only (site name + email/phone on one line) and a PrimeReact [SpeedDial](https://primereact.org/speeddial/) for page navigation (Home, About, Packages, Schedule, FAQ, Book Lesson) with labels and icons; direction up, bars/close icons, outlined button. Removed the large Links and Contact columns from the footer (those are available in the hamburger menu). Bottom section (divider + copyright) unchanged; overall footer height kept minimal so it never dominates on small screens.
 - **FooterNavSpeedDial**: New client component that builds SpeedDial items from `NAV_LINKS` and `BOOK_LESSON_HREF`, using `useRouter` from `next/navigation` for in-app navigation.
 
+## [0.2.17] - 2025-02-16
+
+### Changed
+
+- **Footer SpeedDial trigger icon**: Replaced hamburger with question mark: open uses `pi pi-question-circle`, close uses `pi pi-times`.
+- **Footer SpeedDial labels**: Actions now show icon and label text (custom item template). Each action is a pill with icon + label; styles in `base.scss` (`.p-speeddial-action-with-label`, `.p-speeddial-action-label`).
+- **Footer SpeedDial menu items**: Reduced padding (height 2.25rem, padding 0 0.5rem, gap 0.375rem) for a slimmer look; background dark blue 80% opacity with white text; spacing between items 0.375rem; hover slightly darker.
+- **Hero banner background**: Increased opacity so strip is more white (`--hero-banner-bg` 0.2 → 0.85).
+- **Section spacing**: Gap between consecutive sections (`.section + .section` margin-top 3rem).
+- **Section backgrounds**: `--page-background` and `--surface-section` made ~15% more transparent in both themes (socal-aqua-light 0.98/0.96 → 0.83/0.81; dark-synth and default to rgba with 0.85).
+
 ## [0.2.16] - 2025-02-16
 
 ### Added
@@ -135,6 +146,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - **TypeScript**: About page Stepper ref no longer uses `any`; uses `ComponentRef<typeof Stepper>`. Package version set to 0.2.16 to match changelog.
+- **Image placeholders → Skeleton**: PrimeReact [Skeleton](https://primereact.org/skeleton/) used for image placeholders so they look like loading states. About page: photo placeholder is now a Skeleton (100% × 20rem, border-radius). Hero: decorative image area is now a Skeleton filling the flex area (min-height 15rem / 20rem). Placeholders may never load real images; Skeletons still show the intended layout.
+- **Packages carousel card size**: Carousel cards are now a fixed height (22rem) on all screen sizes. Component-specific `PackageCardsSection.scss` makes the card content area scroll (`overflow-y: auto`) when needed, and reduces card padding (body 0.75rem 1rem, title/subtitle gaps, content padding) so layout stays uniform.
 - **SpeedDial / global button size**: Footer SpeedDial trigger was 4rem (Lara theme) and ignored global button padding. Global button padding and sizes live in `base.scss` (`.p-button`, `.p-button-sm`, `.p-button-icon-only.p-button-sm`). Added override in base for `.p-speeddial-button.p-button.p-button-icon-only` to use the same 2.25rem size and padding as header small buttons (Book Lesson / hamburger), and set `buttonClassName="p-button-outlined p-button-sm"` on Footer SpeedDial so it uses the global small size.
 
 ## [0.2.14] - 2025-02-16

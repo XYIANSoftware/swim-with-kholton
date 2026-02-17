@@ -14,6 +14,25 @@ const ICONS: Record<string, string> = {
   "Book Lesson": "pi pi-calendar-plus",
 };
 
+function actionTemplate(item: MenuItem, options: { onClick: (e: React.MouseEvent) => void; className: string; iconClassName: string }) {
+  const iconClass = item.icon ? `${options.iconClassName} ${typeof item.icon === "string" ? item.icon : ""}` : options.iconClassName;
+  return (
+    <a
+      href="#"
+      role="menuitem"
+      className={`${options.className} p-speeddial-action-with-label`}
+      onClick={(e) => {
+        e.preventDefault();
+        item.command?.({ originalEvent: e, item });
+      }}
+      aria-label={item.label}
+    >
+      <span className={iconClass} />
+      {item.label && <span className="p-speeddial-action-label">{item.label}</span>}
+    </a>
+  );
+}
+
 export function FooterNavSpeedDial() {
   const router = useRouter();
 
@@ -22,11 +41,13 @@ export function FooterNavSpeedDial() {
       label,
       icon: ICONS[label] ?? "pi pi-link",
       command: () => router.push(href),
+      template: actionTemplate,
     })),
     {
       label: "Book Lesson",
       icon: ICONS["Book Lesson"],
       command: () => router.push(BOOK_LESSON_HREF),
+      template: actionTemplate,
     },
   ];
 
@@ -36,9 +57,9 @@ export function FooterNavSpeedDial() {
         model={items}
         direction="up"
         transitionDelay={80}
-        showIcon="pi pi-bars"
+        showIcon="pi pi-question-circle"
         hideIcon="pi pi-times"
-        buttonClassName="p-button-outlined p-button-sm"
+        buttonClassName="p-button-text p-button-sm"
       />
     </div>
   );

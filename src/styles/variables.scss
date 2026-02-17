@@ -1,7 +1,7 @@
 // App and PrimeReact semantic tokens. Theme files override these via data-theme.
 :root {
   --surface-ground: #0c0020;
-  --surface-section: #0c0020;
+  --surface-section: rgba(12, 0, 32, 0.85);
   --surface-card: #1a0a2e;
   --surface-overlay: #1a0a2e;
   --surface-border: #2a1f4e;
@@ -32,7 +32,7 @@
   --highlight-text-color: #dbd4fa;
   --p-primary-color: var(--primary-color);
   --p-text-color: var(--text-color);
-  --page-background: #0c0020;
+  --page-background: rgba(12, 0, 32, 0.85);
   --footer-bg: var(--surface-ground);
   --text-primary: #dbd4fa;
   --card-border: rgba(184, 114, 249, 0.2);
@@ -63,7 +63,7 @@
   --input-invalid-border: 1px solid #f88c79;
   --error-text-color: #f88c79;
   /* Hero banner: semi-transparent strip behind hero content (themes may override) */
-  --hero-banner-bg: rgba(255, 255, 255, 0.2);
+  --hero-banner-bg: rgba(255, 255, 255, 0.85);
   /* Stepper (About – What to expect): muted dark blue panel, white text, wrapper background (themes may override) */
   --stepper-bg: rgba(30, 58, 95, 0.82);
   --stepper-text: #ffffff;

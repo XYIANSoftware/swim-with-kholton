@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Skeleton } from "primereact/skeleton";
 import { HERO_HEADLINE, HERO_SUBHEAD } from "@/constants/copy";
 import { BOOK_LESSON_HREF } from "@/constants/nav";
 
@@ -47,8 +48,13 @@ export function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="flex-1 flex justify-content-center md:justify-content-end opacity-60 min-h-15rem md:min-h-20rem">
-            {/* Decorative space; global parallax shows through */}
+          <div className="flex-1 flex justify-content-center md:justify-content-end min-h-15rem md:min-h-20rem">
+            <Skeleton
+              width="100%"
+              height="100%"
+              className="border-round"
+              style={{ minHeight: "15rem" }}
+            />
           </div>
         </div>
       </div>

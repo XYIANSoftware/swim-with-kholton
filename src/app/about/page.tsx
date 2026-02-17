@@ -5,6 +5,7 @@ import { TabView, TabPanel } from "primereact/tabview";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
 import { Button } from "primereact/button";
+import { Skeleton } from "primereact/skeleton";
 import {
   ABOUT_HEADLINE,
   ABOUT_BIO,
@@ -27,13 +28,9 @@ export default function AboutPage() {
             <TabView>
               <TabPanel header="About">
                 <div className="flex flex-column md:flex-row gap-4">
-                  <div
-                    className="w-full md:w-20rem h-20rem border-round flex-shrink-0"
-                    style={{
-                      background: "var(--surface-ground)",
-                      border: "1px solid var(--surface-border)",
-                    }}
-                  />
+                  <div className="w-full md:w-20rem h-20rem flex-shrink-0 overflow-hidden border-round border-1 surface-border">
+                    <Skeleton width="100%" height="100%" borderRadius="var(--border-radius)" />
+                  </div>
                   <div>
                     <p className="m-0 mb-4 text-lg" style={{ color: "var(--text-color)" }}>
                       {ABOUT_BIO}

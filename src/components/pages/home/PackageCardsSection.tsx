@@ -60,7 +60,7 @@ export function PackageCardsSection() {
         >
           Choose the option that fits your goals. All sessions are one-on-one unless noted.
         </p>
-        <div className="card">
+        <div className="card packages-carousel">
           <Carousel
             value={[...PACKAGES]}
             numVisible={3}
