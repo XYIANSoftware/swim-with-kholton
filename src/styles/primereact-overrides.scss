@@ -48,38 +48,6 @@ a.p-button:not(.p-button-icon-only) {
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-/* Uniform package cards: equal row height so every card matches (e.g. when 3rd card wraps) */
-.package-cards-grid {
-  align-items: stretch;
-  grid-auto-rows: minmax(20rem, 1fr);
-}
-
-.package-cards-grid .package-card {
-  min-height: 20rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.package-cards-grid .package-card .p-card-body,
-.package-cards-grid .package-card .p-card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.package-cards-grid .package-card .p-card-body > *,
-.package-cards-grid .package-card .p-card-content > * {
-  flex: 0 0 auto;
-}
-
-.package-cards-grid .package-card .p-card-body .flex.h-full,
-.package-cards-grid .package-card .p-card-content .flex.h-full {
-  flex: 1;
-  min-height: 0;
-}
-
 .p-card:hover {
   box-shadow: var(--elevation-2), 0 8px 24px rgba(0, 0, 0, 0.12) !important;
   transform: translateY(-2px);
@@ -330,14 +298,19 @@ button.theme-toggle-btn {
   border: var(--input-border);
   padding: var(--spacing-input-y) var(--spacing-input-x) !important;
   font-family: var(--font-family);
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 2.5rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   border-radius: var(--border-radius);
   cursor: text;
+  appearance: none;
 }
 
 .p-inputtextarea {
   resize: vertical;
   min-height: 4rem;
+  line-height: 1.5;
 }
 
 .p-inputtext:enabled:hover,

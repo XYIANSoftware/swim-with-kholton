@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Header, Footer } from "@/components/layout";
-import { DataView } from "primereact/dataview";
+import { DataView, DataViewLayoutOptions } from "primereact/dataview";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { PACKAGES } from "@/constants/packages";
@@ -10,37 +11,46 @@ import type { PackageOption } from "@/constants/packages";
 import { BOOK_LESSON_HREF } from "@/constants/nav";
 
 /**
- * Single package card for DataView itemTemplate.
- * Styling uses theme CSS variables (see primereact.org/colors) and
- * uniform sizing classes from utilities (package-card-*).
+ * Single package using PrimeReact Card with title, subTitle, footer (primereact.org/card).
+ * Content height is natural; no forced uniform sizing.
  */
 function PackageCard({ pkg }: { pkg: PackageOption }) {
+  const footer = (
+    <Link href={BOOK_LESSON_HREF} className="block w-full">
+      <Button label="Choose Package" className="w-full" />
+    </Link>
+  );
   return (
-    <Card className="package-card shadow-2 h-full">
-      <div className="package-card-inner flex flex-column h-full">
-        <h2 className="m-0 mb-2 text-xl font-semibold">{pkg.name}</h2>
-        <p className="m-0 mb-3 text-sm text-color-secondary package-card-for">
-          {pkg.forWho}
-        </p>
-        <ul className="m-0 mb-3 pl-3 text-sm package-card-benefits">
-          {pkg.benefits.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
-        <p className="m-0 mb-3 text-sm package-card-meta">
-          <strong>Duration:</strong> {pkg.duration}
-          <br />
-          <strong>Price:</strong> {pkg.price}
-        </p>
-        <Link href={BOOK_LESSON_HREF} className="mt-auto">
-          <Button label="Choose Package" className="w-full" />
-        </Link>
-      </div>
+    <Card
+      title={pkg.name}
+      subTitle={pkg.forWho}
+      footer={footer}
+      className="shadow-2 h-full flex flex-column"
+    >
+      <ul className="m-0 mb-3 pl-3 text-sm list-disc">
+        {pkg.benefits.map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
+      <p className="m-0 text-sm text-color-secondary">
+        <strong>Duration:</strong> {pkg.duration}
+        <br />
+        <strong>Price:</strong> {pkg.price}
+      </p>
     </Card>
   );
 }
 
 export default function PackagesPage() {
+  const [layout, setLayout] = useState<"grid" | "list">("grid");
+
+  const header = () => (
+    <div className="flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+      <h2 className="m-0 text-xl font-semibold">Options</h2>
+      <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value as "grid" | "list")} />
+    </div>
+  );
+
   return (
     <div className="flex flex-column min-h-screen">
       <Header />
@@ -53,14 +63,10 @@ export default function PackagesPage() {
             Choose the option that fits your goals. Prices and availability depend on location and schedule — we’ll confirm when you book.
           </p>
 
-          {/* DataView grid: itemTemplate per Layout docs; PrimeFlex col classes define responsive columns (primereact.org/dataview/#layout). */}
           <DataView
             value={[...PACKAGES]}
-            layout="grid"
-            className="packages-dataview"
-            pt={{
-              grid: { className: "packages-dataview-grid" },
-            }}
+            layout={layout}
+            header={header()}
             itemTemplate={(pkg: PackageOption) => (
               <div className="col-12 md:col-6 lg:col-4">
                 <PackageCard pkg={pkg} />

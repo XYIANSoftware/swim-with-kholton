@@ -6,7 +6,7 @@ export function Footer() {
     <footer
       className="py-5 px-3 md:px-4 mt-auto"
       style={{
-        background: "var(--surface-ground)",
+        background: "var(--footer-bg, var(--surface-ground))",
         borderTop: "1px solid var(--surface-border)",
         color: "var(--text-color-secondary)",
       }}

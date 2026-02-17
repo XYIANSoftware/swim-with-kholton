@@ -49,6 +49,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **CTA accent**: .p-button.cta-accent / .cta-accent on links for coral (Aqua Light) or primary (Dark Synth).
 - Metadata title/description updated to "Kholton Swim Coaching".
 
+## [0.2.9] - 2025-02-16
+
+### Changed
+
+- **Packages page**: Refactored to use PrimeReact Card and DataView as intended. Cards use Card’s `title`, `subTitle`, and `footer` props (primereact.org/card); DataView uses `DataViewLayoutOptions` so users can switch between grid and list. Removed forced uniform card sizing (min-heights, fixed content blocks) so cards size naturally by content and no longer look identical/rigid.
+- **Home packages section**: Aligned with same Card API (title, subTitle, footer) and dropped custom package-card utility classes.
+- **Styles**: Removed `.package-cards-grid` and `.package-card` uniform sizing from primereact-overrides; removed `.package-card-*` utilities from utilities.scss.
+
+## [0.2.8] - 2025-02-16
+
+### Fixed
+
+- **Schedule/contact form inputs**: Typed text (e.g. capital letters) no longer clips or appears oversized. Input overrides now set explicit `font-size: 1rem`, `line-height: 1.5`, `min-height: 2.5rem`, and `appearance: none` on `.p-inputtext` / `.p-inputtextarea` so inputs don’t inherit inconsistent typography and have enough vertical space for one line of text.
+
 ## [0.2.7] - 2025-02-16
 
 ### Changed
@@ -117,6 +131,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Theming and clicks: aligned with [PrimeReact](https://github.com/primefaces/primereact) Lara theme; added missing design tokens to :root (--border-radius, --content-padding, --inline-spacing, --maskbg, --p-border-radius); cursor: pointer on .p-button and accordion header links, cursor: text on inputs, cursor: not-allowed on disabled buttons; border-radius and appearance on buttons; Sidebar and overlay use theme vars (--surface-overlay, --maskbg) and close button cursor; hover limited to :not(:disabled) so disabled state is clear.
 - Hero background visible: main and page wrapper set to `background: transparent`; `.parallax-section.section` forced `background: transparent !important`; parallax section uses `isolation: isolate`; hero overlay lightened (0.35→0.25); no backgrounds on wrappers over the hero.
 - Package cards uniform size: `.package-cards-grid` with `grid-auto-rows: minmax(20rem, 1fr)` so every row (including when the 3rd card wraps) has equal height; `.package-card` with `min-height: 20rem`, `height: 100%`, flex so cards match and CTA stays at bottom on home and packages page.
+- Header and footer ~15% more transparent: light theme header 0.94→0.79, footer 0.96→0.81; dark theme header/footer rgba with 0.85 alpha; new --footer-bg in themes, Footer uses var(--footer-bg).
 - Hero image layer stacking: parallax background layer and overlay use explicit z-index (1, 2, 3) so the image layer is never behind body/main; layer uses inset positioning; `.parallax-section .parallax-layer` has `pointer-events: none`.
 
 ### Added

@@ -122,41 +122,9 @@
   background: var(--surface-hover);
 }
 
-// Packages DataView: grid uses PrimeFlex per Layout docs (primereact.org/dataview/#layout).
-// itemTemplate wraps each card in col-12 md:col-6 lg:col-4; pt.grid adds packages-dataview-grid for optional scoped overrides.
-.packages-dataview .p-dataview-content {
+// DataView: ensure grid/list content displays (primereact.org/dataview/#layout).
+.p-dataview-content {
   display: block;
-}
-
-// Uniform package cards (packages page + home preview): same min-height and fixed content blocks
-.package-card .p-card-body,
-.package-card .p-card-content {
-  min-height: 20rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.package-card-inner {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.package-card-for {
-  min-height: 2.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.package-card-benefits {
-  min-height: 5.25rem;
-  flex-shrink: 0;
-}
-
-.package-card-meta {
-  flex-shrink: 0;
 }
 
 // Slight gloss overlay (use on cards/panels); theme can set --gloss-color

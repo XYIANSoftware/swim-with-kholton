@@ -1,8 +1,9 @@
 // Default theme: dark-synth. Scoped so switching data-theme changes the whole UI.
 html[data-theme="dark-synth"],
 [data-theme="dark-synth"] {
-  --header-bg: #07071b !important;
+  --header-bg: rgba(7, 7, 27, 0.85) !important;
   --header-fg: #dbd4fa !important;
+  --footer-bg: rgba(12, 0, 32, 0.85) !important;
   --header-border: 1px solid #2a1f4e !important;
   --header-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
   --window-bg: #0c0020 !important;
