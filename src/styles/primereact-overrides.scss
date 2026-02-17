@@ -52,6 +52,17 @@
   box-shadow: var(--focus-ring);
 }
 
+.p-button.cta-accent {
+  background: var(--cta-accent, var(--primary-color));
+  color: #fff;
+  border-color: var(--cta-accent, var(--primary-color));
+}
+
+.p-button.cta-accent:hover {
+  background: var(--cta-accent-hover, var(--button-primary-background-hover));
+  border-color: var(--cta-accent-hover, var(--button-primary-background-hover));
+}
+
 .p-button.p-button-secondary {
   background: var(--surface-card);
   color: var(--text-color);

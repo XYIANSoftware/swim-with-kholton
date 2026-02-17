@@ -1,2 +1,2 @@
-// Layout components - add exports as needed
-export {};
+export { Header } from "./Header";
+export { Footer } from "./Footer";

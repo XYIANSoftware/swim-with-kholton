@@ -26,6 +26,8 @@ html[data-theme="dark-synth"],
   --button-primary-background: #24cdc5 !important;
   --button-primary-background-hover: #3dd9d2 !important;
   --button-primary-text: #07071b !important;
+  --cta-accent: #24cdc5 !important;
+  --cta-accent-hover: #3dd9d2 !important;
   --maskbg: rgba(7, 0, 27, 0.75) !important;
   --focus-ring: 0 0 0 0.2rem rgba(36, 205, 197, 0.35) !important;
   --highlight-bg: rgba(36, 205, 197, 0.15) !important;
@@ -83,6 +85,7 @@ html[data-theme="dark-synth"],
   --data-quality-empty: rgba(122, 107, 152, 0.3) !important;
   --progress-spinner-size-sm: 14px !important;
   --progress-spinner-size-md: 18px !important;
+  --hero-gradient: linear-gradient(180deg, #0c0020 0%, #0f1729 100%) !important;
 }
 
 // First paint: set html/body for default theme so no flash

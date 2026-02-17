@@ -26,3 +26,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - ThemeProvider always renders context (fixes SSR/prerender when useTheme is used in client components).
+
+### Fixed
+
+- Reverted mistaken peptides copy; restored Swim with Kholton metadata and home copy.
+
+## [0.2.0] - 2025-02-16
+
+### Added
+
+- **SoCal Aqua Light** theme: soft off-white/cool neutrals, aqua/cyan/ocean accents, warm coral CTA (`--cta-accent`), deep navy/charcoal text; hero gradient and dialog overrides.
+- **Theme toggle**: THEMES = [socal-aqua-light, dark-synth]; THEME_LABELS "Aqua Light" / "Dark Synth"; default theme socal-aqua-light; smooth 0.3s transition on html/body.
+- **Header**: sticky nav with SITE_NAME, links (Home, About, Packages, Schedule, FAQ), theme switcher (compact in nav), "Book Lesson" CTA; mobile hamburger + Sidebar with links, theme toggle, CTA.
+- **Footer**: columns (Links, Contact, service area placeholder), copyright.
+- **Home page sections**: Hero (split layout, headline, View Packages + Book Lesson), Trust strip (SEC, National Team, Technique, All Ages), Packages preview (3 cards + View all), How it works (4 steps), Coaching focus (5 benefit cards), Testimonials (3 placeholder cards), FAQ preview (accordion + See full FAQ), CTA band ("Ready to level up" + Book Lesson).
+- **About page**: bio hero (photo placeholder), credentials strip, coaching philosophy (3 pillars), What to expect.
+- **Packages page**: grid of 5 package cards (beginner → small group), policies placeholder.
+- **Schedule/Contact page**: two-column (booking CTA + scheduling placeholder, inquiry form with FloatLabel inputs); form submit placeholder message.
+- **FAQ page**: accordion with 7 items (ages, adults, duration, bring, location, weather, improvement).
+- **Copy constants**: copy.ts, packages.ts, about.ts, nav.ts (SITE_NAME, NAV_LINKS, BOOK_LESSON_HREF).
+- **Section animations**: .section-fade-in, .stagger-children with animation-delay for card grids; .surface-hover utility.
+- **CTA accent**: .p-button.cta-accent / .cta-accent on links for coral (Aqua Light) or primary (Dark Synth).
+- Metadata title/description updated to "Kholton Swim Coaching".

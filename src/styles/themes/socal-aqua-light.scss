@@ -1,0 +1,141 @@
+// SoCal Aqua Light: soft off-white, light cool neutrals, aqua/cyan/ocean, warm coral CTA.
+// Southern California coastal + professional athletic credibility.
+html[data-theme="socal-aqua-light"],
+[data-theme="socal-aqua-light"] {
+  --header-bg: #ffffff !important;
+  --header-fg: #1e293b !important;
+  --header-border: 1px solid #e2e8f0 !important;
+  --header-shadow: 0 1px 3px rgba(15, 23, 42, 0.06) !important;
+  --window-bg: #f8fafc !important;
+  --window-fg: #1e293b !important;
+  --window-border: 1px solid #e2e8f0 !important;
+  --window-surface-bg: #ffffff !important;
+  --window-surface-fg: #1e293b !important;
+  --window-surface-border: 1px solid #e2e8f0 !important;
+  --input-bg: #ffffff !important;
+  --input-fg: #1e293b !important;
+  --input-border: 1px solid #cbd5e1 !important;
+  --button-bg: var(--window-surface-bg) !important;
+  --button-fg: #1e293b !important;
+  --button-hover-bg: var(--surface-hover) !important;
+  --menu-item-hover-bg: #f1f5f9 !important;
+  --status-icon-fill: #0d9488 !important;
+  --status-icon-stroke: #0d9488 !important;
+  --status-icon-stroke-offline: #94a3b8 !important;
+  --page-background: #f5f8fa !important;
+  --text-primary: #1e293b !important;
+  --button-primary-background: #0d9488 !important;
+  --button-primary-background-hover: #0f766e !important;
+  --button-primary-text: #ffffff !important;
+  --cta-accent: #ea580c !important;
+  --cta-accent-hover: #c2410c !important;
+  --maskbg: rgba(15, 23, 42, 0.4) !important;
+  --focus-ring: 0 0 0 0.2rem rgba(13, 148, 136, 0.25) !important;
+  --highlight-bg: rgba(13, 148, 136, 0.08) !important;
+  --highlight-text-color: #1e293b !important;
+  --color-danger: #dc2626 !important;
+  --surface-ground: #f5f8fa !important;
+  --surface-section: #f5f8fa !important;
+  --surface-card: #ffffff !important;
+  --surface-overlay: #ffffff !important;
+  --surface-border: #e2e8f0 !important;
+  --surface-hover: rgba(13, 148, 136, 0.06) !important;
+  --surface-0: #ffffff !important;
+  --surface-50: #f8fafc !important;
+  --surface-100: #f1f5f9 !important;
+  --surface-200: #e2e8f0 !important;
+  --surface-300: #cbd5e1 !important;
+  --surface-400: #94a3b8 !important;
+  --surface-500: #64748b !important;
+  --surface-600: #475569 !important;
+  --surface-700: #334155 !important;
+  --surface-800: #1e293b !important;
+  --surface-900: #0f172a !important;
+  --surface-a: #ffffff !important;
+  --surface-b: #f5f8fa !important;
+  --surface-c: rgba(13, 148, 136, 0.06) !important;
+  --surface-d: #e2e8f0 !important;
+  --surface-e: #ffffff !important;
+  --surface-f: #ffffff !important;
+  --gray-50: #f8fafc !important;
+  --gray-100: #f1f5f9 !important;
+  --gray-200: #e2e8f0 !important;
+  --gray-300: #cbd5e1 !important;
+  --gray-400: #94a3b8 !important;
+  --gray-500: #64748b !important;
+  --gray-600: #475569 !important;
+  --gray-700: #334155 !important;
+  --gray-800: #1e293b !important;
+  --gray-900: #0f172a !important;
+  --text-color: #1e293b !important;
+  --text-color-secondary: #475569 !important;
+  --primary-color: #0d9488 !important;
+  --primary-color-text: #ffffff !important;
+  --scrollbar-track-bg: #f1f5f9 !important;
+  --scrollbar-thumb-bg: #cbd5e1 !important;
+  --scrollbar-thumb-hover-bg: #94a3b8 !important;
+  --card-border: rgba(13, 148, 136, 0.15) !important;
+  --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(13, 148, 136, 0.04) !important;
+  --tag-today-bg: rgba(13, 148, 136, 0.12) !important;
+  --tag-today-text: #0f766e !important;
+  --tag-today-border: rgba(13, 148, 136, 0.3) !important;
+  --p-primary-color: var(--primary-color) !important;
+  --data-quality-valid: rgba(13, 148, 136, 0.4) !important;
+  --data-quality-warning: rgba(209, 134, 22, 0.5) !important;
+  --data-quality-error: rgba(220, 38, 38, 0.5) !important;
+  --data-quality-empty: rgba(148, 163, 184, 0.3) !important;
+  --progress-spinner-size-sm: 14px !important;
+  --progress-spinner-size-md: 18px !important;
+  --hero-gradient: linear-gradient(180deg, #f5f8fa 0%, #eef7f8 50%, #f5f8fa 100%) !important;
+}
+
+html[data-theme="socal-aqua-light"] {
+  background: #f5f8fa;
+  color: #1e293b;
+}
+
+html[data-theme="socal-aqua-light"] body {
+  background: #f5f8fa;
+  color: #1e293b;
+}
+
+html[data-theme="socal-aqua-light"] .p-dialog,
+[data-theme="socal-aqua-light"] .p-dialog {
+  background: var(--window-surface-bg);
+  border: var(--window-surface-border);
+  color: var(--window-surface-fg);
+}
+
+html[data-theme="socal-aqua-light"] .p-dialog .p-dialog-header,
+[data-theme="socal-aqua-light"] .p-dialog .p-dialog-header {
+  background: var(--header-bg);
+  color: var(--header-fg);
+  border-bottom: var(--surface-border);
+}
+
+html[data-theme="socal-aqua-light"] .p-dialog .p-dialog-title,
+[data-theme="socal-aqua-light"] .p-dialog .p-dialog-title {
+  color: var(--header-fg);
+}
+
+html[data-theme="socal-aqua-light"] .p-dialog .p-dialog-content,
+[data-theme="socal-aqua-light"] .p-dialog .p-dialog-content {
+  background: var(--window-surface-bg);
+  color: var(--window-surface-fg);
+}
+
+html[data-theme="socal-aqua-light"] .p-dialog .p-dialog-footer,
+[data-theme="socal-aqua-light"] .p-dialog .p-dialog-footer {
+  background: var(--window-surface-bg);
+  border-top: var(--surface-border);
+}
+
+html[data-theme="socal-aqua-light"] .p-dialog .p-dialog-header-icon,
+[data-theme="socal-aqua-light"] .p-dialog .p-dialog-header-icon {
+  color: var(--header-fg);
+}
+
+html[data-theme="socal-aqua-light"] .p-dialog .p-dialog-header-icon:hover,
+[data-theme="socal-aqua-light"] .p-dialog .p-dialog-header-icon:hover {
+  background: var(--surface-hover);
+}
