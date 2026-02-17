@@ -1,5 +1,10 @@
 // PackageCardsSection: uniform card size in carousel; content scrolls if needed.
 
+.packages-section .container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .packages-carousel__item {
   height: 22rem;
   padding: 0.25rem 0.5rem;

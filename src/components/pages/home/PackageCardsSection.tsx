@@ -49,7 +49,7 @@ export function PackageCardsSection() {
   };
 
   return (
-    <section className="section" style={{ background: "var(--page-background)" }}>
+    <section className="section packages-section" style={{ background: "var(--page-background)" }}>
       <div className="container">
         <h2 className="m-0 mb-4 text-3xl font-bold" style={{ color: "var(--text-primary)" }}>
           Packages

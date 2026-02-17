@@ -22,6 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Packages section**: 1rem vertical padding on the main wrapper (`.packages-section .container`) so the Packages block has consistent inner spacing.
+- **Sidebar**: 1rem padding on `.p-sidebar-content` so the mobile menu content has breathing room from the panel edges.
 - **Section gap (home and default)**: Introduced `--section-gap: 5rem` so vertical spacing between major sections matches the hero’s padding. Home page sections (hero, ticker, packages, FAQ, CTA) are wrapped in `.home-sections` with `gap: var(--section-gap)`; `.section` padding and `.section + .section` margin use the same variable for consistency elsewhere.
 - **About page**: New TabView tab "Hours & pricing" with intro and three philosophy-style bullets (confirm rates when you book, flexible scheduling, packages for value). Copy in `HOURS_AND_PRICING` in `@/constants/about`.
 
