@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ComponentRef } from "react";
+import { use, useRef, type ComponentRef } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
@@ -13,8 +13,16 @@ import {
   PHILOSOPHY_PILLARS,
   WHAT_TO_EXPECT,
 } from "@/constants/about";
+import { EMPTY_PARAMS_PROMISE, EMPTY_SEARCH_PARAMS_PROMISE, type SearchParamsPromise } from "@/types/next";
 
-export default function AboutPage() {
+type AboutPageProps = Readonly<{
+  params?: Promise<Record<string, string | string[]>>;
+  searchParams?: SearchParamsPromise;
+}>;
+
+export default function AboutPage({ params, searchParams }: AboutPageProps) {
+  use(params ?? EMPTY_PARAMS_PROMISE);
+  use(searchParams ?? EMPTY_SEARCH_PARAMS_PROMISE);
   const stepperRef = useRef<ComponentRef<typeof Stepper> | null>(null);
 
   return (

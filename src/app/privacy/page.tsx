@@ -1,9 +1,17 @@
+import type { SearchParamsPromise } from "@/types/next";
+
 export const metadata = {
   title: "Privacy Policy | Kholton Swim Coaching",
   description: "Privacy policy for Kholton Swim Coaching.",
 };
 
-export default function PrivacyPage() {
+type PrivacyPageProps = Readonly<{
+  params?: Promise<Record<string, string | string[]>>;
+  searchParams?: SearchParamsPromise;
+}>;
+
+export default async function PrivacyPage({ params, searchParams }: PrivacyPageProps) {
+  await Promise.all([params ?? Promise.resolve({}), searchParams ?? Promise.resolve({})]);
   return (
     <section className="container container-narrow">
           <h1 className="m-0 mb-2 text-4xl font-bold" style={{ color: "var(--text-primary)" }}>

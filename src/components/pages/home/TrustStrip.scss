@@ -1,12 +1,17 @@
 // TrustStrip only. Scoped by class names used solely in this component.
-// Reduced height/padding; no PrimeReact overrides (component uses theme vars and plain buttons).
+// Full-width strip (breaks out of .container); reduced height/padding.
 
 .trust-ticker {
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
   overflow: hidden;
   margin-bottom: 1.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   background: var(--surface-section);
   border-top: 1px solid var(--surface-border);
   border-bottom: 1px solid var(--surface-border);

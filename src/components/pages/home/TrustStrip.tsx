@@ -25,7 +25,7 @@ export function TrustStrip() {
       }}
       aria-label={`Learn more about ${label}`}
     >
-      <i className={`pi ${icon} text-xl`} style={{ color: "var(--primary-color)" }} />
+      <i className={`pi ${icon} text-2xl`} style={{ color: "var(--primary-color)" }} />
       <span className="font-medium text-sm md:text-base">{label}</span>
     </button>
   );

@@ -7,6 +7,10 @@
 
 export type SearchParamsPromise = Promise<{ [key: string]: string | string[] | undefined }>;
 
+/** Stable empty Promise for client pages when params/searchParams are not passed. */
+export const EMPTY_PARAMS_PROMISE = Promise.resolve({}) as Promise<Record<string, string | string[]>>;
+export const EMPTY_SEARCH_PARAMS_PROMISE = Promise.resolve({}) as SearchParamsPromise;
+
 /** Use for page/layout props when the route has dynamic segments (e.g. [id]). */
 export type PageParams<T extends Record<string, string> = Record<string, string>> = {
   params: Promise<T>;

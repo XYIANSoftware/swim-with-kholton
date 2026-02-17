@@ -62,6 +62,10 @@ a {
   /* PrimeFlex-style elevation (fallback if utility not applied) */
   --elevation-1: 0 3px 5px rgba(0, 0, 0, 0.02), 0 0 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.08);
   --elevation-2: 0 4px 10px rgba(0, 0, 0, 0.03), 0 0 2px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.12);
+  /* Buttons: subtle 3D elevation (themes can override) */
+  --button-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  --button-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
+  --button-shadow-active: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 // =============================================================================
@@ -70,7 +74,7 @@ a {
 // only override those vars; this file is the base that themes build on.
 // =============================================================================
 
-/* Buttons: padding, cursor, structure */
+/* Buttons: padding, cursor, structure, elevation */
 .p-button,
 button.p-button,
 a.p-button {
@@ -78,6 +82,79 @@ a.p-button {
   padding: var(--spacing-button-y) var(--spacing-button-x) !important;
   appearance: none;
   border-radius: var(--border-radius);
+  box-shadow: var(--button-shadow);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.p-button:hover:not(:disabled),
+button.p-button:hover:not(:disabled),
+a.p-button:hover:not(:disabled) {
+  box-shadow: var(--button-shadow-hover);
+}
+.p-button:active:not(:disabled),
+button.p-button:active:not(:disabled),
+a.p-button:active:not(:disabled) {
+  box-shadow: var(--button-shadow-active);
+}
+.p-button-group {
+  display: inline-flex;
+  gap: 0.375rem;
+}
+
+/* Buttons with icon + label: center alignment and gap between icon and label */
+.p-button:not(.p-button-icon-only),
+button.p-button:not(.p-button-icon-only),
+a.p-button:not(.p-button-icon-only) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+}
+.p-button .p-button-icon-left,
+.p-button .p-button-icon-right {
+  margin: 0;
+}
+
+.p-button .p-button-icon,
+.p-button .p-button-icon-left,
+.p-button .p-button-icon-right {
+  font-size: 1.125rem;
+}
+.p-button.p-button-sm .p-button-icon,
+.p-button.p-button-sm .p-button-icon-left,
+.p-button.p-button-sm .p-button-icon-right {
+  font-size: 1.125rem;
+}
+.p-button.p-button-icon-only .p-button-icon,
+.p-button.p-button-icon-only .p-button-icon-left,
+.p-button.p-button-icon-only .p-button-icon-right {
+  font-size: 1.25rem;
+}
+.p-button.p-button-lg .p-button-icon,
+.p-button.p-button-lg .p-button-icon-left,
+.p-button.p-button-lg .p-button-icon-right {
+  font-size: 1.25rem;
+}
+
+/* All icon-only buttons: square, consistent size (theme often omits height → squashed). */
+.p-button.p-button-icon-only,
+button.p-button.p-button-icon-only,
+a.p-button.p-button-icon-only {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  min-width: 2.5rem !important;
+  min-height: 2.5rem !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+}
+/* Button group (e.g. DataViewLayoutOptions): keep icon-only buttons square. */
+.p-button-group .p-button.p-button-icon-only {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  min-width: 2.5rem !important;
+  min-height: 2.5rem !important;
 }
 
 .p-button.p-button-sm,
@@ -118,11 +195,6 @@ a.p-button.p-button-lg {
   padding: var(--spacing-button-lg-y) var(--spacing-button-lg-x) !important;
 }
 
-a.p-button:not(.p-button-icon-only) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .p-card {
   background: var(--surface-card);
@@ -156,26 +228,84 @@ a.p-button:not(.p-button-icon-only) {
 .p-card .p-card-content {
   background: var(--surface-card);
   color: var(--text-color);
-  padding: var(--spacing-card, 1.5rem) !important;
+  padding: 1rem !important;
 }
 
 .p-card .p-card-title {
   color: var(--text-color);
+  margin-bottom: 0.25rem;
 }
 
 .p-card .p-card-subtitle {
   color: var(--text-color-secondary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
-/* DataView (e.g. packages page): grid gap between items; gutter + theme variable */
+/* DataView: compact like PrimeReact docs (sorting / list example); theme variables */
+.p-dataview .p-dataview-header {
+  background: var(--surface-ground);
+  color: var(--text-color);
+  border: 0 none;
+  border-bottom: 1px solid var(--surface-border);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.p-dataview .p-dataview-content {
+  background: var(--surface-card);
+  color: var(--text-color);
+  border: 0 none;
+  padding: 0;
+}
+
+.p-dataview .p-dataview-footer {
+  background: var(--surface-ground);
+  color: var(--text-color);
+  border: 0 none;
+  border-top: 1px solid var(--surface-border);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.p-dataview .p-dataview-loading-icon {
+  color: var(--text-color-secondary);
+}
+
+/* DataView grid gap (e.g. packages page) */
 .p-dataview-content .grid:not(.grid-nogutter),
 .packages-page-dataview-grid {
   gap: var(--dataview-grid-gap);
 }
 
+/* DataView wrapper: padding only around Options + content (not whole page container) */
+.packages-dataview-wrap {
+  padding: 1rem 0;
+}
+@media (min-width: 768px) {
+  .packages-dataview-wrap {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
 .packages-page-dataview-content {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* List layout: thin divider between rows (PrimeReact-style), no border on first row */
+.packages-page-dataview-content .grid > .col-12 .packages-page-list-row {
+  border-top: 1px solid var(--surface-border);
+}
+.packages-page-dataview-content .grid > .col-12:first-child .packages-page-list-row {
+  border-top: none;
+}
+
+/* List row tags: slightly smaller for compact list */
+.packages-list-tag.p-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
 }
 
 .p-datatable {
@@ -219,7 +349,8 @@ button.p-button:disabled {
 .p-button {
   background: var(--primary-color);
   color: var(--primary-color-text);
-  border-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  font-weight: 600;
 }
 
 .p-button:hover {
@@ -278,6 +409,7 @@ a.p-button-outlined {
   background: transparent !important;
   color: var(--primary-color) !important;
   border: 1px solid var(--primary-color) !important;
+  font-weight: 600;
 }
 
 .p-button.p-button-outlined:hover,

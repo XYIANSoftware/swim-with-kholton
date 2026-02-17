@@ -1,5 +1,6 @@
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { FAQ_PREVIEW_ITEMS } from "@/constants/copy";
+import type { SearchParamsPromise } from "@/types/next";
 
 const EXTRA_FAQ = [
   {
@@ -12,9 +13,17 @@ const EXTRA_FAQ = [
   },
 ];
 
-export default function FAQPage() {
-  const allFaq = [...FAQ_PREVIEW_ITEMS, ...EXTRA_FAQ];
+type FAQPageProps = Readonly<{
+  params?: Promise<Record<string, string | string[]>>;
+  searchParams?: SearchParamsPromise;
+}>;
 
+export default async function FAQPage(props: FAQPageProps) {
+  await Promise.all([
+    props.params ?? Promise.resolve({}),
+    props.searchParams ?? Promise.resolve({}),
+  ]);
+  const allFaq = [...FAQ_PREVIEW_ITEMS, ...EXTRA_FAQ];
   return (
     <section className="container container-narrow">
           <h1 className="m-0 mb-4 text-4xl font-bold" style={{ color: "var(--text-primary)" }}>

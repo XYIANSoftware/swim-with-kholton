@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Added
+
+- **Playwright MCP** for Cursor: `.cursor/mcp.json` configures the Playwright MCP server so the agent can navigate to localhost, click, and take snapshots. README section "Browser automation (MCP)" documents first-time setup (`npx playwright install`) and restarting Cursor.
+
+## [0.2.17] - 2026-02-17
+
+### Fixed
+
+- **Next.js 15+ async params/searchParams**: Resolved "params are being enumerated" and "searchParams were accessed directly" warnings. Root layout and all pages now treat `params` and `searchParams` as Promises: server components `await` them; client components (About, Packages) unwrap with `React.use()`. Added `EMPTY_PARAMS_PROMISE` / `EMPTY_SEARCH_PARAMS_PROMISE` in `@/types/next` for client fallbacks.
+
 ## [0.1.0] - 2025-02-16
 
 ### Added
@@ -150,7 +162,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **TypeScript**: About page Stepper ref no longer uses `any`; uses `ComponentRef<typeof Stepper>`. Package version set to 0.2.16 to match changelog.
 - **Image placeholders → Skeleton**: PrimeReact [Skeleton](https://primereact.org/skeleton/) used for image placeholders so they look like loading states. About page: photo placeholder is now a Skeleton (100% × 20rem, border-radius). Hero: decorative image area is now a Skeleton filling the flex area (min-height 15rem / 20rem). Placeholders may never load real images; Skeletons still show the intended layout.
 - **Packages carousel card size**: Carousel cards are now a fixed height (22rem) on all screen sizes. Component-specific `PackageCardsSection.scss` makes the card content area scroll (`overflow-y: auto`) when needed, and reduces card padding (body 0.75rem 1rem, title/subtitle gaps, content padding) so layout stays uniform.
+- **DataView compact (PrimeReact-style)**: Header/content padding reduced (header & footer 0.75rem 1rem, content padding 0). Grid gap 1.25rem → 1rem. Packages page list layout uses a compact row per package (name, forWho, tags, Choose Package) instead of a full Card; grid keeps full Cards with p-2 on columns. Header is a span for a smaller label.
+- **DataView colors and padding**: Lara theme uses hardcoded DataView header/content/footer colors and padding, so they didn’t follow app themes. Base now overrides `.p-dataview .p-dataview-header`, `.p-dataview-content`, and `.p-dataview-footer` to use theme variables (`--surface-ground`, `--surface-card`, `--surface-border`, `--text-color`, `--content-padding`) so DataView looks correct in all themes (SoCal Aqua Light and Dark Synth).
 - **SpeedDial / global button size**: Footer SpeedDial trigger was 4rem (Lara theme) and ignored global button padding. Global button padding and sizes live in `base.scss` (`.p-button`, `.p-button-sm`, `.p-button-icon-only.p-button-sm`). Added override in base for `.p-speeddial-button.p-button.p-button-icon-only` to use the same 2.25rem size and padding as header small buttons (Book Lesson / hamburger), and set `buttonClassName="p-button-outlined p-button-sm"` on Footer SpeedDial so it uses the global small size.
+- **Button icons and appearance**: Button icons were too small (Lara uses 0.875rem for sm). Base overrides: default icon 1rem, icon-only 1.125rem, lg 1.25rem so layout toggles and other icon buttons read clearly. Primary and outlined buttons get explicit `border: 1px solid` and `font-weight: 600` so they look solid and readable.
+- **Card density**: Card body/content padding reduced from 1.5rem to 1rem; card title and subtitle margins tightened (0.25rem / 0.35rem) so cards feel less oversized.
+- **DataView list (PrimeReact-style)**: List layout aligned with PrimeReact docs: compact rows (py-3 px-3/4), smaller header (0.5rem padding, font-weight 600), thin dividers between rows, smaller list tags (0.75rem), and list row CTA uses short “Choose” label with arrow icon for a cleaner look.
+
+- **Icon-only buttons (DataViewLayoutOptions)**: Themes often set only width on icon-only buttons, so height was squashed (e.g. 48×42px). Base now forces all `.p-button.p-button-icon-only` to square 2.5rem × 2.5rem with `!important`, and `.p-button-group .p-button.p-button-icon-only` the same so layout toggles stay square. Icon-only icon size 1.25rem; text+icon 1.125rem. Trust strip icons use `text-2xl`.
+- **Container vs DataView padding**: Page container padding reverted to 1.5rem / 2rem (no extra padding on whole page). Trust strip is full-width via `100vw` and `calc(50% - 50vw)` margin so it spans the viewport when inside `.container`. Padding increased only around the DataView: packages page DataView wrapped in `.packages-dataview-wrap` with vertical and horizontal padding so Options and content cards are not tight to the edge.
+- **Buttons with icon + label**: In base, all `.p-button` that have both icon and label get `display: inline-flex`, `align-items: center`, `justify-content: center`, and `gap: 0.375rem` so icon and label are centered with consistent spacing. Icon left/right margins set to 0 so gap controls spacing.
 
 ## [0.2.14] - 2025-02-16
 

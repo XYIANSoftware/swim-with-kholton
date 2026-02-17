@@ -15,11 +15,13 @@ export const metadata: Metadata = {
   description: "Swim coaching with a national-level athlete. Confidence, technique, speed — all ages and skill levels.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutProps = Readonly<{
   children: React.ReactNode;
-}>) {
+  params?: Promise<Record<string, string | string[]>>;
+}>;
+
+export default async function RootLayout(props: RootLayoutProps) {
+  if (props.params) await props.params;
   return (
     <html lang="en" data-theme="socal-aqua-light" suppressHydrationWarning>
       <head>
@@ -31,7 +33,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          <main>{children}</main>
+          <main>{props.children}</main>
           <Footer />
         </Providers>
       </body>
