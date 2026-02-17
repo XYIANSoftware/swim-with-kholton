@@ -147,3 +147,40 @@ html[data-theme="socal-aqua-light"] .p-dialog .p-dialog-header-icon:hover,
 [data-theme="socal-aqua-light"] .p-dialog .p-dialog-header-icon:hover {
   background: var(--surface-hover);
 }
+
+// Force cards, TabView, and stepper to use theme vars (overrides Prime layer)
+html[data-theme="socal-aqua-light"] .p-card,
+[data-theme="socal-aqua-light"] .p-card,
+html[data-theme="socal-aqua-light"] .p-card .p-card-body,
+html[data-theme="socal-aqua-light"] .p-card .p-card-content,
+[data-theme="socal-aqua-light"] .p-card .p-card-body,
+[data-theme="socal-aqua-light"] .p-card .p-card-content {
+  background: var(--surface-card);
+  color: var(--text-color);
+}
+
+html[data-theme="socal-aqua-light"] .p-card .p-card-title,
+[data-theme="socal-aqua-light"] .p-card .p-card-title {
+  color: var(--text-color);
+}
+
+html[data-theme="socal-aqua-light"] .p-tabview,
+[data-theme="socal-aqua-light"] .p-tabview,
+html[data-theme="socal-aqua-light"] .p-tabview .p-tabview-panels,
+html[data-theme="socal-aqua-light"] .p-tabview .p-tabview-panel,
+[data-theme="socal-aqua-light"] .p-tabview .p-tabview-panels,
+[data-theme="socal-aqua-light"] .p-tabview .p-tabview-panel {
+  background: var(--surface-card);
+  color: var(--text-color);
+}
+
+html[data-theme="socal-aqua-light"] .stepper-wrapper,
+[data-theme="socal-aqua-light"] .stepper-wrapper {
+  background: var(--stepper-wrapper-bg);
+}
+
+html[data-theme="socal-aqua-light"] .p-stepper .p-stepper-panel,
+[data-theme="socal-aqua-light"] .p-stepper .p-stepper-panel {
+  background: var(--stepper-bg);
+  color: var(--stepper-text);
+}

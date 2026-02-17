@@ -41,6 +41,10 @@ a {
   text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+}
+
 /* Smooth keyboard tabbing: focused element scrolls into view with margin */
 :focus-visible {
   scroll-margin-top: 1.5rem;
@@ -387,7 +391,7 @@ a.p-button:focus-visible {
 
 .p-button.cta-accent {
   background: var(--cta-accent, var(--primary-color));
-  color: #fff;
+  color: var(--primary-color-text);
   border-color: var(--cta-accent, var(--primary-color));
 }
 
@@ -1012,8 +1016,8 @@ button.theme-toggle-btn {
       rgba(255, 255, 255, 0.12) 0%,
       transparent 50%
     ),
-    rgba(30, 58, 95, 0.8);
-  color: #fff;
+    var(--cta-accent);
+  color: var(--primary-color-text);
   text-decoration: none;
   transition: background 0.2s ease, box-shadow 0.2s ease;
   box-shadow:
@@ -1027,19 +1031,19 @@ button.theme-toggle-btn {
       rgba(255, 255, 255, 0.14) 0%,
       transparent 50%
     ),
-    rgba(30, 58, 95, 0.92);
-  color: #fff;
+    var(--cta-accent-hover);
+  color: var(--primary-color-text);
   box-shadow:
     0 3px 10px rgba(0, 0, 0, 0.3),
     0 1px 0 rgba(255, 255, 255, 0.15) inset;
 }
 
 .footer-speeddial .p-speeddial-action-with-label .p-speeddial-action-icon {
-  color: #fff;
+  color: var(--primary-color-text);
 }
 
 .footer-speeddial .p-speeddial-action-label {
   white-space: nowrap;
   font-size: 0.8125rem;
-  color: #fff;
+  color: var(--primary-color-text);
 }

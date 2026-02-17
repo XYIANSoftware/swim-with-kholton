@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- **Theme switching (dark/light)**: Cards, TabView, stepper, headings, CTA button, and footer SpeedDial now use theme variables so they switch correctly with the active theme. Stepper uses `--surface-card`, `--text-color`, and `--surface-section`; CTA and SpeedDial use `--cta-accent`/`--cta-accent-hover` and `--primary-color-text`; headings use `--text-color` by default. Theme files add scoped overrides for `.p-card`, `.p-tabview`, and stepper so theme wins over PrimeReact layer.
 - **Home hero section**: Hero content (title, description, View Packages / Book Lesson buttons, image area) is now center-aligned at all breakpoints to match the intended layout.
 - **Mobile sidebar theme**: Sidebar panel now uses app theme variables (`--surface-card`, `--text-color`, etc.) so light/dark theme applies when the menu is open; layout still comes from PrimeReact.
 - **About page Stepper**: "What to expect" Next/Back did nothing. Stepper is now controlled via `activeStep` and `onChangeStep` instead of ref `nextCallback`/`prevCallback`; buttons update step state so navigation works.
