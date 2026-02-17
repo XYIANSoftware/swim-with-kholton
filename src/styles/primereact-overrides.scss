@@ -18,12 +18,18 @@ a.p-button-sm {
   padding: var(--spacing-button-sm-y) var(--spacing-button-sm-x) !important;
 }
 
-/* Icon-only small buttons (e.g. header hamburger): use same base spacing so they match text buttons */
+/* Icon-only small buttons (e.g. header hamburger): fixed size so ripple (p-ink) is compact, not 48px from theme */
 .p-button.p-button-icon-only.p-button-sm,
 button.p-button.p-button-icon-only.p-button-sm {
-  padding: var(--spacing-button-sm-y) var(--spacing-button-sm-x) !important;
-  min-width: 2.25rem;
-  min-height: 2.25rem;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  min-width: 2.25rem !important;
+  min-height: 2.25rem !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* clip ripple to button */
 }
 
 .p-button.p-button-lg,
@@ -364,11 +370,118 @@ button.theme-toggle-btn {
   stroke: var(--primary-color);
 }
 
+/* Stepper (About page – What to expect): theme colors (primereact.org/stepper)
+   Styled class names: p-stepper, p-stepper-horizontal, p-stepper-vertical, p-stepper-nav,
+   p-stepper-panels, p-stepper-panel, p-stepper-header, p-stepper-action, p-stepper-number,
+   p-stepper-title, p-stepper-separator, p-stepper-toggleable-content, p-stepper-content,
+   p-stepper-start, p-stepper-end */
+.p-stepper {
+  color: var(--text-color);
+}
+.p-stepper .p-stepper-header .p-stepper-action {
+  background: transparent;
+}
+.p-stepper .p-stepper-header .p-stepper-action .p-stepper-number {
+  color: var(--text-color);
+  background: transparent;
+  border-color: var(--surface-border);
+}
+.p-stepper .p-stepper-header .p-stepper-action .p-stepper-title {
+  color: var(--text-color-secondary);
+}
+.p-stepper .p-stepper-header.p-highlight .p-stepper-action .p-stepper-number {
+  background: var(--highlight-bg);
+  color: var(--text-color);
+}
+.p-stepper .p-stepper-header.p-highlight .p-stepper-title {
+  color: var(--text-color);
+}
+.p-stepper .p-stepper-header .p-stepper-action:not(.p-disabled):focus-visible,
+.p-stepper .p-stepper-header:not(.p-disabled):focus-visible {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: var(--focus-ring);
+}
+.p-stepper .p-stepper-panels,
+.p-stepper.p-stepper-vertical .p-stepper-toggleable-content {
+  background: var(--surface-card);
+  color: var(--text-color);
+}
+.p-stepper .p-stepper-content {
+  color: var(--text-color);
+}
+.p-stepper .p-stepper-separator {
+  background-color: var(--surface-border);
+}
+.p-stepper .p-stepper-header:has(~ .p-highlight) .p-stepper-separator,
+.p-stepper.p-stepper-vertical .p-stepper-panel:has(~ .p-stepper-panel-active) .p-stepper-separator {
+  background-color: var(--primary-color);
+}
+.p-stepper .p-stepper-start,
+.p-stepper .p-stepper-end {
+  color: var(--text-color);
+}
+
+/* TabView (About page – About / Coaching philosophy): theme colors (primereact.org/tabview)
+   Styled class names: p-tabview (container), p-tabview-nav (headers), p-tabview-selected (selected tab header),
+   p-tabview-panels (panel container), p-tabview-panel (tab content) */
+.p-tabview {
+  color: var(--text-color);
+}
+.p-tabview .p-tabview-nav {
+  border-color: var(--surface-border);
+  background: transparent;
+}
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: var(--surface-card);
+  color: var(--text-color-secondary);
+  border-color: transparent transparent var(--surface-border) transparent;
+}
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus-visible {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: var(--focus-ring);
+}
+.p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
+  background: var(--surface-card);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+}
+/* Selected tab: component adds both p-tabview-selected and p-highlight to the li */
+.p-tabview .p-tabview-nav li.p-tabview-selected .p-tabview-nav-link,
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: var(--surface-card);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+.p-tabview .p-tabview-panels {
+  background: var(--surface-card);
+  color: var(--text-color);
+  border: 0 none;
+}
+.p-tabview .p-tabview-panel {
+  color: var(--text-color);
+}
+.p-tabview .p-tabview-nav-btn.p-link {
+  background: var(--surface-card);
+  color: var(--primary-color);
+}
+.p-tabview .p-tabview-nav-btn.p-link:focus-visible {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: var(--focus-ring);
+}
+
 /* Sidebar (mobile menu): use theme vars; mask must be clickable to close */
 .p-sidebar {
   background: var(--surface-overlay);
   color: var(--text-color);
   border: 1px solid var(--surface-border);
+}
+
+.p-sidebar-content {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .p-sidebar .p-sidebar-header .p-sidebar-close,

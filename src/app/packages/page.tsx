@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Header, Footer } from "@/components/layout";
+import { TrustStrip } from "@/components/pages/home";
 import { DataView, DataViewLayoutOptions } from "primereact/dataview";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
@@ -63,10 +64,13 @@ export default function PackagesPage() {
             Choose the option that fits your goals. Prices and availability depend on location and schedule — we’ll confirm when you book.
           </p>
 
+          <TrustStrip />
+
           <DataView
             value={[...PACKAGES]}
             layout={layout}
             header={header()}
+            pt={{ grid: { className: "grid justify-content-center" } }}
             itemTemplate={(pkg: PackageOption) => (
               <div className="col-12 md:col-6 lg:col-4">
                 <PackageCard pkg={pkg} />

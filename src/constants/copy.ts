@@ -4,42 +4,51 @@ export const HERO_HEADLINE = "Swim Coaching With a National-Level Athlete";
 export const HERO_SUBHEAD =
   "Build confidence, refine technique, and get faster — with a coach who’s been there.";
 
-export const TRUST_ITEMS = [
-  { icon: "pi pi-shield", label: "SEC Swimmer" },
-  { icon: "pi pi-star", label: "US National Team Experience" },
-  { icon: "pi pi-bolt", label: "Technique + Confidence Focus" },
-  { icon: "pi pi-users", label: "All Ages & Skill Levels" },
-] as const;
+export type TrustItemId = "sec-swimmer" | "national-team" | "technique-confidence" | "all-ages";
 
-export const HOW_IT_WORKS_STEPS = [
-  { title: "Pick a package", body: "Choose the option that fits your goals and schedule." },
-  { title: "Schedule a time", body: "Book a slot that works for you (we’ll send a link)." },
-  { title: "Show up & train", body: "Meet at the pool and get to work." },
-  { title: "Track progress", body: "See improvement session by session." },
-] as const;
-
-export const COACHING_FOCUS_ITEMS = [
-  { icon: "pi pi-compass", title: "Stroke technique", body: "Clean, efficient form for every stroke." },
-  { icon: "pi pi-heart", title: "Breathing & endurance", body: "Breathe easier and swim longer." },
-  { icon: "pi pi-chart-line", title: "Speed & efficiency", body: "Get faster with less effort." },
-  { icon: "pi pi-check-circle", title: "Confidence & safety", body: "Feel at home in the water." },
-  { icon: "pi pi-flag", title: "Race prep", body: "Peak when it counts." },
-] as const;
-
-export const TESTIMONIALS = [
+export const TRUST_ITEMS: ReadonlyArray<{
+  id: TrustItemId;
+  icon: string;
+  label: string;
+  detail: { title: string; body: string };
+}> = [
   {
-    quote: "My kids went from nervous to confident in the water. Couldn’t ask for a better coach.",
-    author: "Parent (placeholder)",
+    id: "sec-swimmer",
+    icon: "pi pi-shield",
+    label: "SEC Swimmer",
+    detail: {
+      title: "SEC collegiate swimmer",
+      body: "Kholton competed at the collegiate level in the Southeastern Conference (SEC), one of the top swimming conferences in the US. That experience shapes how he teaches — clear structure, high standards, and a focus on what actually works in the pool.",
+    },
   },
   {
-    quote: "Finally fixed my freestyle. Clear cues and no fluff — exactly what I needed.",
-    author: "Adult swimmer (placeholder)",
+    id: "national-team",
+    icon: "pi pi-star",
+    label: "US National Team Experience",
+    detail: {
+      title: "US National Team experience",
+      body: "Training and competing with the US National Team means exposure to world-class coaching and race environments. That level of experience is now applied to every lesson — whether you’re new to the pool or chasing a personal best.",
+    },
   },
   {
-    quote: "Training with someone who’s raced at that level made all the difference for my times.",
-    author: "Competitive swimmer (placeholder)",
+    id: "technique-confidence",
+    icon: "pi pi-bolt",
+    label: "Technique + Confidence Focus",
+    detail: {
+      title: "Technique and confidence",
+      body: "Sessions focus on clean technique and building confidence in the water. You’ll get specific feedback and drills tailored to your level, so you see progress without the fluff.",
+    },
   },
-] as const;
+  {
+    id: "all-ages",
+    icon: "pi pi-users",
+    label: "All Ages & Skill Levels",
+    detail: {
+      title: "All ages and skill levels",
+      body: "From young beginners to adults and competitive swimmers, coaching is tailored to each person. We meet you where you are and build from there.",
+    },
+  },
+];
 
 export const FAQ_PREVIEW_ITEMS = [
   { question: "What ages do you coach?", answer: "All ages — from young beginners to adults. We tailor each session to the swimmer." },

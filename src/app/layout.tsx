@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from "@/providers";
 import { APP_THEME_STORAGE_KEY, DEFAULT_THEME, THEMES } from "@/constants";
+// Load order per primereact.org/installation: theme → icons → PrimeFlex → app styles
 import "primereact/resources/themes/lara-dark-blue/theme.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";

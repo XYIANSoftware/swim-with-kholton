@@ -49,6 +49,55 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **CTA accent**: .p-button.cta-accent / .cta-accent on links for coral (Aqua Light) or primary (Dark Synth).
 - Metadata title/description updated to "Kholton Swim Coaching".
 
+## [0.2.10] - 2025-02-16
+
+### Added
+
+- **Trust strip (SEC Swimmer, etc.)**: Trust items are clickable; each opens a PrimeReact Dialog overlay with a short detail (title + body). Copy constants extended with `TrustItemId`, `detail.title` and `detail.body` per item. TrustStrip is a client component with Dialog; same strip appears on the Packages page so credentials are visible and clickable there too.
+
+### Fixed
+
+- **Header (mobile)**: Hamburger menu button now opens the sidebar reliably: added explicit `type="button"` and a stable `openMobileMenu` callback via `useCallback` so the PrimeReact Button receives a consistent click handler (per PrimeReact Button docs).
+
+### Changed
+
+- **Centering (all screen sizes)**: Layout chain now forces full width so `.container` centers with margin auto: page root (`.flex.flex-column.min-h-screen`) and `.section` have explicit `width: 100%`; main/header/footer get `min-width: 0` to avoid flex overflow. Hero content is centered on small screens: `justify-content-center md:justify-content-start`, `text-center md:text-left` on copy, and `justify-content-center md:justify-content-start` on the button row.
+- **Global background**: Background is now fixed and does not move on scroll; only page content scrolls. GlobalParallaxBackground no longer uses scroll-driven transform (removed offset, scroll/resize listeners). Background covers the viewport (position: fixed, inset: 0, background-size: cover).
+- **Centering (PrimeFlex)**: Layout and grids now use PrimeFlex-style centering per primereact.org and primeflex.org. `.layout-content` uses `display: flex; flex-direction: column; align-items: center` so content centers; `.layout-content > *` has `width: 100%` so header/main/footer span full width and inner `.container` / `.content-wrap` center via margin auto. DataView grid gets `pt={{ grid: { className: "grid justify-content-center" } }}` so package cards are centered; `.p-dataview-content .grid` and `.section .container .grid` get `justify-content: center` on lg.
+- **Setup**: Documented layout CSS order (theme → icons → PrimeFlex → app) and PrimeReactProvider (primereact.org/installation) in layout.tsx and PrimeReactProvider.tsx.
+
+## [0.2.11] - 2025-02-16
+
+### Fixed
+
+- **Ripple on icon-only small buttons**: Hamburger (and other icon-only small buttons) no longer show an oversized ripple. PrimeReact Ripple sizes the `.p-ink` circle from the button’s outer dimensions; the theme uses 3rem (48px) for icon-only, so the ripple was 48px. Overrides now force icon-only small buttons to 2.25rem × 2.25rem with `overflow: hidden` so the ripple is compact and clipped to the button.
+
+## [0.2.12] - 2025-02-16
+
+### Added
+
+- **Hero banner**: Hero section content is wrapped in a `.hero-banner` strip with a semi-transparent white background (`--hero-banner-bg`: default `rgba(255,255,255,0.1)`) so the headline and CTA read more clearly over the parallax background. Variable is theme-overridable; padding and border-radius applied for a banner look.
+
+### Removed
+
+- **How it works section**: "How it works" (four-step process) removed from the home page. Deleted `HowItWorksSection` component and `HOW_IT_WORKS_STEPS` from copy.
+- **What we work on section**: "What we work on" (coaching focus benefit cards) removed from the home page. Deleted `CoachingFocusSection` component and `COACHING_FOCUS_ITEMS` from copy.
+- **What people say section**: "What people say" (testimonials) removed from the home page. Deleted `TestimonialsSection` component and `TESTIMONIALS` from copy. Home flow is now Hero → Trust → Packages → FAQ → CTA.
+
+### Fixed
+
+- **Sidebar (mobile menu)**: `.p-sidebar-content` now has small horizontal padding (0.75rem) so the title, nav links, theme control, and Book Lesson button are not flush to the edges.
+
+## [0.2.13] - 2025-02-16
+
+### Changed
+
+- **About page**: Rebuilt with PrimeReact components. "About" and "Coaching philosophy" are now a [TabView](https://primereact.org/tabview/) (two tabs: About with bio, photo placeholder, credentials; Coaching philosophy with three pillars). "What to expect" uses the basic horizontal [Stepper](https://primereact.org/stepper/) (no `orientation="vertical"`), three steps (Check-in, Session, Takeaways), `flexBasis: '50rem'`, and Back/Next buttons per PrimeReact Basic demo; copy unchanged from `WHAT_TO_EXPECT`. Page is a client component for TabView/Stepper interactivity.
+
+### Added
+
+- **Stepper & TabView theming**: Lara theme ships with hardcoded colors for `.p-stepper` and `.p-tabview`, so they didn’t pick up app theme variables. Added overrides in `primereact-overrides.scss` so both components use theme variables: `--text-color`, `--text-color-secondary`, `--surface-card`, `--surface-border`, `--primary-color`, `--highlight-bg`, `--focus-ring`. Stepper and TabView on the About page now respect socal-aqua-light and dark-synth.
+
 ## [0.2.9] - 2025-02-16
 
 ### Changed
@@ -131,6 +180,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Theming and clicks: aligned with [PrimeReact](https://github.com/primefaces/primereact) Lara theme; added missing design tokens to :root (--border-radius, --content-padding, --inline-spacing, --maskbg, --p-border-radius); cursor: pointer on .p-button and accordion header links, cursor: text on inputs, cursor: not-allowed on disabled buttons; border-radius and appearance on buttons; Sidebar and overlay use theme vars (--surface-overlay, --maskbg) and close button cursor; hover limited to :not(:disabled) so disabled state is clear.
 - Hero background visible: main and page wrapper set to `background: transparent`; `.parallax-section.section` forced `background: transparent !important`; parallax section uses `isolation: isolate`; hero overlay lightened (0.35→0.25); no backgrounds on wrappers over the hero.
 - Package cards uniform size: `.package-cards-grid` with `grid-auto-rows: minmax(20rem, 1fr)` so every row (including when the 3rd card wraps) has equal height; `.package-card` with `min-height: 20rem`, `height: 100%`, flex so cards match and CTA stays at bottom on home and packages page.
+- Centering: page root direct children (header, main, footer) forced to full width via `.flex.flex-column.min-h-screen > header/main/footer` so inner `.container` centers correctly; SCSS nesting in utilities for `.layout-content` and page root; `box-sizing: border-box` on container/content-wrap.
 - Header and footer ~15% more transparent: light theme header 0.94→0.79, footer 0.96→0.81; dark theme header/footer rgba with 0.85 alpha; new --footer-bg in themes, Footer uses var(--footer-bg).
 - Hero image layer stacking: parallax background layer and overlay use explicit z-index (1, 2, 3) so the image layer is never behind body/main; layer uses inset positioning; `.parallax-section .parallax-layer` has `pointer-events: none`.
 

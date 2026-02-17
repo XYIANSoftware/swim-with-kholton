@@ -3,7 +3,7 @@
   --content-max-width: 1200px;
 }
 
-// Layout content above global parallax background (used in root Providers)
+// Layout content above global parallax background (used in root Providers).
 .layout-content {
   position: relative;
   z-index: 1;
@@ -11,6 +11,27 @@
   max-width: 100%;
   min-width: 0;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > * {
+    width: 100%;
+  }
+}
+
+// Page root: flex column wrapper used by every page (Header + main + Footer).
+// Ensure each direct child is full width so inner .container can center via margin auto.
+.flex.flex-column.min-h-screen {
+  width: 100%;
+  & > header,
+  & > main,
+  & > footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
 }
 
 // Layout / container utilities — centered on desktop and mobile
@@ -21,14 +42,15 @@
   margin-right: auto;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  box-sizing: border-box;
 }
 
-// Same max-width as .container, no side padding (use when parent already has padding, e.g. header)
 .content-wrap {
   width: 100%;
   max-width: var(--content-max-width);
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
 }
 
 .container-narrow {
@@ -38,12 +60,14 @@
   margin-right: auto;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  box-sizing: border-box;
 }
 
-/* On desktop, center grid/card groups (container is already centered via margin auto) */
+// Grids inside container: full width and centered items on large screens
 @media (min-width: 992px) {
   .section .container .grid,
-  main .container .grid {
+  main .container .grid,
+  .p-dataview-content .grid {
     width: 100%;
     justify-content: center;
   }
@@ -62,9 +86,25 @@
 
 // Section rhythm: consistent vertical padding (more generous)
 // Do not add background here — sections that need it set their own (hero uses parallax, no wrapper bg).
+// Full width so inner .container can center with margin auto.
 .section {
+  width: 100%;
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
+}
+
+/* Hero content strip: semi-transparent banner so copy reads over parallax */
+.hero-banner {
+  width: 100%;
+  background: var(--hero-banner-bg);
+  padding: 1.5rem 0;
+  border-radius: var(--border-radius);
+}
+
+@media (min-width: 768px) {
+  .hero-banner {
+    padding: 2rem 0;
+  }
 }
 
 /* Hero parallax: never apply a solid background so the image layer is visible */

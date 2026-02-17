@@ -11,6 +11,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
+  const openMobileMenu = useCallback(() => setMobileMenuOpen(true), []);
 
   return (
     <>
@@ -57,12 +58,13 @@ export function Header() {
           {/* Mobile: hamburger + CTA — same size as Book via base SCSS (p-button-sm) */}
           <div className="flex align-items-center gap-2 md:hidden">
             <Button
+              type="button"
               icon="pi pi-bars"
               rounded
               text
               className="p-button-sm"
               aria-label="Open menu"
-              onClick={() => setMobileMenuOpen(true)}
+              onClick={openMobileMenu}
             />
             <Link
               href={BOOK_LESSON_HREF}

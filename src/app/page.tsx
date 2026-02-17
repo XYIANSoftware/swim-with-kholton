@@ -3,9 +3,6 @@ import {
   HeroSection,
   TrustStrip,
   PackageCardsSection,
-  HowItWorksSection,
-  CoachingFocusSection,
-  TestimonialsSection,
   FAQPreviewSection,
   CTABandSection,
 } from "@/components/pages/home";
@@ -18,9 +15,6 @@ export default function Home() {
         <HeroSection />
         <TrustStrip />
         <PackageCardsSection />
-        <HowItWorksSection />
-        <CoachingFocusSection />
-        <TestimonialsSection />
         <FAQPreviewSection />
         <CTABandSection />
       </main>
