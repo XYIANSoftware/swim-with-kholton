@@ -1,5 +1,6 @@
-// PrimeReact component overrides: use only CSS variables (no hex).
-// Base padding from variables applies to all buttons and inputs.
+// PrimeReact component overrides (primereact.org/theming — scoped styling; primereact.org/colors — CSS variables).
+// Use only theme variables (e.g. var(--surface-card), var(--text-color)); no hard-coded hex.
+// Base padding from base.scss variables applies to buttons and inputs.
 
 /* Interactive: ensure clickable and visible (PrimeReact expects cursor + no overlay blocking) */
 .p-button,
@@ -15,6 +16,14 @@ a.p-button {
 button.p-button-sm,
 a.p-button-sm {
   padding: var(--spacing-button-sm-y) var(--spacing-button-sm-x) !important;
+}
+
+/* Icon-only small buttons (e.g. header hamburger): use same base spacing so they match text buttons */
+.p-button.p-button-icon-only.p-button-sm,
+button.p-button.p-button-icon-only.p-button-sm {
+  padding: var(--spacing-button-sm-y) var(--spacing-button-sm-x) !important;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
 }
 
 .p-button.p-button-lg,
@@ -37,6 +46,38 @@ a.p-button:not(.p-button-icon-only) {
   overflow: hidden;
   box-shadow: var(--elevation-2) !important;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Uniform package cards: equal row height so every card matches (e.g. when 3rd card wraps) */
+.package-cards-grid {
+  align-items: stretch;
+  grid-auto-rows: minmax(20rem, 1fr);
+}
+
+.package-cards-grid .package-card {
+  min-height: 20rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.package-cards-grid .package-card .p-card-body,
+.package-cards-grid .package-card .p-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.package-cards-grid .package-card .p-card-body > *,
+.package-cards-grid .package-card .p-card-content > * {
+  flex: 0 0 auto;
+}
+
+.package-cards-grid .package-card .p-card-body .flex.h-full,
+.package-cards-grid .package-card .p-card-content .flex.h-full {
+  flex: 1;
+  min-height: 0;
 }
 
 .p-card:hover {
@@ -228,15 +269,39 @@ button.theme-toggle-btn {
   color: var(--text-color);
 }
 
-.p-accordion .p-accordion-header .p-accordion-header-link {
-  background: var(--surface-card);
-  color: var(--text-color);
-  border-color: var(--surface-border);
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+/* Accordion: full structure from Prime theme (padding, radius, icon) so @layer primereact is not replaced */
+.p-accordion .p-accordion-tab {
+  margin-bottom: 0.25rem;
 }
 
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  padding: var(--content-padding, 1.25rem);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--border-radius);
+  background: var(--surface-card);
+  color: var(--text-color);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+  margin-right: 0.5rem;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled):not(.p-highlight):hover .p-accordion-header-link,
 .p-accordion .p-accordion-header .p-accordion-header-link:hover {
+  background: var(--surface-hover);
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background: var(--surface-card);
+  border-color: var(--surface-border);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
   background: var(--surface-hover);
 }
 
@@ -244,13 +309,18 @@ button.theme-toggle-btn {
   outline: none;
   background: var(--primary-color) !important;
   color: var(--primary-color-text) !important;
+  border-color: var(--primary-color) !important;
   box-shadow: var(--focus-ring), 0 0 0 3px var(--primary-color);
 }
 
 .p-accordion .p-accordion-content {
+  padding: var(--content-padding, 1.25rem);
+  border: 1px solid var(--surface-border);
+  border-top: 0;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
   background: var(--surface-card);
   color: var(--text-color);
-  border-color: var(--surface-border);
 }
 
 .p-inputtext,

@@ -25,7 +25,7 @@ export default function SchedulePage() {
   const {
     control,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { isSubmitSuccessful },
   } = useForm<InquiryFormValues>({
     defaultValues,
     mode: "onBlur",

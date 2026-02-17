@@ -12,9 +12,9 @@ import {
 
 export default function Home() {
   return (
-    <div className="flex flex-column min-h-screen">
+    <div className="flex flex-column min-h-screen" style={{ background: "transparent" }}>
       <Header />
-      <main className="flex-grow-1">
+      <main className="flex-grow-1" style={{ background: "transparent" }}>
         <HeroSection />
         <TrustStrip />
         <PackageCardsSection />

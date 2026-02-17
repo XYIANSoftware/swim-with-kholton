@@ -13,18 +13,20 @@ export function PackageCardsSection() {
         <p className="m-0 mb-4 text-color-secondary" style={{ color: "var(--text-color-secondary)", maxWidth: "40rem" }}>
           Choose the option that fits your goals. All sessions are one-on-one unless noted.
         </p>
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 stagger-children">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 stagger-children package-cards-grid">
           {PACKAGES.slice(0, 3).map((pkg) => (
-            <Card key={pkg.id} className="shadow-2">
-              <div className="flex flex-column h-full">
+            <Card key={pkg.id} className="shadow-2 h-full package-card">
+              <div className="package-card-inner flex flex-column h-full">
                 <h3 className="m-0 mb-2 text-xl font-semibold">{pkg.name}</h3>
-                <p className="m-0 mb-2 text-sm text-color-secondary">{pkg.forWho}</p>
-                <ul className="m-0 mb-3 pl-3 text-sm">
+                <p className="m-0 mb-3 text-sm text-color-secondary package-card-for">
+                  {pkg.forWho}
+                </p>
+                <ul className="m-0 mb-3 pl-3 text-sm package-card-benefits">
                   {pkg.benefits.map((b) => (
                     <li key={b}>{b}</li>
                   ))}
                 </ul>
-                <p className="m-0 mb-2 text-sm">
+                <p className="m-0 mb-3 text-sm package-card-meta">
                   <strong>Duration:</strong> {pkg.duration} · <strong>Price:</strong> {pkg.price}
                 </p>
                 <Link href="/schedule" className="mt-auto">

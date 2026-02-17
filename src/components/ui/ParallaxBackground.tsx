@@ -54,15 +54,14 @@ export function ParallaxBackground({
       ? window.matchMedia(`(max-width: ${PARALLAX_BREAKPOINT}px)`)
       : null;
     if (mq) {
-      setIsMobile(mq.matches);
       const handleChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
       mq.addEventListener("change", handleChange);
+      queueMicrotask(() => setIsMobile(mq.matches));
       return () => mq.removeEventListener("change", handleChange);
     }
   }, []);
 
   useEffect(() => {
-    updateOffset();
     const handleScroll = () => {
       if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
@@ -70,6 +69,7 @@ export function ParallaxBackground({
         rafRef.current = null;
       });
     };
+    requestAnimationFrame(() => updateOffset());
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
     return () => {
@@ -83,13 +83,22 @@ export function ParallaxBackground({
     <section
       ref={containerRef}
       className={`parallax-section relative flex align-items-center overflow-hidden ${className}`}
-      style={{ minHeight, background: "transparent" }}
+      style={{
+        minHeight,
+        background: "transparent",
+        isolation: "isolate",
+      }}
     >
       {/* Primary parallax layer — only when imageSrc provided (e.g. light theme) */}
       {imageSrc && (
         <div
-          className="parallax-layer absolute w-full top-0 left-0 right-0"
+          className="parallax-layer"
           style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             height: "120%",
             minHeight: "100%",
             backgroundImage: `url(${imageSrc})`,
@@ -98,16 +107,20 @@ export function ParallaxBackground({
             backgroundRepeat: "no-repeat",
             transform: `translate3d(0, ${offset}px, 0)`,
             willChange: "transform",
-            zIndex: 0,
+            zIndex: 1,
           }}
           aria-hidden
         />
       )}
-      {/* Optional secondary (slower) layer */}
       {imageSrcSecondary && (
         <div
-          className="parallax-layer absolute w-full top-0 left-0 right-0"
+          className="parallax-layer"
           style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             height: "130%",
             minHeight: "100%",
             backgroundImage: `url(${imageSrcSecondary})`,
@@ -117,21 +130,19 @@ export function ParallaxBackground({
             transform: `translate3d(0, ${offset * 0.6}px, 0)`,
             willChange: "transform",
             opacity: 0.5,
-            zIndex: 0,
+            zIndex: 1,
           }}
           aria-hidden
         />
       )}
-      {/* Overlay for text contrast */}
       {overlay && (
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: overlay, pointerEvents: "none", zIndex: 0 }}
+          style={{ backgroundColor: overlay, pointerEvents: "none", zIndex: 2 }}
           aria-hidden
         />
       )}
-      {/* Content above background */}
-      <div className="relative w-full" style={{ zIndex: 1 }}>
+      <div className="relative w-full" style={{ zIndex: 3 }}>
         {children}
       </div>
     </section>

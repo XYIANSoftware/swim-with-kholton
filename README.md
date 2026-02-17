@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## PrimeReact usage
+
+- **Theming**: We use one built-in theme CSS (Lara) and override with our own SCSS using **CSS variables** ([Colors](https://primereact.org/colors/), [Theming](https://primereact.org/theming/)). Scoped overrides live in `src/styles/primereact-overrides.scss` (named-class approach).
+- **DataView (packages)**: [DataView Layout](https://primereact.org/dataview/#layout) — grid layout uses **PrimeFlex Grid classes** in `itemTemplate` (`col-12 md:col-6 lg:col-4`). Pass-through (`pt`) is used to add a scoped class to the grid DOM element ([Pass Through](https://primereact.org/passthrough/)).
+- **Accordion, TabView, etc.**: Custom templates and headers follow the [Accordion](https://primereact.org/accordion/) / [TabView](https://primereact.org/tabview/) docs; styling uses theme variables and the same overrides file.
+
 ## Getting Started
 
 First, run the development server:

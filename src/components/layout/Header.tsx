@@ -23,7 +23,7 @@ export function Header() {
           boxShadow: "var(--elevation-2)",
         }}
       >
-        <div className="flex align-items-center justify-content-between max-w-7xl mx-auto">
+        <div className="content-wrap flex align-items-center justify-content-between">
           <Link
             href="/"
             className="font-semibold text-xl no-underline"
@@ -54,12 +54,13 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* Mobile: hamburger + CTA */}
+          {/* Mobile: hamburger + CTA — same size as Book via base SCSS (p-button-sm) */}
           <div className="flex align-items-center gap-2 md:hidden">
             <Button
               icon="pi pi-bars"
               rounded
               text
+              className="p-button-sm"
               aria-label="Open menu"
               onClick={() => setMobileMenuOpen(true)}
             />

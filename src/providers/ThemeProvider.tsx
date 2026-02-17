@@ -44,8 +44,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useLayoutEffect(() => {
     const stored = readStoredTheme();
-    setThemeState(stored);
     applyTheme(stored);
+    queueMicrotask(() => setThemeState(stored));
   }, []);
 
   const setTheme = useCallback((newTheme: ThemeId) => {

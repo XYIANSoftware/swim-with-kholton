@@ -1,23 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ParallaxBackground } from "@/components/ui";
-import { useTheme } from "@/providers/ThemeProvider";
 import { HERO_HEADLINE, HERO_SUBHEAD } from "@/constants/copy";
 import { BOOK_LESSON_HREF } from "@/constants/nav";
 
-const LIGHT_HERO_IMAGE = "/kholton-bg.png";
-
 export function HeroSection() {
-  const { theme } = useTheme();
-  const isLight = theme === "socal-aqua-light";
   return (
-    <ParallaxBackground
-      imageSrc={isLight ? LIGHT_HERO_IMAGE : undefined}
-      overlay={isLight ? "var(--hero-overlay)" : undefined}
-      minHeight="30rem"
-      className="section"
-    >
+    <section className="section" style={{ minHeight: "30rem" }}>
       <div className="container flex flex-column md:flex-row align-items-center gap-4 md:gap-6">
         <div className="flex-1">
           <h1
@@ -58,9 +47,9 @@ export function HeroSection() {
           </div>
         </div>
         <div className="flex-1 flex justify-content-center md:justify-content-end opacity-60 min-h-15rem md:min-h-20rem">
-          {/* Optional: decorative or leave empty so parallax is the visual */}
+          {/* Decorative space; global parallax shows through */}
         </div>
       </div>
-    </ParallaxBackground>
+    </section>
   );
 }
