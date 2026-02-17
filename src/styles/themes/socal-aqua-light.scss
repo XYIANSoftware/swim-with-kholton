@@ -14,6 +14,9 @@ html[data-theme="socal-aqua-light"],
   --input-bg: #ffffff !important;
   --input-fg: #0f172a !important;
   --input-border: 1px solid #c5d0de !important;
+  --float-label-color: #64748b !important;
+  --input-invalid-border: 1px solid #dc2626 !important;
+  --error-text-color: #dc2626 !important;
   --button-bg: var(--window-surface-bg) !important;
   --button-fg: #0f172a !important;
   --button-hover-bg: var(--surface-hover) !important;
@@ -87,7 +90,7 @@ html[data-theme="socal-aqua-light"],
   --progress-spinner-size-sm: 14px !important;
   --progress-spinner-size-md: 18px !important;
   --hero-gradient: linear-gradient(180deg, #f0f4f8 0%, #e8eef5 50%, #f0f4f8 100%) !important;
-  --hero-overlay: rgba(255, 255, 255, 0.55) !important;
+  --hero-overlay: rgba(255, 255, 255, 0.35) !important;
 }
 
 html[data-theme="socal-aqua-light"] {

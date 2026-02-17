@@ -2,18 +2,19 @@
 
 import Link from "next/link";
 import { ParallaxBackground } from "@/components/ui";
+import { useTheme } from "@/providers/ThemeProvider";
 import { HERO_HEADLINE, HERO_SUBHEAD } from "@/constants/copy";
 import { BOOK_LESSON_HREF } from "@/constants/nav";
 
-const HERO_IMAGE = "/background-marine.png";
-const HERO_IMAGE_SECONDARY = "/backgorund-one.png";
+const LIGHT_HERO_IMAGE = "/kholton-bg.png";
 
 export function HeroSection() {
+  const { theme } = useTheme();
+  const isLight = theme === "socal-aqua-light";
   return (
     <ParallaxBackground
-      imageSrc={HERO_IMAGE}
-      imageSrcSecondary={HERO_IMAGE_SECONDARY}
-      overlay="var(--hero-overlay)"
+      imageSrc={isLight ? LIGHT_HERO_IMAGE : undefined}
+      overlay={isLight ? "var(--hero-overlay)" : undefined}
       minHeight="30rem"
       className="section"
     >

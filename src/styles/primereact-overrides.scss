@@ -1,10 +1,14 @@
 // PrimeReact component overrides: use only CSS variables (no hex).
 // Base padding from variables applies to all buttons and inputs.
 
+/* Interactive: ensure clickable and visible (PrimeReact expects cursor + no overlay blocking) */
 .p-button,
 button.p-button,
 a.p-button {
+  cursor: pointer;
   padding: var(--spacing-button-y) var(--spacing-button-x) !important;
+  appearance: none;
+  border-radius: var(--border-radius);
 }
 
 .p-button.p-button-sm,
@@ -90,10 +94,16 @@ a.p-button {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
-.p-button:hover,
-button.p-button:hover,
+.p-button:not(:disabled):hover,
+button.p-button:not(:disabled):hover,
 a.p-button:hover {
   transform: translateY(-1px);
+}
+
+.p-button:disabled,
+button.p-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .p-button {
@@ -222,9 +232,7 @@ button.theme-toggle-btn {
   background: var(--surface-card);
   color: var(--text-color);
   border-color: var(--surface-border);
-}
-
-.p-accordion .p-accordion-header .p-accordion-header-link {
+  cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -245,24 +253,54 @@ button.theme-toggle-btn {
   border-color: var(--surface-border);
 }
 
-.p-inputtext {
+.p-inputtext,
+.p-inputtextarea {
   background: var(--input-bg);
   color: var(--input-fg);
   border: var(--input-border);
   padding: var(--spacing-input-y) var(--spacing-input-x) !important;
+  font-family: var(--font-family);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--border-radius);
+  cursor: text;
 }
 
+.p-inputtextarea {
+  resize: vertical;
+  min-height: 4rem;
+}
 
-.p-inputtext:enabled:hover {
+.p-inputtext:enabled:hover,
+.p-inputtextarea:enabled:hover {
   border-color: var(--primary-color);
   background: var(--input-bg);
 }
 
 .p-inputtext:enabled:focus,
-.p-inputtext:enabled:focus-visible {
+.p-inputtext:enabled:focus-visible,
+.p-inputtextarea:enabled:focus,
+.p-inputtextarea:enabled:focus-visible {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: var(--focus-ring), 0 0 0 3px var(--primary-color);
+}
+
+.p-inputtext.p-invalid,
+.p-inputtextarea.p-invalid {
+  border: var(--input-invalid-border);
+}
+
+.p-float-label > label {
+  color: var(--float-label-color);
+  transition: color 0.2s ease, top 0.2s ease;
+}
+
+.p-float-label > .p-invalid + label {
+  color: var(--error-text-color);
+}
+
+.p-error {
+  color: var(--error-text-color);
 }
 
 .p-dropdown {
@@ -281,4 +319,27 @@ button.theme-toggle-btn {
 
 .p-progress-spinner-circle {
   stroke: var(--primary-color);
+}
+
+/* Sidebar (mobile menu): use theme vars; mask must be clickable to close */
+.p-sidebar {
+  background: var(--surface-overlay);
+  color: var(--text-color);
+  border: 1px solid var(--surface-border);
+}
+
+.p-sidebar .p-sidebar-header .p-sidebar-close,
+.p-sidebar .p-sidebar-header .p-sidebar-icon {
+  cursor: pointer;
+  color: var(--text-color-secondary);
+}
+
+.p-sidebar .p-sidebar-header .p-sidebar-close:enabled:hover,
+.p-sidebar .p-sidebar-header .p-sidebar-icon:enabled:hover {
+  background: var(--surface-hover);
+  color: var(--text-color);
+}
+
+.p-component-overlay.p-sidebar-mask {
+  background-color: var(--maskbg);
 }

@@ -68,3 +68,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Light theme: marine navy + white palette; transparency and gloss (--hero-overlay, --gloss-color).
 - Outlined button and nav link hover/focus; focus-visible full color reversal on buttons, nav, accordion.
 - Hero "Book Lesson" button contrast (transparent bg, primary color text); card padding from --spacing-card.
+
+### Fixed
+
+- Hero parallax background not visible: section now has explicit `background: transparent`, parallax/overlay layers use `zIndex: 0`, content wrapper `zIndex: 1`; hero overlay opacity reduced (SoCal 0.55→0.35, Dark 0.45→0.3) so image shows through.
+- Hero background source: light theme uses `public/kholton-bg.png` only; dark theme has no hero background (image TBD). App icons (favicon/icon) use same image via Next.js metadata: `src/app/icon.png` and `src/app/apple-icon.png` copied from `kholton-bg.png`; no `favicon.ico` (use `icon.png` for tab icon per [Next.js app-icons](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons)).
+- Schedule/contact form inputs: refactored to React Hook Form with proper state (Controller + controlled value/onChange); FloatLabel + InputText/InputTextarea; ARIA (aria-invalid, aria-describedby, role="alert" on errors, aria-labelledby on form); validation (required, email pattern); error messages with .p-error; theme CSS variables for inputs (--float-label-color, --input-invalid-border, --error-text-color) and .p-float-label / .p-invalid / .p-inputtextarea overrides so inputs work and match PrimeReact theme.
+- Theming and clicks: aligned with [PrimeReact](https://github.com/primefaces/primereact) Lara theme; added missing design tokens to :root (--border-radius, --content-padding, --inline-spacing, --maskbg, --p-border-radius); cursor: pointer on .p-button and accordion header links, cursor: text on inputs, cursor: not-allowed on disabled buttons; border-radius and appearance on buttons; Sidebar and overlay use theme vars (--surface-overlay, --maskbg) and close button cursor; hover limited to :not(:disabled) so disabled state is clear.

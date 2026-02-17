@@ -14,6 +14,9 @@ html[data-theme="dark-synth"],
   --input-bg: #07071b !important;
   --input-fg: #dbd4fa !important;
   --input-border: 1px solid #2a1f4e !important;
+  --float-label-color: #9d8fbd !important;
+  --input-invalid-border: 1px solid #f88c79 !important;
+  --error-text-color: #f88c79 !important;
   --button-bg: var(--window-surface-bg) !important;
   --button-fg: #dbd4fa !important;
   --button-hover-bg: var(--surface-hover) !important;
@@ -87,7 +90,7 @@ html[data-theme="dark-synth"],
   --progress-spinner-size-sm: 14px !important;
   --progress-spinner-size-md: 18px !important;
   --hero-gradient: linear-gradient(180deg, #0c0020 0%, #0f1729 100%) !important;
-  --hero-overlay: rgba(0, 0, 0, 0.45) !important;
+  --hero-overlay: rgba(0, 0, 0, 0.3) !important;
 }
 
 // First paint: set html/body for default theme so no flash

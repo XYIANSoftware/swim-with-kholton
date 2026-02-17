@@ -1,0 +1,8 @@
+# Netlify build config for Next.js 16 (App Router, Turbopack)
+# Framework detection sets publish; see docs.netlify.com for Next.js.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"

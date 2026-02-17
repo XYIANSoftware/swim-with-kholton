@@ -1,15 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { Header, Footer } from "@/components/layout";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
+import { InputTextarea } from "primereact/inputtextarea";
 import { FloatLabel } from "primereact/floatlabel";
 import { Message } from "primereact/message";
 import { BOOK_LESSON_HREF } from "@/constants/nav";
 
+type InquiryFormValues = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+const defaultValues: InquiryFormValues = {
+  name: "",
+  email: "",
+  message: "",
+};
+
 export default function SchedulePage() {
-  const [submitted, setSubmitted] = useState(false);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+  } = useForm<InquiryFormValues>({
+    defaultValues,
+    mode: "onBlur",
+  });
+
+  const onSubmit = () => {
+    // Placeholder — no backend yet
+  };
 
   return (
     <div className="flex flex-column min-h-screen">
@@ -45,29 +69,111 @@ export default function SchedulePage() {
           </div>
 
           <div>
-            <h2 className="m-0 mb-3 text-xl font-semibold">Send an inquiry</h2>
+            <h2 id="inquiry-heading" className="m-0 mb-3 text-xl font-semibold">
+              Send an inquiry
+            </h2>
             <form
               className="flex flex-column gap-3"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              aria-labelledby="inquiry-heading"
             >
-              <FloatLabel>
-                <InputText id="name" className="w-full" />
-                <label htmlFor="name">Name</label>
-              </FloatLabel>
-              <FloatLabel>
-                <InputText id="email" type="email" className="w-full" />
-                <label htmlFor="email">Email</label>
-              </FloatLabel>
-              <FloatLabel>
-                <InputText id="message" className="w-full" />
-                <label htmlFor="message">Message</label>
-              </FloatLabel>
-              <Button type="submit" label="Send" className="w-full" />
-              {submitted && (
-                <Message severity="success" text="Thanks! We’ll be in touch. (Form is placeholder — no backend yet.)" />
+              <Controller
+                name="name"
+                control={control}
+                rules={{ required: "Name is required" }}
+                render={({ field, fieldState }) => {
+                  const errorId = "name-error";
+                  return (
+                    <div className="flex flex-column gap-1">
+                      <FloatLabel>
+                        <InputText
+                          id="name"
+                          className={`w-full ${fieldState.invalid ? "p-invalid" : ""}`}
+                          aria-invalid={!!fieldState.error}
+                          aria-describedby={fieldState.error ? errorId : undefined}
+                          {...field}
+                        />
+                        <label htmlFor="name">Name</label>
+                      </FloatLabel>
+                      {fieldState.error && (
+                        <small id={errorId} className="p-error block" role="alert">
+                          {fieldState.error.message}
+                        </small>
+                      )}
+                    </div>
+                  );
+                }}
+              />
+
+              <Controller
+                name="email"
+                control={control}
+                rules={{
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Enter a valid email address",
+                  },
+                }}
+                render={({ field, fieldState }) => {
+                  const errorId = "email-error";
+                  return (
+                    <div className="flex flex-column gap-1">
+                      <FloatLabel>
+                        <InputText
+                          id="email"
+                          type="email"
+                          autoComplete="email"
+                          className={`w-full ${fieldState.invalid ? "p-invalid" : ""}`}
+                          aria-invalid={!!fieldState.error}
+                          aria-describedby={fieldState.error ? errorId : undefined}
+                          {...field}
+                        />
+                        <label htmlFor="email">Email</label>
+                      </FloatLabel>
+                      {fieldState.error && (
+                        <small id={errorId} className="p-error block" role="alert">
+                          {fieldState.error.message}
+                        </small>
+                      )}
+                    </div>
+                  );
+                }}
+              />
+
+              <Controller
+                name="message"
+                control={control}
+                rules={{ required: "Message is required" }}
+                render={({ field, fieldState }) => {
+                  const errorId = "message-error";
+                  return (
+                    <div className="flex flex-column gap-1">
+                      <FloatLabel>
+                        <InputTextarea
+                          id="message"
+                          rows={4}
+                          className={`w-full ${fieldState.invalid ? "p-invalid" : ""}`}
+                          aria-invalid={!!fieldState.error}
+                          aria-describedby={fieldState.error ? errorId : undefined}
+                          {...field}
+                        />
+                        <label htmlFor="message">Message</label>
+                      </FloatLabel>
+                      {fieldState.error && (
+                        <small id={errorId} className="p-error block" role="alert">
+                          {fieldState.error.message}
+                        </small>
+                      )}
+                    </div>
+                  );
+                }}
+              />
+
+              <Button type="submit" label="Send" className="w-full" aria-describedby={isSubmitSuccessful ? "submit-success" : undefined} />
+              {isSubmitSuccessful && (
+                <Message id="submit-success" severity="success" text="Thanks! We’ll be in touch. (Form is placeholder — no backend yet.)" role="status" />
               )}
             </form>
           </div>

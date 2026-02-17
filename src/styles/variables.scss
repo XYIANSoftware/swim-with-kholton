@@ -37,6 +37,12 @@
   --card-border: rgba(184, 114, 249, 0.2);
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 12px rgba(184, 114, 249, 0.08);
   --font-family: system-ui, -apple-system, sans-serif;
+  /* PrimeReact/Lara design tokens (theme may override) */
+  --border-radius: 6px;
+  --content-padding: 1.25rem;
+  --inline-spacing: 0.5rem;
+  --maskbg: rgba(0, 0, 0, 0.4);
+  --p-border-radius: 6px;
   --scrollbar-track-bg: #1a0a2e;
   --scrollbar-thumb-bg: #2a1f4e;
   --scrollbar-thumb-hover-bg: #3d2a5c;
@@ -52,4 +58,7 @@
   --spacing-button-lg-y: 0.875rem;
   --spacing-input-x: 0.875rem;
   --spacing-input-y: 0.625rem;
+  --float-label-color: #9d8fbd;
+  --input-invalid-border: 1px solid #f88c79;
+  --error-text-color: #f88c79;
 }

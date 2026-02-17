@@ -8,8 +8,8 @@ import {
 } from "react";
 
 export interface ParallaxBackgroundProps {
-  /** Background image path (e.g. /background-marine.png) */
-  imageSrc: string;
+  /** Background image path (e.g. /kholton-bg.png). Omit for no background (e.g. dark theme). */
+  imageSrc?: string;
   /** Optional second image for layered parallax (slower layer) */
   imageSrcSecondary?: string;
   /** Parallax factor: 0 = fixed, 0.5 = moves half as fast as scroll. Desktop. */
@@ -83,23 +83,26 @@ export function ParallaxBackground({
     <section
       ref={containerRef}
       className={`parallax-section relative flex align-items-center overflow-hidden ${className}`}
-      style={{ minHeight }}
+      style={{ minHeight, background: "transparent" }}
     >
-      {/* Primary parallax layer */}
-      <div
-        className="parallax-layer absolute w-full top-0 left-0 right-0"
-        style={{
-          height: "120%",
-          minHeight: "100%",
-          backgroundImage: `url(${imageSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          transform: `translate3d(0, ${offset}px, 0)`,
-          willChange: "transform",
-        }}
-        aria-hidden
-      />
+      {/* Primary parallax layer — only when imageSrc provided (e.g. light theme) */}
+      {imageSrc && (
+        <div
+          className="parallax-layer absolute w-full top-0 left-0 right-0"
+          style={{
+            height: "120%",
+            minHeight: "100%",
+            backgroundImage: `url(${imageSrc})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            transform: `translate3d(0, ${offset}px, 0)`,
+            willChange: "transform",
+            zIndex: 0,
+          }}
+          aria-hidden
+        />
+      )}
       {/* Optional secondary (slower) layer */}
       {imageSrcSecondary && (
         <div
@@ -114,6 +117,7 @@ export function ParallaxBackground({
             transform: `translate3d(0, ${offset * 0.6}px, 0)`,
             willChange: "transform",
             opacity: 0.5,
+            zIndex: 0,
           }}
           aria-hidden
         />
@@ -122,12 +126,12 @@ export function ParallaxBackground({
       {overlay && (
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: overlay, pointerEvents: "none" }}
+          style={{ backgroundColor: overlay, pointerEvents: "none", zIndex: 0 }}
           aria-hidden
         />
       )}
       {/* Content above background */}
-      <div className="relative z-1 w-full">
+      <div className="relative w-full" style={{ zIndex: 1 }}>
         {children}
       </div>
     </section>
