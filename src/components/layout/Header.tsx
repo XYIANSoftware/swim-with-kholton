@@ -88,6 +88,7 @@ export function Header() {
         position="right"
         modal
         appendTo="self"
+        blockScroll={false}
         className="w-full sm:w-20rem sidebar-menu"
       >
         <nav className="flex flex-column gap-1" aria-label="Main navigation">
