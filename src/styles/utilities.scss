@@ -9,6 +9,7 @@
 }
 
 /* Single wrapper: Header, main, Footer as direct children. Footer is after all content, minimal nesting. */
+/* Flex layout; main must not be constrained so the page can scroll in Chrome. */
 .layout-content {
   position: relative;
   z-index: 1;
@@ -16,6 +17,7 @@
   max-width: 100%;
   min-width: 0;
   min-height: 100vh;
+  height: auto; /* ensure wrapper grows with content for scroll */
   overflow-x: hidden;
   overflow-y: visible;
   display: flex;
@@ -27,7 +29,8 @@
   }
   & > main {
     flex: 1 1 auto;
-    min-height: auto;
+    min-height: auto; /* grow with content so body scrolls (Chrome) */
+    overflow: visible;
   }
   & > footer {
     flex-shrink: 0;
@@ -116,45 +119,34 @@
   padding-top: 1rem;
 }
 
-/* Home page: 5rem gap between every block; section padding zeroed so gap does the work. */
+/* Home page: spacing on outer wrapper only (gap + wrapper padding). Do not add padding to inner sections. */
 .home-sections {
   display: flex;
   flex-direction: column;
   gap: var(--section-gap);
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
 }
 
-.home-sections .section + .section {
-  margin-top: 0;
-}
-
-/* No section padding so wrapper gap is the only space between blocks */
-.home-sections .section {
+/* Inner sections get no padding — spacing is from wrapper gap/padding so backgrounds aren’t stretched */
+.home-sections > .section,
+.home-sections > * {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-/* First block: 5rem top. Last block: 5rem bottom (CTA above footer). Use .section so specificity beats the zero above. */
-.home-sections > .section:first-child {
-  padding-top: var(--section-gap);
-}
-.home-sections > .section:last-child {
-  padding-bottom: var(--section-gap);
-}
-
-/* First/last when not .section (e.g. ticker as first would be rare; last-child backup) */
-.home-sections > *:first-child:not(.section) {
-  padding-top: var(--section-gap);
-}
-.home-sections > *:last-child:not(.section) {
-  padding-bottom: var(--section-gap);
-}
-
-/* CTA band: when not on home page, keep gap above footer */
+/* CTA band when used outside home (e.g. on another page): keep gap above footer */
 .cta-band-section {
   margin-bottom: var(--section-gap, 5rem);
 }
+
 .home-sections > .cta-band-section {
   margin-bottom: 0;
+}
+
+/* FAQ preview (home): inner wrapper bottom padding so the button isn’t tight to the section edge */
+.faq-preview-section__inner {
+  padding-bottom: 1.5rem;
 }
 
 /* Hero content strip: semi-transparent banner so copy reads over parallax; theme sets surface-section */

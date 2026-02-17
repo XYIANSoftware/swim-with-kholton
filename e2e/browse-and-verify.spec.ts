@@ -105,3 +105,40 @@ test.describe("Site navigation and console", () => {
     expect(errors, errorSummary).toHaveLength(0);
   });
 });
+
+test.describe("About page Stepper", () => {
+  test("What to expect stepper: Next/Back changes visible step content", async ({ page }) => {
+    await page.goto("/about");
+    await expect(page.getByText("What to expect")).toBeVisible({ timeout: 10000 });
+
+    const stepperWrapper = page.locator(".stepper-wrapper");
+    await stepperWrapper.scrollIntoViewIfNeeded();
+
+    // Step 1 (Check-in): content includes "A quick check-in"
+    await expect(page.getByText("A quick check-in", { exact: false })).toBeVisible({ timeout: 5000 });
+
+    // Click Next (visible button in active panel)
+    const nextBtn = page.getByRole("button", { name: "Next" });
+    await expect(nextBtn.first()).toBeVisible();
+    await nextBtn.first().click();
+
+    // Step 2 (Session): content includes "Warm-up"
+    await expect(page.getByText("Warm-up", { exact: false })).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText("A quick check-in", { exact: false })).not.toBeVisible();
+
+    await nextBtn.first().click();
+
+    // Step 3 (Takeaways): content includes "Takeaways you can practice"
+    await expect(page.getByText("Takeaways you can practice", { exact: false })).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText("Warm-up", { exact: false })).not.toBeVisible();
+
+    // Back to step 2
+    const backBtn = page.getByRole("button", { name: "Back" });
+    await backBtn.first().click();
+    await expect(page.getByText("Warm-up", { exact: false })).toBeVisible({ timeout: 5000 });
+
+    // Back to step 1
+    await backBtn.first().click();
+    await expect(page.getByText("A quick check-in", { exact: false })).toBeVisible({ timeout: 5000 });
+  });
+});

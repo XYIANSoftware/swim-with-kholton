@@ -1,10 +1,11 @@
 "use client";
 
-import { use, useState } from "react";
+import { use, useState, useRef, useEffect } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
 import { Button } from "primereact/button";
+import type { ComponentRef } from "react";
 import { Skeleton } from "primereact/skeleton";
 import {
   ABOUT_HEADLINE,
@@ -27,6 +28,12 @@ export default function AboutPage(props: AboutPageProps) {
   use(props.params ?? EMPTY_PARAMS_PROMISE);
   use(props.searchParams ?? EMPTY_SEARCH_PARAMS_PROMISE);
   const [activeStep, setActiveStep] = useState(0);
+  const stepperRef = useRef<ComponentRef<typeof Stepper> | null>(null);
+
+  // Keep Stepper in sync when activeStep changes (helps production/Netlify where controlled sync can fail)
+  useEffect(() => {
+    stepperRef.current?.setActiveStep(activeStep);
+  }, [activeStep]);
 
   return (
     <>
@@ -110,6 +117,7 @@ export default function AboutPage(props: AboutPageProps) {
         <div className="stepper-banner">
           <div className="card flex justify-content-center stepper-wrapper">
             <Stepper
+              ref={stepperRef}
               activeStep={activeStep}
               onChangeStep={(e) => setActiveStep(e.index)}
               style={{ flexBasis: "50rem" }}

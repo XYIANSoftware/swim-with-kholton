@@ -6,8 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- **Home page spacing**: Spacing uses only the outer wrapper (`.home-sections`): `gap` and `padding-top`/`padding-bottom`. Inner sections have padding zeroed so section backgrounds are not stretched; CTA has 5rem below it via wrapper padding.
+
 ### Fixed
 
+- **FAQ preview (home)**: Inner wrapper (`.faq-preview-section__inner`) has bottom padding so the "See full FAQ" button is not tight to the section edge.
+
+## [0.2.18] - 2026-02-16
+
+### Fixed
+
+- **About page Stepper (Netlify)**: Stepper Next/Back could do nothing in production (e.g. Netlify). Added a ref and `useEffect` that calls `stepperRef.current?.setActiveStep(activeStep)` when `activeStep` changes so the Stepper stays in sync even if the controlled prop sync fails after hydration.
 - **Page scroll**: Layout and state fixes so the page scrolls correctly. Main content area now uses `min-height: auto` (instead of `0`) inside `.layout-content` so the flex layout grows with content and the body can scroll; `.layout-content` has `overflow-y: visible`. Sidebar explicitly sets `blockScroll={false}` so it never locks body scroll.
 - **Hero section layout**: Hero content is center-aligned: single-column layout with `align-items-center justify-content-center text-center`. Text block has `max-width: 42rem` so the headline and subhead don’t wrap too early; image area is centered with a sensible max-width.
 - **Hero section in dark mode**: Hero banner background was hardcoded to light white, making text unreadable in dark theme. Banner now uses theme variables: opacity is defined once in variables (`--hero-banner-opacity: 85%`), and background uses `color-mix(in srgb, var(--surface-section) var(--hero-banner-opacity), transparent)` so it follows each theme’s surface color. `.hero-banner` also sets `color: var(--text-color)` so all hero text uses theme colors.
@@ -16,6 +27,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Mobile sidebar theme**: Sidebar panel now uses app theme variables (`--surface-card`, `--text-color`, etc.) so light/dark theme applies when the menu is open; layout still comes from PrimeReact.
 - **About page Stepper**: "What to expect" Next/Back did nothing. Stepper is now controlled via `activeStep` and `onChangeStep` instead of ref `nextCallback`/`prevCallback`; buttons update step state so navigation works.
 - **Mobile sidebar**: Sidebar content was not visible when opened. Root cause: our `.p-sidebar-content` override in `base.scss` replaced PrimeReact’s rule and omitted `flex-grow: 1`, so the content area collapsed. Removed that override and the extra `.sidebar-menu.p-sidebar` bandaid rules; sidebar now relies on PrimeReact’s structure (see [Sidebar API](https://primereact.org/sidebar/)). Only theme-style overrides remain (`.p-sidebar` background/color/border, header close icon, mask).
+
+### Added
+
+- **E2E: About page Stepper**: Playwright test "What to expect stepper: Next/Back changes visible step content" — visits `/about`, clicks Next/Back, and asserts step content (Check-in, Session, Takeaways) visibility.
+
+### Changed
+
+- **Home page section spacing**: 5rem spacing via outer wrapper only — `.home-sections` uses `gap`, `padding-top`, and `padding-bottom`; direct children have padding zeroed so inner section backgrounds are not stretched.
+- **TrustStrip**: Wrapper now includes the `section` class so it receives the same 5rem padding as other home sections. CTA/reach section remains its own component (`CTABandSection`).
 
 ### Changed
 

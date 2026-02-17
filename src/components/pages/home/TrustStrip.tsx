@@ -32,7 +32,7 @@ export function TrustStrip() {
 
   return (
     <>
-      <section className="trust-ticker">
+      <section className="section trust-ticker">
         <div className="trust-ticker-track">
           {TRUST_ITEMS.map((item, i) => renderItem(item, i))}
           {TRUST_ITEMS.map((item, i) => renderItem(item, TRUST_ITEMS.length + i))}
