@@ -5,7 +5,7 @@ import { BOOK_LESSON_HREF } from "@/constants/nav";
 export function CTABandSection() {
   return (
     <section
-      className="section text-center"
+      className="section cta-band-section text-center"
       style={{
         background: "var(--surface-section)",
         borderTop: "1px solid var(--surface-border)",

@@ -2,14 +2,20 @@
 
 import { useTheme } from "@/providers";
 
-const PARALLAX_IMAGE = "/kholton-bg.png";
+const LIGHT_BG_IMAGE = "/kholton-bg.png";
+const DARK_BG_IMAGE = "/dark-synth-bg.png";
 
-/** Fixed full-viewport background for layout. Does not move on scroll; only content scrolls. Shown on light theme only. */
+/** Fixed full-viewport background for layout. Does not move on scroll; only content scrolls. Light theme uses kholton-bg; dark theme uses dark-synth-bg. */
 export function GlobalParallaxBackground() {
   const { theme } = useTheme();
-  const showBackground = theme === "socal-aqua-light";
+  const image =
+    theme === "socal-aqua-light"
+      ? LIGHT_BG_IMAGE
+      : theme === "dark-synth"
+        ? DARK_BG_IMAGE
+        : null;
 
-  if (!showBackground) return null;
+  if (!image) return null;
 
   return (
     <div
@@ -28,7 +34,7 @@ export function GlobalParallaxBackground() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `url(${PARALLAX_IMAGE})`,
+          backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

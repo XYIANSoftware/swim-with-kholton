@@ -66,6 +66,10 @@ a {
   --button-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
   --button-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
   --button-shadow-active: 0 1px 2px rgba(0, 0, 0, 0.1);
+  /* Single source of truth: small button and icon sizes (header hamburger = Book height) */
+  --button-sm-height: 2.25rem;
+  --button-icon-size: 1.125rem;
+  --button-icon-only-size: 1.25rem;
 }
 
 // =============================================================================
@@ -114,25 +118,31 @@ a.p-button:not(.p-button-icon-only) {
   margin: 0;
 }
 
+/* Icon sizes: one size for label+icon buttons, one for icon-only (themes can override via vars) */
 .p-button .p-button-icon,
 .p-button .p-button-icon-left,
 .p-button .p-button-icon-right {
-  font-size: 1.125rem;
+  font-size: var(--button-icon-size);
 }
 .p-button.p-button-sm .p-button-icon,
 .p-button.p-button-sm .p-button-icon-left,
 .p-button.p-button-sm .p-button-icon-right {
-  font-size: 1.125rem;
+  font-size: var(--button-icon-size);
 }
 .p-button.p-button-icon-only .p-button-icon,
 .p-button.p-button-icon-only .p-button-icon-left,
 .p-button.p-button-icon-only .p-button-icon-right {
-  font-size: 1.25rem;
+  font-size: var(--button-icon-only-size);
+}
+.p-button.p-button-icon-only.p-button-sm .p-button-icon,
+.p-button.p-button-icon-only.p-button-sm .p-button-icon-left,
+.p-button.p-button-icon-only.p-button-sm .p-button-icon-right {
+  font-size: var(--button-icon-size);
 }
 .p-button.p-button-lg .p-button-icon,
 .p-button.p-button-lg .p-button-icon-left,
 .p-button.p-button-lg .p-button-icon-right {
-  font-size: 1.25rem;
+  font-size: var(--button-icon-only-size);
 }
 
 /* All icon-only buttons: square, consistent size (theme often omits height → squashed). */
@@ -157,22 +167,29 @@ a.p-button.p-button-icon-only {
   min-height: 2.5rem !important;
 }
 
+/* All small buttons: same height (hamburger = Book) and centered content */
 .p-button.p-button-sm,
 button.p-button.p-button-sm,
 a.p-button.p-button-sm {
-  padding: var(--spacing-button-sm-y) var(--spacing-button-sm-x) !important;
+  height: var(--button-sm-height) !important;
+  min-height: var(--button-sm-height) !important;
+  padding: 0 var(--spacing-button-sm-x) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box;
 }
 
 .p-button.p-button-icon-only.p-button-sm,
 button.p-button.p-button-icon-only.p-button-sm {
-  width: 2.25rem !important;
-  height: 2.25rem !important;
-  min-width: 2.25rem !important;
-  min-height: 2.25rem !important;
+  width: var(--button-sm-height) !important;
+  min-width: var(--button-sm-height) !important;
+  height: var(--button-sm-height) !important;
+  min-height: var(--button-sm-height) !important;
   padding: 0 !important;
   display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
+  align-items: center !important;
+  justify-content: center !important;
   overflow: hidden;
 }
 
@@ -610,6 +627,7 @@ button.theme-toggle-btn {
   width: 100%;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  margin-bottom: 3.5rem;
   box-sizing: border-box;
 }
 
@@ -662,6 +680,8 @@ button.theme-toggle-btn {
   background: var(--stepper-bg);
   color: var(--stepper-text);
   padding: 1.5rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
 }
 
 .p-stepper .p-stepper-content {
@@ -683,23 +703,72 @@ button.theme-toggle-btn {
   color: var(--text-color);
 }
 
+/* Skeleton: theme-aware placeholder (About photo, Hero, etc.) */
+.p-skeleton {
+  background-color: var(--surface-200);
+  border-radius: var(--border-radius);
+}
+.p-skeleton:after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--surface-hover),
+    transparent
+  );
+}
+.about-photo-placeholder .p-skeleton {
+  display: block;
+  min-height: 100%;
+}
+
+/* TabView: nav bar, tab headers, inkbar, panel (About page and any TabView) */
 .p-tabview {
   color: var(--text-color);
   border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: var(--elevation-2);
+  box-shadow: var(--elevation-1);
   border: 1px solid var(--surface-border);
+  background: var(--surface-card);
+}
+
+.p-tabview-nav-container {
+  position: relative;
+  background: var(--surface-ground);
+  border-bottom: 2px solid var(--surface-border);
 }
 
 .p-tabview .p-tabview-nav {
-  border-color: var(--surface-border);
-  background: var(--surface-card);
+  border: 0 none;
+  border-bottom: 2px solid var(--surface-border);
+  background: var(--surface-ground);
+  margin: 0;
+  padding: 0 0.5rem 0 0;
+  list-style: none;
+  display: flex;
+  flex: 1 1 auto;
+  gap: 0;
+}
+
+.p-tabview .p-tabview-nav li {
+  margin-right: 0;
 }
 
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-  background: var(--surface-card);
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
   color: var(--text-color-secondary);
-  border-color: transparent transparent var(--surface-border) transparent;
+  background: transparent;
+  border: 0 none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
 .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus-visible {
@@ -709,22 +778,51 @@ button.theme-toggle-btn {
 }
 
 .p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
-  background: var(--surface-card);
-  border-color: var(--primary-color);
   color: var(--text-color);
+  background: var(--surface-hover);
 }
 
 .p-tabview .p-tabview-nav li.p-tabview-selected .p-tabview-nav-link,
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-  background: var(--surface-card);
-  border-color: var(--primary-color);
   color: var(--primary-color);
+  background: var(--surface-card);
+  border-bottom-color: var(--primary-color);
+}
+
+.p-tabview .p-tabview-nav li.p-tabview-selected:hover .p-tabview-nav-link,
+.p-tabview .p-tabview-nav li.p-highlight:hover .p-tabview-nav-link {
+  color: var(--primary-color);
+  background: var(--surface-card);
+}
+
+.p-tabview-nav-content {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.p-tabview-title {
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.p-tabview-ink-bar {
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 3px 3px 0 0;
+  transition: left 0.2s ease, width 0.2s ease;
+  z-index: 1;
 }
 
 .p-tabview .p-tabview-panels {
   background: var(--surface-card);
   color: var(--text-color);
   border: 0 none;
+  border-top: 0;
   position: relative;
   overflow: hidden;
   border-radius: 0 0 var(--border-radius) var(--border-radius);
@@ -747,11 +845,21 @@ button.theme-toggle-btn {
   color: var(--text-color);
   position: relative;
   z-index: 1;
-  padding: var(--content-padding, 1.25rem);
+  padding: 1.25rem 1.5rem;
+  min-height: 12rem;
 }
 
 .p-tabview .p-tabview-nav-btn.p-link {
-  background: var(--surface-card);
+  background: var(--surface-ground);
+  color: var(--primary-color);
+  width: 2.5rem;
+  border: 0 none;
+  border-radius: var(--border-radius);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.p-tabview .p-tabview-nav-btn.p-link:hover {
+  background: var(--surface-hover);
   color: var(--primary-color);
 }
 
@@ -786,6 +894,31 @@ button.theme-toggle-btn {
 
 .p-component-overlay.p-sidebar-mask {
   background-color: var(--maskbg);
+}
+
+/* Sidebar menu: list style with active route highlight (accessibility: aria-current="page") */
+.sidebar-menu .sidebar-nav-item {
+  display: block;
+}
+.sidebar-menu .sidebar-nav-item--active {
+  background: var(--highlight-bg);
+  border-left: 3px solid var(--primary-color);
+  padding-left: calc(0.75rem - 3px);
+}
+.sidebar-menu .sidebar-nav-item:hover {
+  background: var(--surface-hover);
+}
+.sidebar-menu .sidebar-nav-item--active:hover {
+  background: var(--surface-hover);
+}
+
+/* Sidebar theme switcher: Light / Dark toggle (SelectButton, no overlay) */
+.theme-selectbutton-sidebar.p-selectbutton {
+  display: flex;
+  width: 100%;
+}
+.theme-selectbutton-sidebar.p-selectbutton .p-button {
+  flex: 1;
 }
 
 // -----------------------------------------------------------------------------

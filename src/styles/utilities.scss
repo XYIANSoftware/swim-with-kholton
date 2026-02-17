@@ -105,6 +105,11 @@
   margin-top: 3rem;
 }
 
+/* CTA band: extra gap above footer (same as gap between sections) */
+.cta-band-section {
+  margin-bottom: 3rem;
+}
+
 /* Hero content strip: semi-transparent banner so copy reads over parallax */
 .hero-banner {
   width: 100%;

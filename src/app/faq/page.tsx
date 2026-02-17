@@ -1,6 +1,6 @@
-import { Accordion, AccordionTab } from "primereact/accordion";
 import { FAQ_PREVIEW_ITEMS } from "@/constants/copy";
 import type { SearchParamsPromise } from "@/types/next";
+import { FAQAccordion } from "@/components/pages/faq";
 
 const EXTRA_FAQ = [
   {
@@ -26,16 +26,10 @@ export default async function FAQPage(props: FAQPageProps) {
   const allFaq = [...FAQ_PREVIEW_ITEMS, ...EXTRA_FAQ];
   return (
     <section className="container container-narrow">
-          <h1 className="m-0 mb-4 text-4xl font-bold" style={{ color: "var(--text-primary)" }}>
-            FAQ
-          </h1>
-          <Accordion multiple>
-            {allFaq.map((item, i) => (
-              <AccordionTab key={i} header={item.question}>
-                <p className="m-0">{item.answer}</p>
-              </AccordionTab>
-            ))}
-          </Accordion>
+      <h1 className="m-0 mb-4 text-4xl font-bold" style={{ color: "var(--text-primary)" }}>
+        FAQ
+      </h1>
+      <FAQAccordion items={allFaq} />
     </section>
   );
 }

@@ -2,16 +2,21 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "primereact/button";
 import { Sidebar } from "primereact/sidebar";
 import { ThemeSwitcher } from "@/components/common/ThemeSwitcher";
 import { NAV_LINKS, SITE_NAME, BOOK_LESSON_HREF } from "@/constants";
 
 export function Header() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
   const openMobileMenu = useCallback(() => setMobileMenuOpen(true), []);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <>
@@ -81,30 +86,42 @@ export function Header() {
         visible={mobileMenuOpen}
         onHide={closeMobileMenu}
         position="right"
-        className="w-full sm:w-20rem"
+        className="w-full sm:w-20rem sidebar-menu"
         style={{ background: "var(--surface-card)", color: "var(--text-color)" }}
       >
-        <div className="flex flex-column gap-3">
-          <h2 className="m-0 text-xl font-semibold">{SITE_NAME}</h2>
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              onClick={closeMobileMenu}
-              className="p-3 no-underline border-round surface-hover transition-colors"
-              style={{ color: "var(--text-color)" }}
-            >
-              {label}
-            </Link>
-          ))}
-          <div className="mt-2 pt-2 border-top-1 surface-border">
+        <nav className="flex flex-column gap-1" aria-label="Main navigation">
+          <h2 className="m-0 mb-2 text-xl font-semibold">{SITE_NAME}</h2>
+          <ul className="m-0 p-0 list-none flex flex-column gap-1">
+            {NAV_LINKS.map(({ href, label }) => {
+              const active = isActive(href);
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    onClick={closeMobileMenu}
+                    className={`sidebar-nav-item flex align-items-center p-3 no-underline border-round transition-colors ${active ? "sidebar-nav-item--active" : "surface-hover"}`}
+                    style={{
+                      color: active ? "var(--primary-color)" : "var(--text-color)",
+                      fontWeight: active ? 600 : undefined,
+                    }}
+                    aria-current={active ? "page" : undefined}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <div className="mt-3 pt-3 border-top-1 surface-border flex flex-column gap-3">
+          <div>
             <span className="block text-sm text-color-secondary mb-2">Theme</span>
             <ThemeSwitcher compact={false} />
           </div>
           <Link
             href={BOOK_LESSON_HREF}
             onClick={closeMobileMenu}
-            className="p-button cta-accent w-full mt-2 no-underline text-center"
+            className="p-button cta-accent w-full no-underline text-center"
             style={{ color: "white" }}
           >
             Book Lesson

@@ -8,7 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **About page**: New TabView tab "Hours & pricing" with intro and three philosophy-style bullets (confirm rates when you book, flexible scheduling, packages for value). Copy in `HOURS_AND_PRICING` in `@/constants/about`.
+
+### Fixed
+
+- **FAQ page runtime error**: `child.type._payload.value.find is not a function` — PrimeReact Accordion was rendered from a Server Component, so its children (AccordionTab) had a shape that broke PrimeReact’s internal check. The accordion is now rendered inside a client component `FAQAccordion` (`@/components/pages/faq`); the FAQ page (server) passes `items={allFaq}` and the client component renders Accordion + AccordionTab.
+
+### Added
+
+- **Documentation**: README updated with Public assets (bg images, app icons for small use only, OG), SEO and metadata (robots, seo.ts, 404), E2E script note, and Documentation/versioning section. CHANGELOG remains the source of truth for code changes.
+- **Verify lint and build**: Added `.cursor/rules/verify-lint-build.mdc` — run `npm run lint` and `npm run build` when making changes to verify before committing. README Getting started lists lint, build, and E2E commands.
+- **404 page layout**: Content is center-justified and constrained (max-width 32rem, flex column align-items-center text-center) so it looks good on large screens; removed reliance on .container for this page.
+- **Sidebar theme switcher**: Theme control in the mobile sidebar was invisible/non-functional (Dropdown overlay z-index in sidebar). Replaced with PrimeReact SelectButton: two buttons "Light" and "Dark" (labels simplified from "Aqua Light" / "Dark Synth"), no overlay, so clicking works. Theme labels in constants are now "Light" and "Dark".
+- **Sidebar menu style**: Mobile side panel is now a proper menu: nav with `<ul>`/`<li>`, list-style. Current route is highlighted (primary color, font-weight 600, highlight background, 3px left border) and exposed to screen readers with `aria-current="page"`. Active detection uses `usePathname()` (exact match for `/`, pathname match or prefix for others). Theme and Book Lesson sit below the nav list with a separator.
 - **Playwright MCP** for Cursor: `.cursor/mcp.json` configures the Playwright MCP server so the agent can navigate to localhost, click, and take snapshots. README section "Browser automation (MCP)" documents first-time setup (`npx playwright install`) and restarting Cursor.
+- **E2E tests**: Playwright installed; `e2e/browse-and-verify.spec.ts` visits all routes, exercises View Packages / Book Lesson links, checks UI (About “Meet your coach”, Packages “Choose Package”, FAQ heading, 404 + Back to Home, footer Privacy/Terms), and asserts no console errors (expected 404 resource error when visiting a bad URL is ignored). Run with `npm run test:e2e` (uses `reuseExistingServer: true`; start dev server on port 3001 first or let Playwright use an existing one).
 
 ## [0.2.17] - 2026-02-17
 
@@ -172,6 +186,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Icon-only buttons (DataViewLayoutOptions)**: Themes often set only width on icon-only buttons, so height was squashed (e.g. 48×42px). Base now forces all `.p-button.p-button-icon-only` to square 2.5rem × 2.5rem with `!important`, and `.p-button-group .p-button.p-button-icon-only` the same so layout toggles stay square. Icon-only icon size 1.25rem; text+icon 1.125rem. Trust strip icons use `text-2xl`.
 - **Container vs DataView padding**: Page container padding reverted to 1.5rem / 2rem (no extra padding on whole page). Trust strip is full-width via `100vw` and `calc(50% - 50vw)` margin so it spans the viewport when inside `.container`. Padding increased only around the DataView: packages page DataView wrapped in `.packages-dataview-wrap` with vertical and horizontal padding so Options and content cards are not tight to the edge.
 - **Buttons with icon + label**: In base, all `.p-button` that have both icon and label get `display: inline-flex`, `align-items: center`, `justify-content: center`, and `gap: 0.375rem` so icon and label are centered with consistent spacing. Icon left/right margins set to 0 so gap controls spacing.
+- **Unified button and icon sizes (base)**: All small buttons (hamburger, Book, etc.) now share the same height via `--button-sm-height: 2.25rem`. Every `.p-button-sm` gets explicit height, inline-flex, and center alignment so label and icon-only buttons match. Icon sizes use `--button-icon-size` (1.125rem) and `--button-icon-only-size` (1.25rem); small icon-only buttons use `--button-icon-size` so all small icons are the same.
+
+### Added
+
+- **404 page**: `app/not-found.tsx` for Next.js App Router. Shown for unknown routes or when `notFound()` is called. Centered layout with 404 heading, short message, and “Back to Home” CTA button (uses site theme and `cta-accent`).
+
+- **robots.txt**: `app/robots.ts` generates robots.txt so only home (`/`), `/packages`, and `/about` are allowed for indexing; `/schedule`, `/faq`, `/privacy`, and `/terms` are disallowed.
+- **SEO and metadata**: Centralized in `constants/seo.ts` (SITE_URL from env, DEFAULT_DESCRIPTION, DEFAULT_KEYWORDS for Irvine, Newport Beach, Orange County swimming lessons). Root layout: title template, description, keywords, Open Graph, Twitter card, robots. Home page: custom title/description. About and packages: `layout.tsx` metadata for each. Set `NEXT_PUBLIC_SITE_URL` in production for canonical and OG URLs.
+- **TabView (About page)**: Full styling in `base.scss` for PrimeReact TabView: nav container with border and surface-ground, tab headers with padding (1rem 1.25rem), font-weight 600, active state (primary color + 3px bottom border), hover state, inkbar, panel padding and min-height, prev/next buttons. Uses theme variables for both themes.
+- **Dark Synth background image**: GlobalParallaxBackground now shows a background image for both themes: light theme uses `kholton-bg.png`, dark theme uses `dark-synth-bg.png`. Place the dark image at `public/dark-synth-bg.png`.
+- **What to expect (Stepper)**: Added `margin-bottom: 3.5rem` to `.stepper-banner` so the section has more space above the footer. Stepper content container (`.p-stepper-panels`) now has `border-radius: 0.75rem` and `overflow: hidden`.
+- **App icons for small use**: `public/app-icon-light.png` and `app-icon-dark.png` are for small thumbnail/icon use only (see `constants/assets.ts`). About section photo stays an empty Skeleton placeholder on purpose; do not use these icons for main content.
 
 ## [0.2.14] - 2025-02-16
 

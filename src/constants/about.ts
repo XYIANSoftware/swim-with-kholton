@@ -23,6 +23,17 @@ export const PHILOSOPHY_PILLARS = [
   },
 ] as const;
 
+/** Copy for the Hours & Pricing tab on the About page. */
+export const HOURS_AND_PRICING = {
+  intro:
+    "We keep scheduling and pricing straightforward so you can focus on swimming. Session length and rates depend on your goals, location, and how often you want to train.",
+  philosophy: [
+    "We'll confirm availability and rates when you book or inquire — no hidden fees.",
+    "Flexible scheduling: we work around your calendar and pool access.",
+    "Packages and recurring sessions can be arranged for consistency and value.",
+  ],
+} as const;
+
 export const WHAT_TO_EXPECT = [
   "A quick check-in on how you’re feeling and what you want to focus on",
   "Warm-up, then main set with clear cues and corrections",

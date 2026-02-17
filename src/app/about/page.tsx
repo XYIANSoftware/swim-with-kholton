@@ -11,6 +11,7 @@ import {
   ABOUT_BIO,
   CREDENTIALS,
   PHILOSOPHY_PILLARS,
+  HOURS_AND_PRICING,
   WHAT_TO_EXPECT,
 } from "@/constants/about";
 import { EMPTY_PARAMS_PROMISE, EMPTY_SEARCH_PARAMS_PROMISE, type SearchParamsPromise } from "@/types/next";
@@ -36,8 +37,13 @@ export default function AboutPage(props: AboutPageProps) {
             <TabView>
               <TabPanel header="About">
                 <div className="flex flex-column md:flex-row gap-4">
-                  <div className="w-full md:w-20rem h-20rem flex-shrink-0 overflow-hidden border-round border-1 surface-border">
-                    <Skeleton width="100%" height="100%" borderRadius="var(--border-radius)" />
+                  <div className="about-photo-placeholder w-full md:w-20rem h-20rem flex-shrink-0 overflow-hidden border-round border-1 surface-border">
+                    <Skeleton
+                      className="w-full h-full block"
+                      width="100%"
+                      height="100%"
+                      borderRadius="var(--border-radius)"
+                    />
                   </div>
                   <div>
                     <p className="m-0 mb-4 text-lg" style={{ color: "var(--text-color)" }}>
@@ -78,6 +84,18 @@ export default function AboutPage(props: AboutPageProps) {
                     </div>
                   ))}
                 </div>
+              </TabPanel>
+              <TabPanel header="Hours & pricing">
+                <p className="m-0 mb-4" style={{ color: "var(--text-color)" }}>
+                  {HOURS_AND_PRICING.intro}
+                </p>
+                <ul className="m-0 pl-4 text-color-secondary" style={{ color: "var(--text-color-secondary)" }}>
+                  {HOURS_AND_PRICING.philosophy.map((item, i) => (
+                    <li key={i} className="mb-2">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </TabPanel>
             </TabView>
           </div>

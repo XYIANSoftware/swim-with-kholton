@@ -1,0 +1,10 @@
+---
+description: Run lint and build to verify code before considering changes done
+alwaysApply: true
+---
+
+# Verify with lint and build
+
+- When making code changes, run **`npm run lint`** and **`npm run build`** to ensure the project passes lint and builds successfully.
+- Fix any lint or build errors before marking work complete or committing.
+- Do not commit with failing lint or build.

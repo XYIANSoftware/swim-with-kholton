@@ -6,8 +6,8 @@ export type ThemeId = (typeof THEMES)[number];
 export const DEFAULT_THEME: ThemeId = "socal-aqua-light";
 
 export const THEME_LABELS: Record<ThemeId, string> = {
-  "socal-aqua-light": "Aqua Light",
-  "dark-synth": "Dark Synth",
+  "socal-aqua-light": "Light",
+  "dark-synth": "Dark",
 };
 
 export const THEME_ICONS: Record<ThemeId, string> = {
