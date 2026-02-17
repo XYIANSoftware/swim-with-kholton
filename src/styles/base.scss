@@ -168,6 +168,16 @@ a.p-button:not(.p-button-icon-only) {
   margin-bottom: 0.5rem;
 }
 
+/* DataView (e.g. packages page): grid gap between items; gutter + theme variable */
+.p-dataview-content .grid:not(.grid-nogutter),
+.packages-page-dataview-grid {
+  gap: var(--dataview-grid-gap);
+}
+
+.packages-page-dataview-content {
+  margin-top: 0.5rem;
+}
+
 .p-datatable {
   background: var(--surface-card);
   color: var(--text-color);

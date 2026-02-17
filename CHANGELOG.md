@@ -130,6 +130,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Hero banner background**: Increased opacity so strip is more white (`--hero-banner-bg` 0.2 → 0.85).
 - **Section spacing**: Gap between consecutive sections (`.section + .section` margin-top 3rem).
 - **Section backgrounds**: `--page-background` and `--surface-section` made ~15% more transparent in both themes (socal-aqua-light 0.98/0.96 → 0.83/0.81; dark-synth and default to rgba with 0.85).
+- **Packages page DataView**: DataView used with `value` from const `packageList` (sourced from `@/constants/packages`), `dataKey="id"`, `gutter` for grid spacing, and `itemTemplate(item, layout)` for both grid and list layouts. PT options apply `packages-page-dataview-grid` and `packages-page-dataview-content` for styling. Page wrapped in section with `--page-background`.
+- **DataView theme**: `--dataview-grid-gap` in variables (1.25rem); base.scss styles for `.p-dataview-content .grid` and `.packages-page-dataview-grid` gap so package cards have clear spacing.
 
 ## [0.2.16] - 2025-02-16
 
