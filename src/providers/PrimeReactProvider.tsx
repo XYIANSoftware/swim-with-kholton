@@ -7,5 +7,9 @@ export function PrimeReactProvider({
 }: {
   children: React.ReactNode;
 }) {
-  return <PrimeProvider>{children}</PrimeProvider>;
+  return (
+    <PrimeProvider value={{ ripple: true }}>
+      {children}
+    </PrimeProvider>
+  );
 }

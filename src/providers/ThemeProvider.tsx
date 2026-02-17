@@ -4,7 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
 } from "react";
@@ -42,7 +42,7 @@ function applyTheme(theme: ThemeId) {
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<ThemeId>(DEFAULT_THEME);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const stored = readStoredTheme();
     setThemeState(stored);
     applyTheme(stored);
@@ -58,6 +58,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  useLayoutEffect(() => {
+    applyTheme(theme);
+  }, [theme]);
+
   const cycleTheme = useCallback(() => {
     const idx = THEMES.indexOf(theme);
     const next = THEMES[(idx + 1) % THEMES.length];
@@ -69,7 +73,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     [theme, setTheme, cycleTheme]
   );
 
-  // Always provide context so useTheme() works during SSR (no flash; beforeInteractive script sets data-theme).
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );

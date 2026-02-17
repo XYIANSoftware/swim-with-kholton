@@ -1,102 +1,103 @@
-// SoCal Aqua Light: soft off-white, light cool neutrals, aqua/cyan/ocean, warm coral CTA.
-// Southern California coastal + professional athletic credibility.
+// Marine / swim-style light theme: navy blue + white. Professional, clean.
 html[data-theme="socal-aqua-light"],
 [data-theme="socal-aqua-light"] {
-  --header-bg: #ffffff !important;
-  --header-fg: #1e293b !important;
-  --header-border: 1px solid #e2e8f0 !important;
+  --header-bg: rgba(255, 255, 255, 0.94) !important;
+  --header-fg: #0f172a !important;
+  --header-border: 1px solid #e0e7f0 !important;
   --header-shadow: 0 1px 3px rgba(15, 23, 42, 0.06) !important;
   --window-bg: #f8fafc !important;
-  --window-fg: #1e293b !important;
-  --window-border: 1px solid #e2e8f0 !important;
+  --window-fg: #0f172a !important;
+  --window-border: 1px solid #e0e7f0 !important;
   --window-surface-bg: #ffffff !important;
-  --window-surface-fg: #1e293b !important;
-  --window-surface-border: 1px solid #e2e8f0 !important;
+  --window-surface-fg: #0f172a !important;
+  --window-surface-border: 1px solid #e0e7f0 !important;
   --input-bg: #ffffff !important;
-  --input-fg: #1e293b !important;
-  --input-border: 1px solid #cbd5e1 !important;
+  --input-fg: #0f172a !important;
+  --input-border: 1px solid #c5d0de !important;
   --button-bg: var(--window-surface-bg) !important;
-  --button-fg: #1e293b !important;
+  --button-fg: #0f172a !important;
   --button-hover-bg: var(--surface-hover) !important;
   --menu-item-hover-bg: #f1f5f9 !important;
-  --status-icon-fill: #0d9488 !important;
-  --status-icon-stroke: #0d9488 !important;
-  --status-icon-stroke-offline: #94a3b8 !important;
-  --page-background: #f5f8fa !important;
-  --text-primary: #1e293b !important;
-  --button-primary-background: #0d9488 !important;
-  --button-primary-background-hover: #0f766e !important;
+  --status-icon-fill: #1e3a5f !important;
+  --status-icon-stroke: #1e3a5f !important;
+  --status-icon-stroke-offline: #64748b !important;
+  --page-background: rgba(240, 244, 248, 0.98) !important;
+  --text-primary: #0f172a !important;
+  --button-primary-background: #1e3a5f !important;
+  --button-primary-background-hover: #2d4a73 !important;
   --button-primary-text: #ffffff !important;
-  --cta-accent: #ea580c !important;
-  --cta-accent-hover: #c2410c !important;
+  --cta-accent: #1e3a5f !important;
+  --cta-accent-hover: #2d4a73 !important;
   --maskbg: rgba(15, 23, 42, 0.4) !important;
-  --focus-ring: 0 0 0 0.2rem rgba(13, 148, 136, 0.25) !important;
-  --highlight-bg: rgba(13, 148, 136, 0.08) !important;
-  --highlight-text-color: #1e293b !important;
+  --focus-ring: 0 0 0 0.2rem rgba(30, 58, 95, 0.25) !important;
+  --highlight-bg: rgba(30, 58, 95, 0.08) !important;
+  --highlight-text-color: #0f172a !important;
   --color-danger: #dc2626 !important;
-  --surface-ground: #f5f8fa !important;
-  --surface-section: #f5f8fa !important;
-  --surface-card: #ffffff !important;
-  --surface-overlay: #ffffff !important;
-  --surface-border: #e2e8f0 !important;
-  --surface-hover: rgba(13, 148, 136, 0.06) !important;
+  --surface-ground: rgba(240, 244, 248, 0.96) !important;
+  --surface-section: rgba(240, 244, 248, 0.96) !important;
+  --surface-card: rgba(255, 255, 255, 0.92) !important;
+  --surface-overlay: rgba(255, 255, 255, 0.95) !important;
+  --surface-border: rgba(224, 231, 240, 0.9) !important;
+  --gloss-color: rgba(255, 255, 255, 0.2) !important;
+  --surface-hover: rgba(30, 58, 95, 0.06) !important;
   --surface-0: #ffffff !important;
   --surface-50: #f8fafc !important;
   --surface-100: #f1f5f9 !important;
   --surface-200: #e2e8f0 !important;
-  --surface-300: #cbd5e1 !important;
+  --surface-300: #c5d0de !important;
   --surface-400: #94a3b8 !important;
   --surface-500: #64748b !important;
   --surface-600: #475569 !important;
   --surface-700: #334155 !important;
-  --surface-800: #1e293b !important;
+  --surface-800: #1e3a5f !important;
   --surface-900: #0f172a !important;
   --surface-a: #ffffff !important;
-  --surface-b: #f5f8fa !important;
-  --surface-c: rgba(13, 148, 136, 0.06) !important;
-  --surface-d: #e2e8f0 !important;
+  --surface-b: #f0f4f8 !important;
+  --surface-c: rgba(30, 58, 95, 0.06) !important;
+  --surface-d: #e0e7f0 !important;
   --surface-e: #ffffff !important;
   --surface-f: #ffffff !important;
   --gray-50: #f8fafc !important;
   --gray-100: #f1f5f9 !important;
   --gray-200: #e2e8f0 !important;
-  --gray-300: #cbd5e1 !important;
+  --gray-300: #c5d0de !important;
   --gray-400: #94a3b8 !important;
   --gray-500: #64748b !important;
   --gray-600: #475569 !important;
   --gray-700: #334155 !important;
-  --gray-800: #1e293b !important;
+  --gray-800: #1e3a5f !important;
   --gray-900: #0f172a !important;
-  --text-color: #1e293b !important;
+  --text-color: #0f172a !important;
   --text-color-secondary: #475569 !important;
-  --primary-color: #0d9488 !important;
+  --primary-color: #1e3a5f !important;
   --primary-color-text: #ffffff !important;
   --scrollbar-track-bg: #f1f5f9 !important;
-  --scrollbar-thumb-bg: #cbd5e1 !important;
+  --scrollbar-thumb-bg: #c5d0de !important;
   --scrollbar-thumb-hover-bg: #94a3b8 !important;
-  --card-border: rgba(13, 148, 136, 0.15) !important;
-  --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(13, 148, 136, 0.04) !important;
-  --tag-today-bg: rgba(13, 148, 136, 0.12) !important;
-  --tag-today-text: #0f766e !important;
-  --tag-today-border: rgba(13, 148, 136, 0.3) !important;
+  --card-border: rgba(30, 58, 95, 0.12) !important;
+  --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(30, 58, 95, 0.06) !important;
+  --tag-today-bg: rgba(30, 58, 95, 0.1) !important;
+  --tag-today-text: #1e3a5f !important;
+  --tag-today-border: rgba(30, 58, 95, 0.25) !important;
   --p-primary-color: var(--primary-color) !important;
-  --data-quality-valid: rgba(13, 148, 136, 0.4) !important;
+  --data-quality-valid: rgba(30, 58, 95, 0.4) !important;
   --data-quality-warning: rgba(209, 134, 22, 0.5) !important;
   --data-quality-error: rgba(220, 38, 38, 0.5) !important;
   --data-quality-empty: rgba(148, 163, 184, 0.3) !important;
   --progress-spinner-size-sm: 14px !important;
   --progress-spinner-size-md: 18px !important;
-  --hero-gradient: linear-gradient(180deg, #f5f8fa 0%, #eef7f8 50%, #f5f8fa 100%) !important;
+  --hero-gradient: linear-gradient(180deg, #f0f4f8 0%, #e8eef5 50%, #f0f4f8 100%) !important;
+  --hero-overlay: rgba(255, 255, 255, 0.55) !important;
 }
 
 html[data-theme="socal-aqua-light"] {
-  background: #f5f8fa;
-  color: #1e293b;
+  background: #f0f4f8;
+  color: #0f172a;
 }
 
 html[data-theme="socal-aqua-light"] body {
-  background: #f5f8fa;
-  color: #1e293b;
+  background: #f0f4f8;
+  color: #0f172a;
 }
 
 html[data-theme="socal-aqua-light"] .p-dialog,

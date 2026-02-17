@@ -9,3 +9,8 @@ export const THEME_LABELS: Record<ThemeId, string> = {
   "socal-aqua-light": "Aqua Light",
   "dark-synth": "Dark Synth",
 };
+
+export const THEME_ICONS: Record<ThemeId, string> = {
+  "socal-aqua-light": "pi pi-sun",
+  "dark-synth": "pi pi-moon",
+};

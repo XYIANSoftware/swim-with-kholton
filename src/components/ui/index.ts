@@ -1,2 +1,1 @@
-// UI components - add exports as needed
-export {};
+export { ParallaxBackground } from "./ParallaxBackground";

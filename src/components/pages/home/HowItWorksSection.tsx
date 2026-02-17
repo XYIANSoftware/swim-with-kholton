@@ -11,7 +11,7 @@ export function HowItWorksSection() {
           {HOW_IT_WORKS_STEPS.map((step, i) => (
             <div
               key={i}
-              className="p-3 border-round surface-card border-1 surface-border"
+              className="p-3 border-round surface-card border-1 surface-border shadow-1"
               style={{ borderColor: "var(--surface-border)" }}
             >
               <span

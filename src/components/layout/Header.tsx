@@ -15,12 +15,12 @@ export function Header() {
   return (
     <>
       <header
-        className="header sticky top-0 z-3 w-full px-3 py-2 md:px-4 md:py-3"
+        className="header sticky top-0 z-3 w-full px-3 py-2 md:px-4 md:py-3 shadow-2"
         style={{
           background: "var(--header-bg)",
           color: "var(--header-fg)",
           borderBottom: "var(--header-border)",
-          boxShadow: "var(--header-shadow)",
+          boxShadow: "var(--elevation-2)",
         }}
       >
         <div className="flex align-items-center justify-content-between max-w-7xl mx-auto">
@@ -96,7 +96,7 @@ export function Header() {
           ))}
           <div className="mt-2 pt-2 border-top-1 surface-border">
             <span className="block text-sm text-color-secondary mb-2">Theme</span>
-            <ThemeSwitcher />
+            <ThemeSwitcher compact={false} />
           </div>
           <Link
             href={BOOK_LESSON_HREF}

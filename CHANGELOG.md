@@ -48,3 +48,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Section animations**: .section-fade-in, .stagger-children with animation-delay for card grids; .surface-hover utility.
 - **CTA accent**: .p-button.cta-accent / .cta-accent on links for coral (Aqua Light) or primary (Dark Synth).
 - Metadata title/description updated to "Kholton Swim Coaching".
+
+## [0.2.1] - 2025-02-16
+
+### Added
+
+- Parallax hero background using public images (background-marine.png, backgorund-one.png); ParallaxBackground component with scroll-driven parallax, mobile-safe factor, theme overlay (--hero-overlay).
+- PrimeReact Ripple enabled globally (PrimeReactProvider value={{ ripple: true }}).
+- Base spacing variables (--spacing-button-*, --spacing-input-*, --spacing-card) and card body padding.
+- Elevation tokens (--elevation-1, --elevation-2); card shadow and header shadow; card hover lift.
+- Single-button theme switcher with tooltip ("Switch to …"); smaller size override (.theme-toggle-btn).
+- Smooth keyboard tabbing (scroll-margin on :focus-visible).
+- Desktop centering: main width 100%; grids in section/main container use justify-content: center on lg.
+
+### Changed
+
+- Theme init: inline script in head (no Next Script) to fix hydration; suppressHydrationWarning on html/script.
+- ThemeProvider: useLayoutEffect for theme apply; applyTheme on theme change.
+- Light theme: marine navy + white palette; transparency and gloss (--hero-overlay, --gloss-color).
+- Outlined button and nav link hover/focus; focus-visible full color reversal on buttons, nav, accordion.
+- Hero "Book Lesson" button contrast (transparent bg, primary color text); card padding from --spacing-card.

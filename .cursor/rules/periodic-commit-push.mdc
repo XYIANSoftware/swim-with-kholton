@@ -1,0 +1,11 @@
+---
+description: Remember to do periodic git commit and push during development
+alwaysApply: true
+---
+
+# Periodic commit and push
+
+- After completing a logical chunk of work (e.g. a feature, a set of related changes), commit and push.
+- Commit message should reference CHANGELOG/version when applicable.
+- Remote: `origin` → `https://github.com/XYIANSoftware/swim-with-kholton.git`, branch `main`.
+- Do not commit in the middle of broken or half-done work; wait until the change is done and tested.

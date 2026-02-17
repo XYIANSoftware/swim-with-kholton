@@ -42,4 +42,14 @@
   --scrollbar-thumb-hover-bg: #3d2a5c;
   --progress-spinner-size-sm: 14px;
   --progress-spinner-size-md: 18px;
+
+  /* Base padding for controls (applies to buttons, inputs, etc.) */
+  --spacing-button-x: 1.25rem;
+  --spacing-button-y: 0.75rem;
+  --spacing-button-sm-x: 1rem;
+  --spacing-button-sm-y: 0.5rem;
+  --spacing-button-lg-x: 1.5rem;
+  --spacing-button-lg-y: 0.875rem;
+  --spacing-input-x: 0.875rem;
+  --spacing-input-y: 0.625rem;
 }

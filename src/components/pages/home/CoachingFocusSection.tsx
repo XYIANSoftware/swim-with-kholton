@@ -11,7 +11,7 @@ export function CoachingFocusSection() {
           {COACHING_FOCUS_ITEMS.map((item, i) => (
             <div
               key={i}
-              className="p-3 border-round surface-card border-1 surface-border"
+              className="p-3 border-round surface-card border-1 surface-border shadow-1"
               style={{ borderColor: "var(--surface-border)" }}
             >
               <i className={`pi ${item.icon} text-2xl mb-2`} style={{ color: "var(--primary-color)" }} />

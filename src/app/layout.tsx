@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Providers } from "@/providers";
 import { APP_THEME_STORAGE_KEY, DEFAULT_THEME, THEMES } from "@/constants";
 import "primereact/resources/themes/lara-dark-blue/theme.css";
@@ -20,11 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="socal-aqua-light">
-      <head />
-      <Script id="theme-init" strategy="beforeInteractive">
-        {THEME_INIT_SCRIPT}
-      </Script>
+    <html lang="en" data-theme="socal-aqua-light" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
+          suppressHydrationWarning
+        />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>

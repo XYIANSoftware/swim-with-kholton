@@ -1,14 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { ParallaxBackground } from "@/components/ui";
 import { HERO_HEADLINE, HERO_SUBHEAD } from "@/constants/copy";
 import { BOOK_LESSON_HREF } from "@/constants/nav";
 
+const HERO_IMAGE = "/background-marine.png";
+const HERO_IMAGE_SECONDARY = "/backgorund-one.png";
+
 export function HeroSection() {
   return (
-    <section
-      className="section hero-gradient min-h-30rem flex align-items-center"
-      style={{ background: "var(--hero-gradient, var(--page-background))" }}
+    <ParallaxBackground
+      imageSrc={HERO_IMAGE}
+      imageSrcSecondary={HERO_IMAGE_SECONDARY}
+      overlay="var(--hero-overlay)"
+      minHeight="30rem"
+      className="section"
     >
       <div className="container flex flex-column md:flex-row align-items-center gap-4 md:gap-6">
         <div className="flex-1">
@@ -28,30 +35,31 @@ export function HeroSection() {
             <Link
               href="/packages"
               className="p-button p-button-lg no-underline"
-              style={{ color: "var(--primary-color-text)", background: "var(--primary-color)", borderColor: "var(--primary-color)" }}
+              style={{
+                color: "var(--primary-color-text)",
+                background: "var(--primary-color)",
+                borderColor: "var(--primary-color)",
+              }}
             >
               View Packages
             </Link>
             <Link
               href={BOOK_LESSON_HREF}
               className="p-button p-button-lg p-button-outlined no-underline"
-              style={{ color: "var(--primary-color)", borderColor: "var(--primary-color)" }}
+              style={{
+                color: "var(--primary-color)",
+                borderColor: "var(--primary-color)",
+                background: "transparent",
+              }}
             >
               Book Lesson
             </Link>
           </div>
         </div>
-        <div className="flex-1 flex justify-content-center md:justify-content-end opacity-60">
-          {/* Placeholder for hero image / wave graphic */}
-          <div
-            className="border-round w-full max-w-md h-20rem"
-            style={{
-              background: "var(--surface-card)",
-              border: "1px solid var(--surface-border)",
-            }}
-          />
+        <div className="flex-1 flex justify-content-center md:justify-content-end opacity-60 min-h-15rem md:min-h-20rem">
+          {/* Optional: decorative or leave empty so parallax is the visual */}
         </div>
       </div>
-    </section>
+    </ParallaxBackground>
   );
 }
