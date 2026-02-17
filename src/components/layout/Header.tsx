@@ -38,8 +38,8 @@ export function Header() {
             {SITE_NAME}
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex align-items-center gap-3">
+          {/* Desktop nav: only at 1400px+ (see .header-nav-desktop in utilities.scss) */}
+          <nav className="header-nav-desktop align-items-center gap-3">
             {NAV_LINKS.map(({ href, label }) => (
               <Link
                 key={href}
@@ -54,14 +54,21 @@ export function Header() {
             <Link
               href={BOOK_LESSON_HREF}
               className="p-button p-button-sm cta-accent ml-2 no-underline"
-              style={{ color: "white" }}
+              style={{ color: "var(--primary-color-text)" }}
             >
               Book Lesson
             </Link>
           </nav>
 
-          {/* Mobile: hamburger + CTA — same size as Book via base SCSS (p-button-sm) */}
-          <div className="flex align-items-center gap-2 md:hidden">
+          {/* Mobile / hamburger: Book first, then menu (below 1400px) */}
+          <div className="header-nav-mobile align-items-center gap-2">
+            <Link
+              href={BOOK_LESSON_HREF}
+              className="p-button p-button-sm cta-accent no-underline"
+              style={{ color: "var(--primary-color-text)" }}
+            >
+              Book
+            </Link>
             <Button
               type="button"
               icon="pi pi-bars"
@@ -71,13 +78,6 @@ export function Header() {
               aria-label="Open menu"
               onClick={openMobileMenu}
             />
-            <Link
-              href={BOOK_LESSON_HREF}
-              className="p-button p-button-sm cta-accent no-underline"
-              style={{ color: "white" }}
-            >
-              Book
-            </Link>
           </div>
         </div>
       </header>

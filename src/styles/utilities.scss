@@ -96,24 +96,53 @@
 // Full width so inner .container can center with margin auto.
 .section {
   width: 100%;
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
+  padding-top: var(--section-gap, 5rem);
+  padding-bottom: var(--section-gap, 5rem);
 }
 
-/* Gap between consecutive sections */
+/* Gap between consecutive sections (default section rhythm) */
 .section + .section {
-  margin-top: 3rem;
+  margin-top: var(--section-gap, 5rem);
 }
 
-/* CTA band: extra gap above footer (same as gap between sections) */
+/* Home page: exactly 5rem between sections — gap only; section padding zeroed so we don't double */
+.home-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+.home-sections .section + .section {
+  margin-top: 0;
+}
+
+/* No section padding inside .home-sections; gap provides the 5rem between each block */
+.home-sections .section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* First/last child get one side of padding so top and bottom of page still have 5rem */
+.home-sections > *:first-child {
+  padding-top: var(--section-gap);
+}
+.home-sections > *:last-child {
+  padding-bottom: var(--section-gap);
+}
+
+/* CTA band: extra gap above footer when not in .home-sections (there, last-child padding handles it) */
 .cta-band-section {
-  margin-bottom: 3rem;
+  margin-bottom: var(--section-gap, 5rem);
+}
+.home-sections > .cta-band-section {
+  margin-bottom: 0;
 }
 
-/* Hero content strip: semi-transparent banner so copy reads over parallax */
+/* Hero content strip: semi-transparent banner so copy reads over parallax; theme sets surface-section */
 .hero-banner {
   width: 100%;
   background: var(--hero-banner-bg);
+  color: var(--text-color);
   padding: 1.5rem 0;
   border-radius: var(--border-radius);
 }
@@ -134,12 +163,6 @@
   pointer-events: none;
 }
 
-@media (min-width: 768px) {
-  .section {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-}
 
 // Hero gradient (subtle water feel) — theme vars handle colors
 .hero-gradient {
@@ -200,6 +223,24 @@
     var(--gloss-color, rgba(255, 255, 255, 0.12)) 0%,
     transparent 40%
   );
+}
+
+// Header: desktop nav only at 1400px+; below that use hamburger/mobile
+.header-nav-desktop {
+  display: none;
+}
+@media (min-width: 1400px) {
+  .header-nav-desktop {
+    display: flex;
+  }
+}
+.header-nav-mobile {
+  display: flex;
+}
+@media (min-width: 1400px) {
+  .header-nav-mobile {
+    display: none;
+  }
 }
 
 // Nav links: stronger hover + focus with full reversal

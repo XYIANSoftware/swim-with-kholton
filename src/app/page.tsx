@@ -24,12 +24,12 @@ export default async function Home(props: HomePageProps) {
     props.searchParams ?? Promise.resolve({}),
   ]);
   return (
-    <>
+    <div className="home-sections">
       <HeroSection />
       <TrustStrip />
       <PackageCardsSection />
       <FAQPreviewSection />
       <CTABandSection />
-    </>
+    </div>
   );
 }

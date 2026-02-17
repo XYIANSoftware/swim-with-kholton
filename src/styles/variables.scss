@@ -42,6 +42,8 @@
   --border-radius: 6px;
   --content-padding: 1.25rem;
   --inline-spacing: 0.5rem;
+  /** Vertical gap between major sections (e.g. hero, ticker, packages, FAQ, CTA). */
+  --section-gap: 5rem;
   --maskbg: rgba(0, 0, 0, 0.4);
   --p-border-radius: 6px;
   --scrollbar-track-bg: #1a0a2e;
@@ -62,8 +64,9 @@
   --float-label-color: #9d8fbd;
   --input-invalid-border: 1px solid #f88c79;
   --error-text-color: #f88c79;
-  /* Hero banner: semi-transparent strip behind hero content (themes may override) */
-  --hero-banner-bg: rgba(255, 255, 255, 0.85);
+  /* Hero banner: opacity in one place (base); color from theme --surface-section */
+  --hero-banner-opacity: 85%;
+  --hero-banner-bg: color-mix(in srgb, var(--surface-section) var(--hero-banner-opacity), transparent);
   /* Stepper (About – What to expect): uses theme surface and text so it switches with light/dark */
   --stepper-bg: var(--surface-card);
   --stepper-text: var(--text-color);

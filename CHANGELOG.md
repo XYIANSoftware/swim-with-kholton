@@ -8,14 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- **Hero section layout**: Hero content is center-aligned: single-column layout with `align-items-center justify-content-center text-center`. Text block has `max-width: 42rem` so the headline and subhead don’t wrap too early; image area is centered with a sensible max-width.
+- **Hero section in dark mode**: Hero banner background was hardcoded to light white, making text unreadable in dark theme. Banner now uses theme variables: opacity is defined once in variables (`--hero-banner-opacity: 85%`), and background uses `color-mix(in srgb, var(--surface-section) var(--hero-banner-opacity), transparent)` so it follows each theme’s surface color. `.hero-banner` also sets `color: var(--text-color)` so all hero text uses theme colors.
 - **Theme switching (dark/light)**: Cards, TabView, stepper, headings, CTA button, and footer SpeedDial now use theme variables so they switch correctly with the active theme. Stepper uses `--surface-card`, `--text-color`, and `--surface-section`; CTA and SpeedDial use `--cta-accent`/`--cta-accent-hover` and `--primary-color-text`; headings use `--text-color` by default. Theme files add scoped overrides for `.p-card`, `.p-tabview`, and stepper so theme wins over PrimeReact layer.
 - **Home hero section**: Hero content (title, description, View Packages / Book Lesson buttons, image area) is now center-aligned at all breakpoints to match the intended layout.
 - **Mobile sidebar theme**: Sidebar panel now uses app theme variables (`--surface-card`, `--text-color`, etc.) so light/dark theme applies when the menu is open; layout still comes from PrimeReact.
 - **About page Stepper**: "What to expect" Next/Back did nothing. Stepper is now controlled via `activeStep` and `onChangeStep` instead of ref `nextCallback`/`prevCallback`; buttons update step state so navigation works.
 - **Mobile sidebar**: Sidebar content was not visible when opened. Root cause: our `.p-sidebar-content` override in `base.scss` replaced PrimeReact’s rule and omitted `flex-grow: 1`, so the content area collapsed. Removed that override and the extra `.sidebar-menu.p-sidebar` bandaid rules; sidebar now relies on PrimeReact’s structure (see [Sidebar API](https://primereact.org/sidebar/)). Only theme-style overrides remain (`.p-sidebar` background/color/border, header close icon, mask).
 
+### Changed
+
+- **Header**: Desktop (horizontal) nav and theme switcher show only at 1400px and above; below that the hamburger menu is used. Mobile strip order: Book button first, then hamburger. Theme switcher remains in the desktop nav and in the sidebar for mobile.
+
 ### Added
 
+- **Section gap (home and default)**: Introduced `--section-gap: 5rem` so vertical spacing between major sections matches the hero’s padding. Home page sections (hero, ticker, packages, FAQ, CTA) are wrapped in `.home-sections` with `gap: var(--section-gap)`; `.section` padding and `.section + .section` margin use the same variable for consistency elsewhere.
 - **About page**: New TabView tab "Hours & pricing" with intro and three philosophy-style bullets (confirm rates when you book, flexible scheduling, packages for value). Copy in `HOURS_AND_PRICING` in `@/constants/about`.
 
 ### Fixed
