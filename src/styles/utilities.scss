@@ -135,6 +135,11 @@
   padding-bottom: 0;
 }
 
+.home-sections > .section + .section,
+.home-sections > * + * {
+  margin-top: 0;
+}
+
 /* CTA band when used outside home (e.g. on another page): keep gap above footer */
 .cta-band-section {
   margin-bottom: var(--section-gap, 5rem);

@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - **FAQ preview (home)**: Inner wrapper (`.faq-preview-section__inner`) has bottom padding so the "See full FAQ" button is not tight to the section edge.
+- **Home page gaps**: Hero-to-ticker gap was 10rem (flex gap + `.section + .section` margin). Zeroed `margin-top` for adjacent children inside `.home-sections` so only the wrapper `gap` controls spacing and all section gaps are uniform (5rem).
 
 ## [0.2.18] - 2026-02-16
 
