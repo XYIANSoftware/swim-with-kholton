@@ -106,7 +106,17 @@
   margin-top: var(--section-gap, 5rem);
 }
 
-/* Home page: exactly 5rem between sections — gap only; section padding zeroed so we don't double */
+/* Section headings: extra top spacing (not global so ticker etc. stay unchanged) */
+.section h1,
+.section h2,
+.section h3,
+.section h4,
+.section h5,
+.section h6 {
+  padding-top: 1rem;
+}
+
+/* Home page: 5rem gap between every block; section padding zeroed so gap does the work. */
 .home-sections {
   display: flex;
   flex-direction: column;
@@ -117,21 +127,29 @@
   margin-top: 0;
 }
 
-/* No section padding inside .home-sections; gap provides the 5rem between each block */
+/* No section padding so wrapper gap is the only space between blocks */
 .home-sections .section {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-/* First/last child get one side of padding so top and bottom of page still have 5rem */
-.home-sections > *:first-child {
+/* First block: 5rem top. Last block: 5rem bottom (CTA above footer). Use .section so specificity beats the zero above. */
+.home-sections > .section:first-child {
   padding-top: var(--section-gap);
 }
-.home-sections > *:last-child {
+.home-sections > .section:last-child {
   padding-bottom: var(--section-gap);
 }
 
-/* CTA band: extra gap above footer when not in .home-sections (there, last-child padding handles it) */
+/* First/last when not .section (e.g. ticker as first would be rare; last-child backup) */
+.home-sections > *:first-child:not(.section) {
+  padding-top: var(--section-gap);
+}
+.home-sections > *:last-child:not(.section) {
+  padding-bottom: var(--section-gap);
+}
+
+/* CTA band: when not on home page, keep gap above footer */
 .cta-band-section {
   margin-bottom: var(--section-gap, 5rem);
 }
